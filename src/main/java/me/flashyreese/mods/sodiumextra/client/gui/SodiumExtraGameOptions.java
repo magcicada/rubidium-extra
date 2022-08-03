@@ -80,10 +80,10 @@ public class SodiumExtraGameOptions {
     }
 
     public enum OverlayCorner implements TextProvider {
-        TOP_LEFT("sodium-extra.option.overlay_corner.top_left"),
-        TOP_RIGHT("sodium-extra.option.overlay_corner.top_right"),
-        BOTTOM_LEFT("sodium-extra.option.overlay_corner.bottom_left"),
-        BOTTOM_RIGHT("sodium-extra.option.overlay_corner.bottom_right");
+        TOP_LEFT("sodiumextra.option.overlay_corner.top_left"),
+        TOP_RIGHT("sodiumextra.option.overlay_corner.top_right"),
+        BOTTOM_LEFT("sodiumextra.option.overlay_corner.bottom_left"),
+        BOTTOM_RIGHT("sodiumextra.option.overlay_corner.bottom_right");
 
         private final Text text;
 
@@ -98,9 +98,9 @@ public class SodiumExtraGameOptions {
     }
 
     public enum TextContrast implements TextProvider {
-        NONE("sodium-extra.option.text_contrast.none"),
-        BACKGROUND("sodium-extra.option.text_contrast.background"),
-        SHADOW("sodium-extra.option.text_contrast.shadow");
+        NONE("sodiumextra.option.text_contrast.none"),
+        BACKGROUND("sodiumextra.option.text_contrast.background"),
+        SHADOW("sodiumextra.option.text_contrast.shadow");
 
         private final Text text;
 

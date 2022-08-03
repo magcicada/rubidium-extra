@@ -27,7 +27,7 @@ public class SodiumExtraClientMod {
     }
 
     private static SodiumExtraGameOptions loadConfig() {
-        return SodiumExtraGameOptions.load(new File("config/sodium-extra-options.json"));
+        return SodiumExtraGameOptions.load(new File("config/sodiumextra-options.json"));
     }
 
     public SodiumExtraClientMod() {

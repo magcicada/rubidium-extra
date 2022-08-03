@@ -34,7 +34,7 @@ public class MixinSodiumGameOptionPages {
         groups.add(OptionGroup.createBuilder()
                 .add(OptionImpl.createBuilder(int.class, vanillaOpts)
                         .setName(new TranslatableText("options.fullscreen.resolution"))
-                        .setTooltip(new TranslatableText("sodium-extra.option.resolution.tooltip"))
+                        .setTooltip(new TranslatableText("sodiumextra.option.resolution.tooltip"))
                         .setControl(option -> new SliderControlExtended(option, 0, window.getMonitor() != null ? window.getMonitor().getVideoModeCount() : 0, 1, ControlValueFormatterExtended.resolution(), false))
                         .setBinding((options, value) -> {
                             if (window.getMonitor() != null) {
