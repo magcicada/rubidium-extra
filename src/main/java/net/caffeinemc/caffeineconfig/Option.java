@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.slf4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 /**
  * <p>A config option that can be enabled or disabled.</p>

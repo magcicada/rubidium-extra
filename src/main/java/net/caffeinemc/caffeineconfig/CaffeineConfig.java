@@ -10,10 +10,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.forgespi.language.IModInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 /**
  * <p>A mixin configuration object. Holds the {@link Option options} defined and handles overrides.</p>
@@ -45,7 +43,7 @@ public final class CaffeineConfig {
      */
     public static CaffeineConfig.Builder builder(String modName) {
         CaffeineConfig config = new CaffeineConfig(modName);
-        config.logger = LoggerFactory.getLogger(modName + " Config");
+        config.logger = LogManager.getFormatterLogger(modName + " Config");
         String jsonKey = modName.toLowerCase() + ":options";
         return config.new Builder().withSettingsKey(jsonKey);
     }
