@@ -2,10 +2,10 @@ package me.flashyreese.mods.sodiumextra.mixin.compat;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.flashyreese.mods.sodiumextra.client.gui.SuggestRSOScreen;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.text.Text;
+import net.minecraftforge.fml.ModList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,7 +20,7 @@ public abstract class MixinTitleScreen extends Screen {
 
     @Inject(method = "init", at = @At(value = "RETURN"))
     private void postInit(CallbackInfo ci) {
-        if (!FabricLoader.getInstance().isModLoaded("reeses-sodium-options") && !SodiumExtraClientMod.options().notificationSettings.hideRSORecommendation && !SodiumExtraClientMod.options().hasSuggestedRSO()) {
+        if (!ModList.get().isLoaded("reeses-sodium-options") && !SodiumExtraClientMod.options().notificationSettings.hideRSORecommendation && !SodiumExtraClientMod.options().hasSuggestedRSO()) {
             this.client.setScreen(new SuggestRSOScreen(this));
             SodiumExtraClientMod.options().setSuggestedRSO(true);
         }

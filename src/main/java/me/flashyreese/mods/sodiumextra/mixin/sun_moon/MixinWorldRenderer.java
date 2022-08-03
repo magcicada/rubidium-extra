@@ -1,7 +1,6 @@
 package me.flashyreese.mods.sodiumextra.mixin.sun_moon;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.render.DimensionEffects;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.util.Identifier;
@@ -51,8 +50,8 @@ public class MixinWorldRenderer {
             MOON_PHASES = new Identifier("textures/environment/moon_phases.png");
             SUN = new Identifier("textures/environment/sun.png");
         } else {
-            MOON_PHASES = new Identifier("sodium-extra", "textures/transparent.png");
-            SUN = new Identifier("sodium-extra", "textures/transparent.png");
+            MOON_PHASES = new Identifier("sodiumextra", "textures/transparent.png");
+            SUN = new Identifier("sodiumextra", "textures/transparent.png");
         }
     }
 }

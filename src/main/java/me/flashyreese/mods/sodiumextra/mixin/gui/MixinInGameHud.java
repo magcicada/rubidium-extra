@@ -49,10 +49,10 @@ public class MixinInGameHud {
     private void renderFPS(MatrixStack matrices) {
         int currentFPS = MinecraftClientAccessor.getCurrentFPS();
 
-        Text text = Text.translatable("sodium-extra.overlay.fps", currentFPS);
+        Text text = Text.translatable("sodiumextra.overlay.fps", currentFPS);
 
         if (SodiumExtraClientMod.options().extraSettings.showFPSExtended)
-            text = Text.literal(String.format("%s %s", text.getString(), Text.translatable("sodium-extra.overlay.fps_extended", SodiumExtraClientMod.getClientTickHandler().getHighestFps(), SodiumExtraClientMod.getClientTickHandler().getAverageFps(),
+            text = Text.literal(String.format("%s %s", text.getString(), Text.translatable("sodiumextra.overlay.fps_extended", SodiumExtraClientMod.getClientTickHandler().getHighestFps(), SodiumExtraClientMod.getClientTickHandler().getAverageFps(),
                     SodiumExtraClientMod.getClientTickHandler().getLowestFps()).getString()));
 
         int x, y;
@@ -85,7 +85,7 @@ public class MixinInGameHud {
         if (this.client.hasReducedDebugInfo()) return;
         Vec3d pos = this.client.player.getPos();
 
-        Text text = Text.translatable("sodium-extra.overlay.coordinates", String.format("%.2f", pos.x), String.format("%.2f", pos.y), String.format("%.2f", pos.z));
+        Text text = Text.translatable("sodiumextra.overlay.coordinates", String.format("%.2f", pos.x), String.format("%.2f", pos.y), String.format("%.2f", pos.z));
 
         int x, y;
         switch (SodiumExtraClientMod.options().extraSettings.overlayCorner) {
@@ -113,7 +113,7 @@ public class MixinInGameHud {
     }
 
     private void renderLightUpdatesWarning(MatrixStack matrices) {
-        Text text = Text.translatable("sodium-extra.overlay.light_updates");
+        Text text = Text.translatable("sodiumextra.overlay.light_updates");
 
         int x, y;
         switch (SodiumExtraClientMod.options().extraSettings.overlayCorner) {

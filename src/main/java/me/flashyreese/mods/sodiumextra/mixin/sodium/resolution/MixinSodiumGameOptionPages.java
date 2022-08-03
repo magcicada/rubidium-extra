@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.List;
 import java.util.Optional;
 
-@Mixin(SodiumGameOptionPages.class)
+@Mixin(value = SodiumGameOptionPages.class, remap = false)
 public class MixinSodiumGameOptionPages {
 
     @Shadow
@@ -34,7 +34,7 @@ public class MixinSodiumGameOptionPages {
         groups.add(OptionGroup.createBuilder()
                 .add(OptionImpl.createBuilder(int.class, vanillaOpts)
                         .setName(Text.translatable("options.fullscreen.resolution"))
-                        .setTooltip(Text.translatable("sodium-extra.option.resolution.tooltip"))
+                        .setTooltip(Text.translatable("sodiumextra.option.resolution.tooltip"))
                         .setControl(option -> new SliderControlExtended(option, 0, window.getMonitor() != null ? window.getMonitor().getVideoModeCount() : 0, 1, ControlValueFormatterExtended.resolution(), false))
                         .setBinding((options, value) -> {
                             if (window.getMonitor() != null) {
