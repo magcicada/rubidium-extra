@@ -1,4 +1,4 @@
-package me.flashyreese.mods.sodiumextra.mixin.sodium.resolution.reeses_sodium_options;
+/*package me.flashyreese.mods.sodiumextra.mixin.sodium.resolution.reeses_sodium_options;
 
 import me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumVideoOptionsScreen;
 import me.jellysquid.mods.sodium.client.gui.options.OptionFlag;
@@ -18,9 +18,6 @@ import java.util.HashSet;
 @Mixin(SodiumVideoOptionsScreen.class)
 public class MixinSodiumVideoOptionsScreen {
 
-    /*
-     * Terrible mixin code just to avoid enum reflection hacks, currently REQUIRES_GAME_RESTART is unused by Sodium.
-     */
     @Inject(method = "applyChanges",
             at = @At(
                     value = "INVOKE",
@@ -34,4 +31,4 @@ public class MixinSodiumVideoOptionsScreen {
             client.getWindow().applyVideoMode();
         }
     }
-}
+}*/

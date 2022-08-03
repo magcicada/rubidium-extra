@@ -2,7 +2,8 @@ package me.flashyreese.mods.sodiumextra.mixin;
 
 import net.caffeinemc.caffeineconfig.AbstractCaffeineConfigMixinPlugin;
 import net.caffeinemc.caffeineconfig.CaffeineConfig;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 public class SodiumExtraMixinConfigPlugin extends AbstractCaffeineConfigMixinPlugin {
 
@@ -34,7 +35,7 @@ public class SodiumExtraMixinConfigPlugin extends AbstractCaffeineConfigMixinPlu
                 .addMixinOption("sodium.fast_random", true)
                 .addMixinOption("sodium.gui_scale", true)
                 .addMixinOption("sodium.resolution", true)
-                .addMixinOption("sodium.resolution.reeses_sodium_options", FabricLoader.getInstance().isModLoaded("reeses-sodium-options"))
+                .addMixinOption("sodium.resolution.reeses_sodium_options", FMLLoader.getLoadingModList().getModFileById("reeses-sodium-options") != null)
                 .addMixinOption("sodium.scrollable_page", true)
                 .addMixinOption("stars", true)
                 .addMixinOption("sun_moon", true)
@@ -42,7 +43,7 @@ public class SodiumExtraMixinConfigPlugin extends AbstractCaffeineConfigMixinPlu
 
 
                 .withInfoUrl("https://github.com/FlashyReese/sodium-extra-fabric/wiki/Configuration-File")
-                .build(FabricLoader.getInstance().getConfigDir().resolve("sodium-extra.properties"));
+                .build(FMLPaths.CONFIGDIR.get().resolve("sodium-extra.properties"));
     }
 
     @Override

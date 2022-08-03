@@ -1,0 +1,34 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+license = "LGPLv3"
+issueTrackerURL="https://github.com/dimadencep/sodium-extra-forge/issues"
+
+[[mods]]
+modId = "sodiumextra"
+version = "${file.jarVersion}"
+displayName = "Sodium Extra"
+logoFile= "logo.png"
+authors = "FlashyReese, dima_dencep"
+displayURL = "https://github.com/dimadencep/sodium-extra-forge"
+description = "Features that shouldn't be in Sodium."
+
+[[dependencies.sodiumextra]]
+modId = "forge"
+mandatory = true
+versionRange = "[40,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.sodiumextra]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.2]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.sodiumextra]]
+modId = "rubidium"
+mandatory = true
+versionRange = "[0.5,)"
+ordering = "NONE"
+side = "BOTH"
