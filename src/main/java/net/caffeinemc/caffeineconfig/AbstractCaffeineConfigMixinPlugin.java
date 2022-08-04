@@ -3,6 +3,7 @@ package net.caffeinemc.caffeineconfig;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -14,8 +15,6 @@ public abstract class AbstractCaffeineConfigMixinPlugin implements IMixinConfigP
     @Override
     public void onLoad(String mixinPackage) {
         this.config = createConfig();
-        logger().info("Loaded configuration file for {}: {} options available, {} override(s) found",
-                config.getModName(), this.config.getOptionCount(), this.config.getOptionOverrideCount());
     }
 
     /**
@@ -31,6 +30,10 @@ public abstract class AbstractCaffeineConfigMixinPlugin implements IMixinConfigP
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        if (mixinClassName.contains("me.flashyreese.mods.sodiumextra.mixin.stars.MixinWorldRenderer") && FMLLoader.getLoadingModList().getModFileById("citadel") != null) {
+            return false;
+        }
+
         if (!mixinClassName.startsWith(mixinPackageRoot())) {
             throw new IllegalStateException(String.format("Expected mixin '%s' to start with package root '%s'!", mixinClassName, mixinPackageRoot()));
         }
