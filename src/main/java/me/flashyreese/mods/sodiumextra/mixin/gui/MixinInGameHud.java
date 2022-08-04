@@ -49,9 +49,7 @@ public class MixinInGameHud {
 
     //Should I make this OOP or just leave as it :> I don't think I will be adding any more than these 2.
     private void renderFPS(MatrixStack matrices) {
-        int currentFPS = MinecraftClientAccessor.getCurrentFPS();
-
-        Text text = new TranslatableText("sodiumextra.overlay.fps", currentFPS);
+        Text text = new TranslatableText("sodiumextra.overlay.fps", this.client.currentFps);
 
         if (SodiumExtraClientMod.options().extraSettings.showFPSExtended)
             text = new LiteralText(String.format("%s %s", text.getString(), new TranslatableText("sodiumextra.overlay.fps_extended", SodiumExtraClientMod.getClientTickHandler().getHighestFps(), SodiumExtraClientMod.getClientTickHandler().getAverageFps(),

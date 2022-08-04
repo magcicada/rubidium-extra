@@ -12,7 +12,6 @@
     "compat.MixinSodiumOptionsGUI",
     "compat.MixinTitleScreen",
     "fog.MixinBackgroundRenderer",
-    "gui.MinecraftClientAccessor",
     "gui.MixinInGameHud",
     "instant_sneak.MixinCamera",
     "light_updates.MixinLightingProvider",
