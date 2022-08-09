@@ -21,7 +21,7 @@ jobs:
         run: chmod +x gradlew && ./gradlew build
 
       - name: Publish to Modrinth & CurseForge
-        uses: Kir-Antipov/mc-publish@v2.1
+        uses: Kir-Antipov/mc-publish@v3.1
         with:
           modrinth-id: oY2B1pjg
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
