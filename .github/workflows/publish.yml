@@ -19,19 +19,9 @@ jobs:
       - name: Build with Gradle
         id: build
         run: chmod +x gradlew && ./gradlew build
-        
-      - name: Create release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "0.4.7.${{ github.run_number }}"
-          prerelease: false
-          title: "Rubidium-extra 0.4.7.${{ github.run_number }}"
-          files: |
-            build/libs/*
 
       - name: Publish to Modrinth & CurseForge
-        uses: Kir-Antipov/mc-publish@v2.1
+        uses: Kir-Antipov/mc-publish@v3.1
         with:
           modrinth-id: oY2B1pjg
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
