@@ -23,4 +23,4 @@ artifacts in `build/libs`.
 
 # License
 
-Sodium Extra is licensed under GNU LGPLv3, a free and open-source license. For more information, please see the [license file](LICENSE.txt).
+Rubidium Extra is licensed under GNU LGPLv3, a free and open-source license. For more information, please see the [license file](LICENSE.txt).

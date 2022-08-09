@@ -24,9 +24,9 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "0.4.6.${{ github.run_number }}"
+          automatic_release_tag: "0.4.7.${{ github.run_number }}"
           prerelease: false
-          title: "Rubidium-extra 0.4.6.${{ github.run_number }}"
+          title: "Rubidium-extra 0.4.7.${{ github.run_number }}"
           files: |
             build/libs/*
 
