@@ -5,8 +5,8 @@ issueTrackerURL="https://github.com/dimadencep/sodium-extra-forge/issues"
 
 [[mods]]
 modId = "sodiumextra"
-version = "${file.jarVersion}"
-displayName = "Sodium Extra"
+version = "${version}"
+displayName = "Rubidium Extra"
 logoFile= "logo.png"
 authors = "FlashyReese, dima_dencep"
 displayURL = "https://github.com/dimadencep/sodium-extra-forge"

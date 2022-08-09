@@ -46,12 +46,13 @@ jobs:
           loaders: forge
 
           game-versions: |
-            1.19
-            1.19.1
+            1.16.5
+            1.16.4
           
           dependencies: |
             rubidium | depends | *
             oculus | recommends | *
             
           java: |
-            17
+            11
+            8
