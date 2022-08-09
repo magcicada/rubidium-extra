@@ -1,46 +1,59 @@
 name: Publish Release
 
 on:
-  release:
-    types:
-      - published
+  push:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout sources
         uses: actions/checkout@v2
+
       - name: Set up JDK 17
         uses: actions/setup-java@v1
         with:
           java-version: 17
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Upload assets to releases
-        run: ./gradlew build publishAllPublicationsToFlashyReeseReleasesRepository
-        env:
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
-          BUILD_RELEASE: ${{ github.event.prerelease == false }}
+
+      - name: Build with Gradle
+        id: build
+        run: chmod +x gradlew && ./gradlew build
+        
+      - name: Create release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ""0.4.6.${{ github.run_number }}"
+          prerelease: false
+          title: "Rubidium-extra 0.4.6.${{ github.run_number }}"
+          files: |
+            build/libs/*
+
       - name: Publish to Modrinth & CurseForge
         uses: Kir-Antipov/mc-publish@v2.1
         with:
-          modrinth-id: PtjYWJkn
+          files-primary: build/libs/!(*-@(dev\|sources)).jar
+
+          modrinth-id: oY2B1pjg
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
 
-          curseforge-id: 447673
+          curseforge-id: 654373
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
           version-type: release
 
-          loaders: fabric
+          loaders: forge
 
-          version-resolver: latest
+          game-versions: |
+            1.19
+            1.19.1
+          
           dependencies: |
-            sodium | depends | *
-            reeses-sodium-options | recommends | *
-            irisshaders | recommends | *
-            iris | recommends | *
+            rubidium | depends | *
+            oculus | recommends | *
+            
+          java: |
+            17
