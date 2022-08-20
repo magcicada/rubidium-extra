@@ -2,8 +2,7 @@ package me.flashyreese.mods.sodiumextra.mixin;
 
 import net.caffeinemc.caffeineconfig.AbstractCaffeineConfigMixinPlugin;
 import net.caffeinemc.caffeineconfig.CaffeineConfig;
-import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.fabricmc.loader.api.FabricLoader;
 
 public class SodiumExtraMixinConfigPlugin extends AbstractCaffeineConfigMixinPlugin {
 
@@ -11,7 +10,7 @@ public class SodiumExtraMixinConfigPlugin extends AbstractCaffeineConfigMixinPlu
 
     @Override
     protected CaffeineConfig createConfig() {
-        return CaffeineConfig.builder("Sodium Extra").withSettingsKey("sodiumextra:options")
+        return CaffeineConfig.builder("Sodium Extra").withSettingsKey("sodium-extra:options")
                 .addMixinOption("adaptive_sync", true)
                 .addMixinOption("animation", true)
                 .addMixinOption("biome_colors", true)
@@ -34,15 +33,15 @@ public class SodiumExtraMixinConfigPlugin extends AbstractCaffeineConfigMixinPlu
                 .addMixinOption("sodium.accessibility", true)
                 .addMixinOption("sodium.gui_scale", true)
                 .addMixinOption("sodium.resolution", true)
-                .addMixinOption("sodium.resolution.reeses_sodium_options", FMLLoader.getLoadingModList().getModFileById("reeses-sodium-options") != null)
                 .addMixinOption("sodium.scrollable_page", true)
+                .addMixinOption("sodium.vsync", true)
                 .addMixinOption("stars", true)
                 .addMixinOption("sun_moon", true)
                 .addMixinOption("toasts", true)
 
 
-                .withInfoUrl("https://github.com/FlashyReese/sodiumextra-fabric/wiki/Configuration-File")
-                .build(FMLPaths.CONFIGDIR.get().resolve("sodiumextra.properties"));
+                .withInfoUrl("https://github.com/FlashyReese/sodium-extra-fabric/wiki/Configuration-File")
+                .build(FabricLoader.getInstance().getConfigDir().resolve("sodium-extra.properties"));
     }
 
     @Override
