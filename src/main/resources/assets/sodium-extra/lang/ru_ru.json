@@ -172,6 +172,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(макс. %s / сред. %s / мин. %s)",
   "sodium-extra.overlay.light_updates": "Обновления света отключены",
-  "sodium-extra.suggestRSO.header": "Совет: установите Reese's Sodium Options",
-  "sodium-extra.suggestRSO.message": "Крайне рекомендуется использовать Reese's Sodium Options совместно с Sodium Extra. Из-за возрастающего количества функций его элементы не умещаются должным образом в обычном окне настроек графики Sodium."
+  "sodium-extra.suggestRSO.header": "Совет: установите TexTrue's Rubidium Options",
+  "sodium-extra.suggestRSO.message": "Крайне рекомендуется использовать TexTrue's Rubidium Options совместно с Rubidium Extra. Из-за возрастающего количества функций его элементы не умещаются должным образом в обычном окне настроек графики Rubidium."
 }

@@ -172,6 +172,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(최대 %s / 평균 %s / 최소 %s)",
   "sodium-extra.overlay.light_updates": "조명 업데이트 비활성화됨",
-  "sodium-extra.suggestRSO.header": "Reese's Sodium Options 모드를 설치하는것을 추천합니다.",
-  "sodium-extra.suggestRSO.message": "Sodium Extra와 함께 Reese's Sodium Options 모드를 설치하는것이 좋습니다. 기능의 수가 증가함에 따라 Sodium의 비디오 옵션에서 모두 표시되지 않을 수 있습니다."
+  "sodium-extra.suggestRSO.header": "TexTrue's Rubidium Options 모드를 설치하는것을 추천합니다.",
+  "sodium-extra.suggestRSO.message": "Rubidium Extra와 함께 TexTrue's Rubidium Options 모드를 설치하는것이 좋습니다. 기능의 수가 증가함에 따라 Rubidium의 비디오 옵션에서 모두 표시되지 않을 수 있습니다."
 }
