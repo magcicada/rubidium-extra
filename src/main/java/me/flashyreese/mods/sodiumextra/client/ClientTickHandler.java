@@ -1,7 +1,7 @@
 package me.flashyreese.mods.sodiumextra.client;
 
 import me.flashyreese.mods.sodiumextra.common.util.EvictingQueue;
-import net.minecraft.client.MinecraftClient;
+import me.flashyreese.mods.sodiumextra.mixin.gui.MinecraftClientAccessor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 
@@ -15,7 +15,8 @@ public class ClientTickHandler {
     }
 
     public void onTick(TickEvent.ClientTickEvent event) {
-        this.averageFps.add(MinecraftClient.getInstance().currentFps);
+        int currentFPS = MinecraftClientAccessor.getCurrentFPS();
+        this.averageFps.add(currentFPS);
     }
 
     public int getAverageFps() {
