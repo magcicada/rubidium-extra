@@ -51,10 +51,10 @@ public class MixinInGameHud {
     private void renderFPS(MatrixStack matrices) {
         int currentFPS = MinecraftClientAccessor.getCurrentFPS();
 
-        Text text = new TranslatableText("sodiumextra.overlay.fps", currentFPS);
+        Text text = new TranslatableText("sodium-extra.overlay.fps", currentFPS);
 
         if (SodiumExtraClientMod.options().extraSettings.showFPSExtended)
-            text = new LiteralText(String.format("%s %s", text.getString(), new TranslatableText("sodiumextra.overlay.fps_extended", SodiumExtraClientMod.getClientTickHandler().getHighestFps(), SodiumExtraClientMod.getClientTickHandler().getAverageFps(),
+            text = new LiteralText(String.format("%s %s", text.getString(), new TranslatableText("sodium-extra.overlay.fps_extended", SodiumExtraClientMod.getClientTickHandler().getHighestFps(), SodiumExtraClientMod.getClientTickHandler().getAverageFps(),
                     SodiumExtraClientMod.getClientTickHandler().getLowestFps()).getString()));
 
         int x = 0, y = 0;
@@ -85,7 +85,7 @@ public class MixinInGameHud {
         if (this.client.hasReducedDebugInfo()) return;
         Vec3d pos = this.client.player.getPos();
 
-        Text text = new TranslatableText("sodiumextra.overlay.coordinates", String.format("%.2f", pos.x), String.format("%.2f", pos.y), String.format("%.2f", pos.z));
+        Text text = new TranslatableText("sodium-extra.overlay.coordinates", String.format("%.2f", pos.x), String.format("%.2f", pos.y), String.format("%.2f", pos.z));
 
         int x = 0, y = 0;
         switch (SodiumExtraClientMod.options().extraSettings.overlayCorner) {
@@ -110,8 +110,8 @@ public class MixinInGameHud {
         this.drawString(matrices, text, x, y);
     }
 
-    private void renderLightUpdatesWarning(MatrixStack matrices){
-        Text text = new TranslatableText("sodiumextra.overlay.light_updates");
+    private void renderLightUpdatesWarning(MatrixStack matrices) {
+        Text text = new TranslatableText("sodium-extra.overlay.light_updates");
 
         int x = 0, y = 0;
         switch (SodiumExtraClientMod.options().extraSettings.overlayCorner) {

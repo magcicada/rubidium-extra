@@ -9,12 +9,14 @@ import me.jellysquid.mods.sodium.client.gui.options.TextProvider;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import org.lwjgl.glfw.GLFW;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.Map;
 
 public class SodiumExtraGameOptions {
@@ -80,10 +82,10 @@ public class SodiumExtraGameOptions {
     }
 
     public enum OverlayCorner implements TextProvider {
-        TOP_LEFT("sodiumextra.option.overlay_corner.top_left"),
-        TOP_RIGHT("sodiumextra.option.overlay_corner.top_right"),
-        BOTTOM_LEFT("sodiumextra.option.overlay_corner.bottom_left"),
-        BOTTOM_RIGHT("sodiumextra.option.overlay_corner.bottom_right");
+        TOP_LEFT("sodium-extra.option.overlay_corner.top_left"),
+        TOP_RIGHT("sodium-extra.option.overlay_corner.top_right"),
+        BOTTOM_LEFT("sodium-extra.option.overlay_corner.bottom_left"),
+        BOTTOM_RIGHT("sodium-extra.option.overlay_corner.bottom_right");
 
         private final Text text;
 
@@ -98,9 +100,9 @@ public class SodiumExtraGameOptions {
     }
 
     public enum TextContrast implements TextProvider {
-        NONE("sodiumextra.option.text_contrast.none"),
-        BACKGROUND("sodiumextra.option.text_contrast.background"),
-        SHADOW("sodiumextra.option.text_contrast.shadow");
+        NONE("sodium-extra.option.text_contrast.none"),
+        BACKGROUND("sodium-extra.option.text_contrast.background"),
+        SHADOW("sodium-extra.option.text_contrast.shadow");
 
         private final Text text;
 
@@ -111,6 +113,33 @@ public class SodiumExtraGameOptions {
         @Override
         public String getLocalizedName() {
             return this.text.getString();
+        }
+    }
+
+    public enum VerticalSyncOption implements TextProvider {
+        OFF("options.off"),
+        ON("options.on"),
+        ADAPTIVE("sodium-extra.option.use_adaptive_sync.name", GLFW.glfwExtensionSupported("GLX_EXT_swap_control_tear") || GLFW.glfwExtensionSupported("WGL_EXT_swap_control_tear"));
+
+        private final Text name;
+        private final boolean supported;
+
+        VerticalSyncOption(String name) {
+            this(name, true);
+        }
+
+        VerticalSyncOption(String name, boolean supported) {
+            this.name = new TranslatableText(name);
+            this.supported = supported;
+        }
+
+        public static VerticalSyncOption[] getAvailableOptions() {
+            return Arrays.stream(VerticalSyncOption.values()).filter((o) -> o.supported).toArray(VerticalSyncOption[]::new);
+        }
+
+        @Override
+        public String getLocalizedName() {
+            return this.name.getString();
         }
     }
 
@@ -175,6 +204,9 @@ public class SodiumExtraGameOptions {
         public boolean painting;
         public boolean piston;
         public boolean beaconBeam;
+        public boolean enchantingTableBook;
+        public boolean itemFrameNameTag;
+        public boolean playerNameTag;
 
         public RenderSettings() {
             this.fogDistance = 0;
@@ -184,6 +216,9 @@ public class SodiumExtraGameOptions {
             this.painting = true;
             this.piston = true;
             this.beaconBeam = true;
+            this.enchantingTableBook = true;
+            this.itemFrameNameTag = true;
+            this.playerNameTag = true;
         }
     }
 
