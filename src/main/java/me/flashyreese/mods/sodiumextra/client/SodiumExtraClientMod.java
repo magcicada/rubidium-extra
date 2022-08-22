@@ -1,18 +1,28 @@
 package me.flashyreese.mods.sodiumextra.client;
 
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.common.Mod;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-@Mod("sodiumextra")
-@OnlyIn(Dist.CLIENT)
-public class SodiumExtraClientMod {
+@Environment(EnvType.CLIENT)
+public class SodiumExtraClientMod implements ClientModInitializer {
 
     private static final ClientTickHandler clientTickHandler = new ClientTickHandler();
     private static SodiumExtraGameOptions CONFIG;
+    private static Logger LOGGER;
+
+    public static Logger logger() {
+        if (LOGGER == null) {
+            LOGGER = LogManager.getLogger("Sodium Extra");
+        }
+
+        return LOGGER;
+    }
 
     public static SodiumExtraGameOptions options() {
         if (CONFIG == null) {
@@ -27,10 +37,11 @@ public class SodiumExtraClientMod {
     }
 
     private static SodiumExtraGameOptions loadConfig() {
-        return SodiumExtraGameOptions.load(new File("config/sodiumextra-options.json"));
+        return SodiumExtraGameOptions.load(new File("config/sodium-extra-options.json"));
     }
 
-    public SodiumExtraClientMod() {
+    @Override
+    public void onInitializeClient() {
         getClientTickHandler().onClientInitialize();
     }
 }
