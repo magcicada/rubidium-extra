@@ -24,7 +24,7 @@ public class SuggestRSOScreen extends Screen {
     private MultilineText lines = MultilineText.EMPTY;
 
     public SuggestRSOScreen(Screen prevScreen) {
-        super(new LiteralText("Reese's Sodium Options Suggestion"));
+        super(new LiteralText("TexTrue's Rubidium Options Suggestion"));
         this.prevScreen = prevScreen;
     }
 
@@ -33,8 +33,8 @@ public class SuggestRSOScreen extends Screen {
         super.init();
         this.lines = MultilineText.create(this.textRenderer, MESSAGE, this.width - 50);
         int i = (this.lines.count() + 1) * this.textRenderer.fontHeight * 2;
-        this.addButton(new ButtonWidget(this.width / 2 - 155, 130 + i, 150, 20, new LiteralText("CurseForge"), buttonWidget -> Util.getOperatingSystem().open("https://curseforge.com/minecraft/mc-mods/reeses-sodium-options")));
-        this.addButton(new ButtonWidget(this.width / 2 - 155 + 160, 130 + i, 150, 20, new LiteralText("Modrinth"), buttonWidget -> Util.getOperatingSystem().open("https://modrinth.com/mod/reeses-sodium-options")));
+        this.addButton(new ButtonWidget(this.width / 2 - 155, 130 + i, 150, 20, new LiteralText("CurseForge"), buttonWidget -> Util.getOperatingSystem().open("https://curseforge.com/minecraft/mc-mods/textrue-rubidium-options")));
+        this.addButton(new ButtonWidget(this.width / 2 - 155 + 160, 130 + i, 150, 20, new LiteralText("Modrinth"), buttonWidget -> Util.getOperatingSystem().open("https://modrinth.com/mod/textrue-rubidium-options")));
         this.addButton(new ButtonWidget(this.width / 2 - 155, 100 + i, 150, 20, ScreenTexts.PROCEED, buttonWidget -> {
             if (this.checkbox.isChecked()) {
                 SodiumExtraClientMod.options().notificationSettings.hideRSORecommendation = true;
