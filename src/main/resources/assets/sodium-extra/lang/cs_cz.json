@@ -172,6 +172,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(max. %s / prům. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Aktualizace světel zakázány",
-  "sodium-extra.suggestRSO.header": "Návrh: Nainstalujte Reese's Sodium Options",
-  "sodium-extra.suggestRSO.message": "Je velmi doporučeno nainstalovat Reese's Sodium Options společně se Sodium Extra. Kvůli rostoucímu množství funkcí, již nezapadají do možností Sodium."
+  "sodium-extra.suggestRSO.header": "Návrh: Nainstalujte TexTrue's Rubidium Options",
+  "sodium-extra.suggestRSO.message": "Je velmi doporučeno nainstalovat TexTrue's Rubidium Options společně se Rubidium Extra. Kvůli rostoucímu množství funkcí, již nezapadají do možností Rubidium."
 }
