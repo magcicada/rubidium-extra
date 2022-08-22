@@ -4,6 +4,8 @@ import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.File;
 
@@ -13,6 +15,15 @@ public class SodiumExtraClientMod {
 
     private static final ClientTickHandler clientTickHandler = new ClientTickHandler();
     private static SodiumExtraGameOptions CONFIG;
+    private static Logger LOGGER;
+
+    public static Logger logger() {
+        if (LOGGER == null) {
+            LOGGER = LogManager.getLogger("Sodium Extra");
+        }
+
+        return LOGGER;
+    }
 
     public static SodiumExtraGameOptions options() {
         if (CONFIG == null) {
@@ -27,7 +38,7 @@ public class SodiumExtraClientMod {
     }
 
     private static SodiumExtraGameOptions loadConfig() {
-        return SodiumExtraGameOptions.load(new File("config/sodiumextra-options.json"));
+        return SodiumExtraGameOptions.load(new File("config/sodium-extra-options.json"));
     }
 
     public SodiumExtraClientMod() {
