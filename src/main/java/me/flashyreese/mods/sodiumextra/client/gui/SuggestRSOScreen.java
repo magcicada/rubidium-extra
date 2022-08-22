@@ -15,8 +15,8 @@ import net.minecraft.util.Util;
 
 public class SuggestRSOScreen extends Screen {
 
-    private static final Text HEADER = new TranslatableText("sodiumextra.suggestRSO.header").formatted(Formatting.BOLD);
-    private static final Text MESSAGE = new TranslatableText("sodiumextra.suggestRSO.message");
+    private static final Text HEADER = new TranslatableText("sodium-extra.suggestRSO.header").formatted(Formatting.BOLD);
+    private static final Text MESSAGE = new TranslatableText("sodium-extra.suggestRSO.message");
     private static final Text CHECK_MESSAGE = new TranslatableText("multiplayerWarning.check");
     private static final Text PROCEED_TEXT = HEADER.shallowCopy().append("\n").append(MESSAGE);
     private final Screen prevScreen;

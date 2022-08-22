@@ -50,8 +50,8 @@ public class MixinWorldRenderer {
             MOON_PHASES = new Identifier("textures/environment/moon_phases.png");
             SUN = new Identifier("textures/environment/sun.png");
         } else {
-            MOON_PHASES = new Identifier("sodiumextra", "textures/transparent.png");
-            SUN = new Identifier("sodiumextra", "textures/transparent.png");
+            MOON_PHASES = new Identifier("sodium-extra", "textures/transparent.png");
+            SUN = new Identifier("sodium-extra", "textures/transparent.png");
         }
     }
 }

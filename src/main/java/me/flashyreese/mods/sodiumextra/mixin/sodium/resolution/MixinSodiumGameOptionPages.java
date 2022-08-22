@@ -37,7 +37,7 @@ public class MixinSodiumGameOptionPages {
         groups.add(OptionGroup.createBuilder()
                 .add(OptionImpl.createBuilder(int.class, vanillaOpts)
                         .setName(new TranslatableText("options.fullscreen.resolution").getString())
-                        .setTooltip(new TranslatableText("sodiumextra.option.resolution.tooltip").getString())
+                        .setTooltip(new TranslatableText("sodium-extra.option.resolution.tooltip").getString())
                         .setControl(option -> new SliderControlExtended(option, 0, MinecraftClient.getInstance().getWindow().getMonitor() != null ? MinecraftClient.getInstance().getWindow().getMonitor().getVideoModeCount() : 0, 1, ControlValueFormatterExtended.resolution(), true))
                         .setBinding((options, value) -> {
                             if (window.getMonitor() != null) {
