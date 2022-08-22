@@ -49,10 +49,12 @@ public class MixinInGameHud {
 
     //Should I make this OOP or just leave as it :> I don't think I will be adding any more than these 2.
     private void renderFPS(MatrixStack matrices) {
-        Text text = new TranslatableText("sodiumextra.overlay.fps", this.client.currentFps);
+        int currentFPS = MinecraftClientAccessor.getCurrentFPS();
+
+        Text text = new TranslatableText("sodium-extra.overlay.fps", currentFPS);
 
         if (SodiumExtraClientMod.options().extraSettings.showFPSExtended)
-            text = new LiteralText(String.format("%s %s", text.getString(), new TranslatableText("sodiumextra.overlay.fps_extended", SodiumExtraClientMod.getClientTickHandler().getHighestFps(), SodiumExtraClientMod.getClientTickHandler().getAverageFps(),
+            text = new LiteralText(String.format("%s %s", text.getString(), new TranslatableText("sodium-extra.overlay.fps_extended", SodiumExtraClientMod.getClientTickHandler().getHighestFps(), SodiumExtraClientMod.getClientTickHandler().getAverageFps(),
                     SodiumExtraClientMod.getClientTickHandler().getLowestFps()).getString()));
 
         int x, y;
@@ -85,7 +87,7 @@ public class MixinInGameHud {
         if (this.client.hasReducedDebugInfo()) return;
         Vec3d pos = this.client.player.getPos();
 
-        Text text = new TranslatableText("sodiumextra.overlay.coordinates", String.format("%.2f", pos.x), String.format("%.2f", pos.y), String.format("%.2f", pos.z));
+        Text text = new TranslatableText("sodium-extra.overlay.coordinates", String.format("%.2f", pos.x), String.format("%.2f", pos.y), String.format("%.2f", pos.z));
 
         int x, y;
         switch (SodiumExtraClientMod.options().extraSettings.overlayCorner) {
@@ -112,8 +114,8 @@ public class MixinInGameHud {
         this.drawString(matrices, text, x, y);
     }
 
-    private void renderLightUpdatesWarning(MatrixStack matrices){
-        Text text = new TranslatableText("sodiumextra.overlay.light_updates");
+    private void renderLightUpdatesWarning(MatrixStack matrices) {
+        Text text = new TranslatableText("sodium-extra.overlay.light_updates");
 
         int x, y;
         switch (SodiumExtraClientMod.options().extraSettings.overlayCorner) {
