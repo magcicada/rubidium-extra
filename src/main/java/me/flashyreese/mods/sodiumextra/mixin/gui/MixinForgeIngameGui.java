@@ -10,27 +10,21 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.Vec3d;
-import org.spongepowered.asm.mixin.Final;
+import net.minecraftforge.client.gui.ForgeIngameGui;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(InGameHud.class)
-public class MixinInGameHud {
-    @Shadow
-    @Final
-    private MinecraftClient client;
+@Mixin(ForgeIngameGui.class)
+public abstract class MixinForgeIngameGui extends InGameHud {
 
-    @Shadow
-    private int scaledWidth;
+    public MixinForgeIngameGui(MinecraftClient client) {
+        super(client);
+    }
 
-    @Shadow
-    private int scaledHeight;
-
-    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderStatusEffectOverlay(Lnet/minecraft/client/util/math/MatrixStack;)V", shift = At.Shift.BEFORE))
-    public void render(MatrixStack matrices, float tickDelta, CallbackInfo callbackInfo) {
+    @Inject(method = "renderHUDText", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;defaultBlendFunc()V", shift = At.Shift.AFTER))
+    public void render(int width, int height, MatrixStack matrices, CallbackInfo callbackInfo) {
         if (!this.client.options.debugEnabled) {
             //Gotta love hardcoding
             if (SodiumExtraClientMod.options().extraSettings.showFps && SodiumExtraClientMod.options().extraSettings.showCoords) {

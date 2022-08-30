@@ -13,7 +13,7 @@
     "compat.MixinTitleScreen",
     "fog.MixinBackgroundRenderer",
     "gui.MinecraftClientAccessor",
-    "gui.MixinInGameHud",
+    "gui.MixinForgeIngameGui",
     "instant_sneak.MixinCamera",
     "light_updates.MixinLightingProvider",
     "particle.MixinParticleManager",
