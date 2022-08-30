@@ -39,23 +39,23 @@ public class MixinSodiumGameOptionsPages {
                 .setBinding((opts, value) -> {
                     switch (value) {
                         case OFF -> {
-                            opts.performance.useAdaptiveSync = false;
+                            //opts.performance.useAdaptiveSync = false;
                             vanillaOpts.getData().getEnableVsync().setValue(false);
                         }
                         case ON -> {
-                            opts.performance.useAdaptiveSync = false;
+                            //opts.performance.useAdaptiveSync = false;
                             vanillaOpts.getData().getEnableVsync().setValue(true);
                         }
                         case ADAPTIVE -> {
-                            opts.performance.useAdaptiveSync = true;
+                            //opts.performance.useAdaptiveSync = true;
                             vanillaOpts.getData().getEnableVsync().setValue(true);
                         }
                     }
                     vanillaOpts.save();
                 }, opts -> {
-                    if (vanillaOpts.getData().getEnableVsync().getValue() && !opts.performance.useAdaptiveSync) {
+                    if (vanillaOpts.getData().getEnableVsync().getValue()/* && !opts.performance.useAdaptiveSync*/) {
                         return SodiumExtraGameOptions.VerticalSyncOption.ON;
-                    } else if (!vanillaOpts.getData().getEnableVsync().getValue() && !opts.performance.useAdaptiveSync) {
+                    } else if (!vanillaOpts.getData().getEnableVsync().getValue()/* && !opts.performance.useAdaptiveSync*/) {
                         return SodiumExtraGameOptions.VerticalSyncOption.OFF;
                     } else {
                         return SodiumExtraGameOptions.VerticalSyncOption.ADAPTIVE;
