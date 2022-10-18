@@ -9,9 +9,13 @@ archivesBaseName = project.archives_base_name
 version = "${project.minecraft_version}-${project.mod_version}.${System.getenv("GITHUB_RUN_NUMBER") == null ? "0" : System.getenv("GITHUB_RUN_NUMBER")}"
 group = project.maven_group
 
-
 loom {
+	accessWidenerPath = file("src/main/resources/sodium-extra.accesswidener")
+
     forge {
+        convertAccessWideners = true
+        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
+	
         mixinConfigs = [
                 "sodium-extra.mixins.json"
         ]
@@ -41,7 +45,7 @@ dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     //modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "curse.maven:project-574856:3929559"
+    modImplementation "curse.maven:project-574856:3973894"
     //modImplementation("me.flashyreese.mods:reeses-sodium-options:${project.reeses_sodium_options}") {
     //    exclude group: "net.coderbot.iris_mc1_19", module: "iris"
     //}
