@@ -40,7 +40,7 @@ dependencies {
 	forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     //modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "curse.maven:rubidium-574856:3884715"
+    modImplementation "curse.maven:rubidium-574856:4024781"
     modImplementation "curse.maven:textrues-rubidium-options-663125:3946424"
     //modImplementation "me.flashyreese.mods:reeses-sodium-options:${project.reeses_sodium_options}"
     //modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
