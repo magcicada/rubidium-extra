@@ -45,7 +45,7 @@ dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     //modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "curse.maven:project-574856:3973894"
+    modImplementation "curse.maven:rubidium-574856:3973894"
     //modImplementation("me.flashyreese.mods:reeses-sodium-options:${project.reeses_sodium_options}") {
     //    exclude group: "net.coderbot.iris_mc1_19", module: "iris"
     //}
