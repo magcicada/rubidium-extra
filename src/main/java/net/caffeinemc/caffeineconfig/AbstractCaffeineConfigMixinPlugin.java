@@ -30,10 +30,6 @@ public abstract class AbstractCaffeineConfigMixinPlugin implements IMixinConfigP
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.contains("me.flashyreese.mods.sodiumextra.mixin.stars.MixinWorldRenderer") && FMLLoader.getLoadingModList().getModFileById("citadel") != null) {
-            return false;
-        }
-
         if (!mixinClassName.startsWith(mixinPackageRoot())) {
             throw new IllegalStateException(String.format("Expected mixin '%s' to start with package root '%s'!", mixinClassName, mixinPackageRoot()));
         }
