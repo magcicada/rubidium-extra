@@ -40,11 +40,11 @@ jobs:
 
           loaders: forge
 
-          game-versions: |
-            1.18.2
+          version-resolver: latest
           
           dependencies: |
             rubidium | depends | *
+            textrues-rubidium-options | recommends | *
             oculus | recommends | *
             
           java: |
