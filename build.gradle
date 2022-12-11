@@ -1,12 +1,13 @@
 plugins {
-    id 'dev.architectury.loom' version '0.12.0-SNAPSHOT'
+    id 'dev.architectury.loom' version '1.0.+'
+    id 'maven-publish'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
-version = "${project.minecraft_version}-${project.mod_version}.${System.getenv("GITHUB_RUN_NUMBER") == null ? "0" : System.getenv("GITHUB_RUN_NUMBER")}"
+version = "${project.mod_version}+mc${project.minecraft_version}-${getVersionMetadata()}"
 group = project.maven_group
 
 loom {
@@ -85,4 +86,39 @@ jar {
             "Implementation-Title"  : project.archivesBaseName,
             "Implementation-Version": project.version
     ])
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact(remapJar) {
+                builtBy remapJar
+            }
+            artifact(sourcesJar) {
+                builtBy remapSourcesJar
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "TurboMC-Public"
+            url = "https://repo.turbomc.tk/public"
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+    }
+}
+
+static def getVersionMetadata() {
+    def build_id = System.getenv("GITHUB_RUN_NUMBER")
+
+    // CI builds only
+    if (build_id != null) {
+        return "build.${build_id}"
+    }
+    // No tracking information could be found about the build
+    return "unknown"
 }

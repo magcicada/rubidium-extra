@@ -18,17 +18,18 @@ public abstract class MixinBackgroundRenderer {
     @Inject(method = "applyFog", at = @At(value = "TAIL"))
     private static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo ci) {
         Entity entity = camera.getFocusedEntity();
-        SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.putIfAbsent(entity.world.getRegistryKey().getValue(), 0);
-        int fogDistance = SodiumExtraClientMod.options().renderSettings.multiDimensionFogControl ? SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.get(entity.world.getRegistryKey().getValue()) : SodiumExtraClientMod.options().renderSettings.fogDistance;
+        SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.putIfAbsent(entity.world.getDimension().getEffects(), 0) ;
+        int fogDistance = SodiumExtraClientMod.options().renderSettings.multiDimensionFogControl ? SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.get(entity.world.getDimension().getEffects()) : SodiumExtraClientMod.options().renderSettings.fogDistance;
         if (fogDistance == 0 || (entity instanceof LivingEntity && ((LivingEntity)entity).hasStatusEffect(StatusEffects.BLINDNESS))) {
             return;
         }
         if (camera.getSubmersionType() == CameraSubmersionType.NONE && (thickFog || fogType == BackgroundRenderer.FogType.FOG_TERRAIN)) {
+            float fogStart = (float) SodiumExtraClientMod.options().renderSettings.fogStart / 100;
             if (fogDistance == 33) {
-                RenderSystem.setShaderFogStart(Short.MAX_VALUE - 1);
+                RenderSystem.setShaderFogStart(Short.MAX_VALUE - 1 * fogStart);
                 RenderSystem.setShaderFogEnd(Short.MAX_VALUE);
             } else {
-                RenderSystem.setShaderFogStart(fogDistance * 16);
+                RenderSystem.setShaderFogStart(fogDistance * 16 * fogStart);
                 RenderSystem.setShaderFogEnd((fogDistance + 1) * 16);
             }
         }
