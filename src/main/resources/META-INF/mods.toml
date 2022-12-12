@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[41,)"
+loaderVersion = "[44,)"
 license = "LGPLv3"
 issueTrackerURL="https://github.com/dimadencep/sodium-extra-forge/issues"
 
@@ -16,20 +16,20 @@ description = "Features that shouldn't be in Sodium."
 [[dependencies.sodiumextra]]
 modId = "forge"
 mandatory = true
-versionRange = "[41,)"
+versionRange = "[44,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.sodiumextra]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19,)"
+versionRange = "[1.19.3,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.sodiumextra]]
 modId = "rubidium"
 mandatory = true
-versionRange = "[0.6,)"
+versionRange = "[0.6.3,)"
 ordering = "NONE"
 side = "BOTH"
