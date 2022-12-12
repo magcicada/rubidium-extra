@@ -19,7 +19,7 @@ jobs:
       - name: Grant execute permission for Gradlew
         run: chmod +x gradlew
       - name: Upload assets to releases
-        run: ./gradlew build publishAllPublicationsToFlashyReeseReleasesRepository
+        run: ./gradlew build publish
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
