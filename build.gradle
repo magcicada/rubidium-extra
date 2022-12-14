@@ -1,12 +1,15 @@
 plugins {
-    id 'dev.architectury.loom' version '0.12.0-SNAPSHOT'
+    id 'dev.architectury.loom' version '1.0-SNAPSHOT'
+    id 'fabric-loom' version '1.0-SNAPSHOT'
+    id 'maven-publish'
+    id 'io.github.juuxel.loom-quiltflower' version '1.7.4'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = project.archives_base_name
-version = "${project.minecraft_version}-${project.mod_version}.${System.getenv("GITHUB_RUN_NUMBER") == null ? "0" : System.getenv("GITHUB_RUN_NUMBER")}"
+version = "${project.mod_version}+mc${project.minecraft_version}-${getVersionMetadata()}"
 group = project.maven_group
 
 loom {
@@ -38,23 +41,16 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
-    //modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "curse.maven:rubidium-574856:3929490"
-    modImplementation "curse.maven:textrues-rubidium-options-663125:3946426"
-    //modImplementation "me.flashyreese.mods:reeses-sodium-options:${project.reeses_sodium_options}"
-    //modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "curse.maven:rubidium-574856:${project.sodium_version}"
+    modImplementation "curse.maven:textrues-rubidium-options-663125:${project.reeses_sodium_options}"
     //implementation "org.joml:joml:1.10.2"
-
-    //include(fabricApi.module("fabric-lifecycle-events-v1", project.fabric_version))
-    // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-    // You may need to force-disable transitiveness on them.
 
     // Currently using altrisi/CaffeineConfig until it is officially available through CaffeineMC's maven repository
     // Todo: Use https://github.com/CaffeineMC/mixin-config when available
     //include(modImplementation("net.caffeinemc:mixin-config:1.0.0"))
 
-    //modRuntimeOnly "maven.modrinth:lazydfu:0.1.2"
+	modRuntimeOnly "curse.maven:lazydfu-460819:3249059"
 }
 
 processResources {
@@ -85,4 +81,36 @@ jar {
             "Implementation-Title"  : project.archivesBaseName,
             "Implementation-Version": project.version
     ])
+}
+
+// configure the maven publication
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    // select the repositories you want to publish to
+    repositories {
+        maven {
+            name = "TurboMC-Public"
+            url = "https://repo.turbomc.tk/public"
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+    }
+}
+
+static def getVersionMetadata() {
+    def build_id = System.getenv("GITHUB_RUN_NUMBER")
+
+    // CI builds only
+    if (build_id != null) {
+        return "build.${build_id}"
+    }
+    // No tracking information could be found about the build
+    return "unknown"
 }
