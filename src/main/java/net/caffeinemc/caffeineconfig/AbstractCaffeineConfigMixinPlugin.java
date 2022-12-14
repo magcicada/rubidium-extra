@@ -14,7 +14,7 @@ public abstract class AbstractCaffeineConfigMixinPlugin implements IMixinConfigP
     @Override
     public void onLoad(String mixinPackage) {
         this.config = createConfig();
-        logger().info("Loaded configuration file for {}: {} options available, {} override(s) found",
+        logger().info("Loaded configuration file for %s: %s options available, %s override(s) found",
                 config.getModName(), this.config.getOptionCount(), this.config.getOptionOverrideCount());
     }
 
@@ -52,10 +52,10 @@ public abstract class AbstractCaffeineConfigMixinPlugin implements IMixinConfigP
             }
 
             if (option.isEnabled()) {
-                logger().warn("Force-enabling mixin '{}' as option '{}' (added by {}) enables it", mixin,
+                logger().warn("Force-enabling mixin '%s' as option '%s' (added by %s) enables it", mixin,
                         option.getName(), source);
             } else {
-                logger().warn("Force-disabling mixin '{}' as option '{}' (added by {}) disables it and children", mixin,
+                logger().warn("Force-disabling mixin '%s' as option '%s' (added by %s) disables it and children", mixin,
                         option.getName(), source);
             }
         }

@@ -15,8 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BackgroundRenderer.class)
 public abstract class MixinBackgroundRenderer {
-    @Inject(method = "applyFog", at = @At(value = "TAIL"))
-    private static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo ci) {
+    @Inject(method = "setupFog", at = @At(value = "TAIL"))
+    private static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float partialTicks, CallbackInfo ci) {
         Entity entity = camera.getFocusedEntity();
         SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.putIfAbsent(entity.world.getDimension().getSkyProperties(), 0);
         int fogDistance = SodiumExtraClientMod.options().renderSettings.multiDimensionFogControl ? SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.get(entity.world.getDimension().getSkyProperties()) : SodiumExtraClientMod.options().renderSettings.fogDistance;
