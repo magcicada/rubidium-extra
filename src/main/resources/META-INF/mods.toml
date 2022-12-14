@@ -30,6 +30,6 @@ side = "BOTH"
 [[dependencies.sodiumextra]]
 modId = "rubidium"
 mandatory = true
-versionRange = "[0.2,)"
+versionRange = "[0.2.10,)"
 ordering = "NONE"
 side = "BOTH"
