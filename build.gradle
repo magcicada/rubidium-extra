@@ -21,18 +21,10 @@ loom {
 }
 
 repositories {
+    maven { url 'https://jitpack.io' }
     maven {
-        name = "CurseMaven"
-        url = "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
-    maven {
-        url "https://maven.flashyreese.me/releases"
-    }
-    maven {
-        url "https://maven.flashyreese.me/snapshots"
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
     }
 }
 
@@ -42,15 +34,15 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
 
-    modImplementation "curse.maven:rubidium-574856:${project.sodium_version}"
-    modImplementation "curse.maven:textrues-rubidium-options-663125:${project.reeses_sodium_options}"
+    modImplementation "maven.modrinth:rubidium:${project.sodium_version}"
+    modImplementation "maven.modrinth:textrues-rubidium-options:${project.rso_version}"
     //implementation "org.joml:joml:1.10.2"
 
     // Currently using altrisi/CaffeineConfig until it is officially available through CaffeineMC's maven repository
-    // Todo: Use https://github.com/CaffeineMC/mixin-config when available
-    //include(modImplementation("net.caffeinemc:mixin-config:1.0.0"))
+    // Todo: Use https://github.com/TexTrueStudio/ColaMixinConfig when available
+    include(modImplementation("com.github.TexTrueStudio:ColaMixinConfig:${project.caffeineconfig_version}"))
 
-	modRuntimeOnly "curse.maven:lazydfu-460819:3249059"
+	modRuntimeOnly "maven.modrinth:lazydfu:0.1.1"
 }
 
 processResources {
