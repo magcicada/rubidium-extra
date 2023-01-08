@@ -1,41 +1,39 @@
-package me.flashyreese.mods.sodiumextra.mixin.gui;
+package me.flashyreese.mods.sodiumextra.client.gui;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
-import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
+import me.flashyreese.mods.sodiumextra.mixin.gui.MinecraftClientAccessor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.minecraftforge.client.event.RenderGuiEvent;
+import net.minecraftforge.common.MinecraftForge;
 
-@Mixin(ForgeGui.class)
-public abstract class MixinInGameHud extends InGameHud {
+public class HudRenderImpl {
+    private final MinecraftClient client = MinecraftClient.getInstance();
 
-    public MixinInGameHud(MinecraftClient client, ItemRenderer itemRenderer) {
-        super(client, itemRenderer);
+    public void register() {
+        MinecraftForge.EVENT_BUS.addListener((event) -> {
+            if (event instanceof RenderGuiEvent.Pre renderGuiEvent) {
+                HudRenderImpl.this.onHudRender(renderGuiEvent.getPoseStack(), renderGuiEvent.getPartialTick());
+            }
+        });
     }
 
-    @Inject(method = "renderHUDText", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;defaultBlendFunc()V", shift = At.Shift.AFTER))
-    public void render(int width, int height, MatrixStack matrices, CallbackInfo callbackInfo) {
+    public void onHudRender(MatrixStack matrixStack, float tickDelta) {
         if (!this.client.options.debugEnabled) {
             //Gotta love hardcoding
             if (SodiumExtraClientMod.options().extraSettings.showFps && SodiumExtraClientMod.options().extraSettings.showCoords) {
-                this.renderFPS(matrices);
-                this.renderCoords(matrices);
+                this.renderFPS(matrixStack);
+                this.renderCoords(matrixStack);
             } else if (SodiumExtraClientMod.options().extraSettings.showFps) {
-                this.renderFPS(matrices);
+                this.renderFPS(matrixStack);
             } else if (SodiumExtraClientMod.options().extraSettings.showCoords) {
-                this.renderCoords(matrices);
+                this.renderCoords(matrixStack);
             }
             if (!SodiumExtraClientMod.options().renderSettings.lightUpdates) {
-                this.renderLightUpdatesWarning(matrices);
+                this.renderLightUpdatesWarning(matrixStack);
             }
         }
     }
@@ -57,16 +55,16 @@ public abstract class MixinInGameHud extends InGameHud {
                 y = 2;
             }
             case TOP_RIGHT -> {
-                x = this.scaledWidth - this.client.textRenderer.getWidth(text) - 2;
+                x = this.client.getWindow().getScaledWidth() - this.client.textRenderer.getWidth(text) - 2;
                 y = 2;
             }
             case BOTTOM_LEFT -> {
                 x = 2;
-                y = this.scaledHeight - this.client.textRenderer.fontHeight - 2;
+                y = this.client.getWindow().getScaledHeight() - this.client.textRenderer.fontHeight - 2;
             }
             case BOTTOM_RIGHT -> {
-                x = this.scaledWidth - this.client.textRenderer.getWidth(text) - 2;
-                y = this.scaledHeight - this.client.textRenderer.fontHeight - 2;
+                x = this.client.getWindow().getScaledWidth() - this.client.textRenderer.getWidth(text) - 2;
+                y = this.client.getWindow().getScaledHeight() - this.client.textRenderer.fontHeight - 2;
             }
             default ->
                     throw new IllegalStateException("Unexpected value: " + SodiumExtraClientMod.options().extraSettings.overlayCorner);
@@ -89,16 +87,16 @@ public abstract class MixinInGameHud extends InGameHud {
                 y = 12;
             }
             case TOP_RIGHT -> {
-                x = this.scaledWidth - this.client.textRenderer.getWidth(text) - 2;
+                x = this.client.getWindow().getScaledWidth() - this.client.textRenderer.getWidth(text) - 2;
                 y = 12;
             }
             case BOTTOM_LEFT -> {
                 x = 2;
-                y = this.scaledHeight - this.client.textRenderer.fontHeight - 12;
+                y = this.client.getWindow().getScaledHeight() - this.client.textRenderer.fontHeight - 12;
             }
             case BOTTOM_RIGHT -> {
-                x = this.scaledWidth - this.client.textRenderer.getWidth(text) - 2;
-                y = this.scaledHeight - this.client.textRenderer.fontHeight - 12;
+                x = this.client.getWindow().getScaledWidth() - this.client.textRenderer.getWidth(text) - 2;
+                y = this.client.getWindow().getScaledHeight() - this.client.textRenderer.fontHeight - 12;
             }
             default ->
                     throw new IllegalStateException("Unexpected value: " + SodiumExtraClientMod.options().extraSettings.overlayCorner);
@@ -117,16 +115,16 @@ public abstract class MixinInGameHud extends InGameHud {
                 y = 22;
             }
             case TOP_RIGHT -> {
-                x = this.scaledWidth - this.client.textRenderer.getWidth(text) - 2;
+                x = this.client.getWindow().getScaledWidth() - this.client.textRenderer.getWidth(text) - 2;
                 y = 22;
             }
             case BOTTOM_LEFT -> {
                 x = 2;
-                y = this.scaledHeight - this.client.textRenderer.fontHeight - 22;
+                y = this.client.getWindow().getScaledHeight() - this.client.textRenderer.fontHeight - 22;
             }
             case BOTTOM_RIGHT -> {
-                x = this.scaledWidth - this.client.textRenderer.getWidth(text) - 2;
-                y = this.scaledHeight - this.client.textRenderer.fontHeight - 22;
+                x = this.client.getWindow().getScaledWidth() - this.client.textRenderer.getWidth(text) - 2;
+                y = this.client.getWindow().getScaledHeight() - this.client.textRenderer.fontHeight - 22;
             }
             default ->
                     throw new IllegalStateException("Unexpected value: " + SodiumExtraClientMod.options().extraSettings.overlayCorner);
