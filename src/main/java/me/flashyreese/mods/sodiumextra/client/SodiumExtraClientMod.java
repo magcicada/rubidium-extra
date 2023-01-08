@@ -1,6 +1,10 @@
 package me.flashyreese.mods.sodiumextra.client;
 
+import me.flashyreese.mods.sodiumextra.client.gui.HudRenderImpl;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
+import net.minecraftforge.client.event.RenderGuiEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -47,5 +51,7 @@ public class SodiumExtraClientMod {
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
         getClientTickHandler().onClientInitialize();
+
+        new HudRenderImpl().register();
     }
 }
