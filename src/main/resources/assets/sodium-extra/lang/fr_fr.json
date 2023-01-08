@@ -192,6 +192,8 @@
   "options.particles.minecraft.white_ash.tooltip": "Naturally generated in basalt deltas biome environment.",
   "options.particles.minecraft.witch": "Sorcière",
   "options.particles.minecraft.witch.tooltip": "Witch.",
+  "sodium-extra.option.advanced_item_tooltips": "Advanced Item Tooltips",
+  "sodium-extra.option.advanced_item_tooltips.tooltip": "If enabled, tooltips for items will display the identifier and durability.",
   "sodium-extra.option.advancement_toast": "Notifications de succès",
   "sodium-extra.option.advancement_toast.tooltip": "Si activé, les notifications des succès seront affichés.",
   "sodium-extra.option.animate_fire.tooltip": "Si activé, les animations du feu sont traités.",
@@ -288,6 +290,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(max. %s / moy. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Mises à jour de l'éclairage désactivé",
-  "sodium-extra.suggestRSO.header": "Suggestion : Installer TexTrue's Rubidium Options",
-  "sodium-extra.suggestRSO.message": "Il est fortement recommandé d'installer TexTrue's Rubidium Options à côté de Rubidium Extra. En raison de la quantité croissante de fonctionnalités, il ne convient plus correctement aux options vidéo de Rubidium."
+  "sodium-extra.suggestRSO.header": "Suggestion : Installer TexTrue's Rubidium Options",
+  "sodium-extra.suggestRSO.message": "Il est fortement recommandé d'installer TexTrue's Rubidium Options avec Rubidium Extra. En raison de la quantité croissante de fonctionnalités, il ne convient plus correctement aux options vidéo de Rubidium."
 }

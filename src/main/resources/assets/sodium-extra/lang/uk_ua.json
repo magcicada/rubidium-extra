@@ -192,6 +192,8 @@
   "options.particles.minecraft.white_ash.tooltip": "Naturally generated in basalt deltas biome environment.",
   "options.particles.minecraft.witch": "Відьма",
   "options.particles.minecraft.witch.tooltip": "Witch.",
+  "sodium-extra.option.advanced_item_tooltips": "Advanced Item Tooltips",
+  "sodium-extra.option.advanced_item_tooltips.tooltip": "If enabled, tooltips for items will display the identifier and durability.",
   "sodium-extra.option.advancement_toast": "Advancement Toasts",
   "sodium-extra.option.advancement_toast.tooltip": "If enabled, advancement popups will be displayed.",
   "sodium-extra.option.animate_fire.tooltip": "Якщо ввімкнено, анімації вогню оброблятимуться.",
@@ -289,5 +291,5 @@
   "sodium-extra.overlay.fps_extended": "(%s макс. / %s серед. / %s мін.)",
   "sodium-extra.overlay.light_updates": "Оновлення світла вимкнено",
   "sodium-extra.suggestRSO.header": "Порада: встановіть TexTrue's Rubidium Options",
-  "sodium-extra.suggestRSO.message": "Рекомендовано використовувати TexTrue's Rubidium Options разом із Rubidium Extra. Через зростаючу кількість функцій його елементи не вміщаються належним чином у звичайному вікні налаштувань графіки Rubidium."
+  "sodium-extra.suggestRSO.message": "Рекомендовано використовувати TexTrue's Rubidium Options разом із Rubidium Extra. Через, кількість функцій, що росте, елементи Rubidium Extra не вміщаються належним чином у звичайному вікні налаштувань графіки Rubidium."
 }
