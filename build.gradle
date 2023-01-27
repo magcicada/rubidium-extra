@@ -19,7 +19,6 @@ loom {
 }
 
 repositories {
-    maven { url 'https://jitpack.io' }
     maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
@@ -38,7 +37,7 @@ dependencies {
 
     // Currently using altrisi/CaffeineConfig until it is officially available through CaffeineMC's maven repository
     // Todo: Use https://github.com/TexTrueStudio/ColaMixinConfig when available
-    include(modImplementation("com.github.TexTrueStudio:ColaMixinConfig:${project.caffeineconfig_version}"))
+    //include(modImplementation("com.github.TexTrueStudio:ColaMixinConfig:${project.caffeineconfig_version}")) there is no jij in 1.16.5
 }
 
 processResources {
