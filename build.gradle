@@ -81,8 +81,8 @@ publishing {
     // select the repositories you want to publish to
     repositories {
         maven {
-            name = "TurboMC-Public"
-            url = "https://repo.turbomc.tk/public"
+            name = "ConstructLegacy"
+            url = "https://repo.constructlegacy.ru/public"
             credentials {
                 username = System.getenv("MAVEN_USERNAME")
                 password = System.getenv("MAVEN_PASSWORD")
