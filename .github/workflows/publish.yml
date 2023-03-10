@@ -39,7 +39,8 @@ jobs:
 
           loaders: forge
 
-          version-resolver: latest
+          game-versions: |
+            1.19.2
           
           dependencies: |
             rubidium | depends | *
