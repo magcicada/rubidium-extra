@@ -48,7 +48,14 @@ public class SodiumExtraClientMod {
 
     public SodiumExtraClientMod() {
         ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
-		
+
+        /* if (SodiumExtraClientMod.options().superSecretSettings.fetchSodiumExtraCrowdinTranslations) { TODO
+            CrowdinTranslate.downloadTranslations(SodiumExtraClientMod.options().superSecretSettings.sodiumExtraCrowdinProjectIdentifier, "sodium-extra");
+        }
+        if (SodiumExtraClientMod.options().superSecretSettings.fetchSodiumCrowdinTranslations) {
+            CrowdinTranslate.downloadTranslations(SodiumExtraClientMod.options().superSecretSettings.sodiumCrowdinProjectIdentifier, "sodium");
+        }*/
+
         getClientTickHandler().onClientInitialize();
         MinecraftForge.EVENT_BUS.register(new HudRenderImpl());
     }
