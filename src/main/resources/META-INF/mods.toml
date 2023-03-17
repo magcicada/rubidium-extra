@@ -10,7 +10,7 @@ displayName = "Rubidium Extra"
 updateJSONURL="https://api.modrinth.com/updates/rubidium-extra/forge_updates.json"
 logoFile= "icon.png"
 authors = "FlashyReese, dima_dencep"
-displayURL = "https://github.com/dimadencep/sodium-extra-forge"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/rubidium-extra"
 description = "Features that shouldn't be in Sodium."
 
 [[dependencies.sodiumextra]]
@@ -30,6 +30,6 @@ side = "BOTH"
 [[dependencies.sodiumextra]]
 modId = "rubidium"
 mandatory = true
-versionRange = "[0.2.10,)"
+versionRange = "[0.2.11,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
