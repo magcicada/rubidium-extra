@@ -290,6 +290,6 @@
   "sodium-extra.overlay.fps": "Taxa de quadros: %s",
   "sodium-extra.overlay.fps_extended": "(máx. %s / média %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Atualização de luz desativada",
-  "sodium-extra.suggestRSO.header": "Sugestão: Instale Reese's Sodium Options",
-  "sodium-extra.suggestRSO.message": "É altamente recomendável que você instale o Reese's Sodium junto com o Sodium Extra. Devido à quantidade crescente de recursos, ele não se encaixa mais corretamente nas opções de vídeo do Sodium."
+  "sodium-extra.suggestRSO.header": "Sugestão: Instale TexTrue's Rubidium Options",
+  "sodium-extra.suggestRSO.message": "É altamente recomendável que você instale o TexTrue's Rubidium junto com o Rubidium Extra. Devido à quantidade crescente de recursos, ele não se encaixa mais corretamente nas opções de vídeo do Rubidium."
 }
