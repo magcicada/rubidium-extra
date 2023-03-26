@@ -290,6 +290,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(Max. %s / Dsl. %s / Min. %s)",
   "sodium-extra.overlay.light_updates": "Schatten Aktualisierung deaktiviert",
-  "sodium-extra.suggestRSO.header": "Vorschlag: Installiere TexTrue's Rubidium Options Mod",
-  "sodium-extra.suggestRSO.message": "Es wird dringend empfohlen, dass du TexTrue's Rubidium Optionen neben Rubidium Extra. Aufgrund der wachsenden Anzahl an Funktionen passt es nicht mehr richtig in die Videooptionen von Rubidium rein."
+  "sodium-extra.suggestRSO.header": "Vorschlag: Installiere Reese's Sodium Options Mod",
+  "sodium-extra.suggestRSO.message": "Es wird dringend empfohlen, dass du Reese's Sodium Optionen neben Sodium Extra. Aufgrund der wachsenden Anzahl an Funktionen passt es nicht mehr richtig in die Videooptionen von Sodium rein."
 }

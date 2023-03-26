@@ -8,17 +8,14 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderGuiEvent;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class HudRenderImpl {
     private final MinecraftClient client = MinecraftClient.getInstance();
 
-    public void register() {
-        MinecraftForge.EVENT_BUS.addListener((event) -> {
-            if (event instanceof RenderGuiEvent.Pre renderGuiEvent) {
-                HudRenderImpl.this.onHudRender(renderGuiEvent.getPoseStack(), renderGuiEvent.getPartialTick());
-            }
-        });
+    @SubscribeEvent
+    public void onRenderGameOverlayEvent(RenderGuiEvent.Post event) {
+        this.onHudRender(event.getPoseStack(), event.getPartialTick());
     }
 
     public void onHudRender(MatrixStack matrixStack, float tickDelta) {
