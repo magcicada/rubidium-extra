@@ -4,7 +4,6 @@ import me.jellysquid.mods.sodium.client.model.quad.ModelQuadView;
 import me.jellysquid.mods.sodium.client.model.quad.blender.ColorSampler;
 import me.jellysquid.mods.sodium.client.model.quad.blender.LinearColorBlender;
 import me.jellysquid.mods.sodium.client.util.color.ColorARGB;
-import net.minecraft.state.State;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
 
@@ -12,7 +11,7 @@ import java.util.Arrays;
 
 public class LinearFlatColorBlender extends LinearColorBlender {
     @Override
-    public <T extends State<O, ?>, O> int[] getColors(BlockRenderView world, BlockPos origin, ModelQuadView quad, ColorSampler<T> sampler, T state) {
+    public <T> int[] getColors(BlockRenderView world, BlockPos origin, ModelQuadView quad, ColorSampler<T> sampler, T state) {
         int[] colors = super.getColors(world, origin, quad, sampler, state);
         Arrays.fill(colors, this.getAverageColor(colors));
         return colors;

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(SpriteAtlasTexture.class)
 public abstract class MixinSpriteAtlasTexture extends AbstractTexture {
-    
+
     @Redirect(method = "upload", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/Sprite;createAnimation()Lnet/minecraft/client/texture/Sprite$TickableAnimation;"))
     public Sprite.TickableAnimation sodiumExtra$tickAnimatedSprites(Sprite instance) {
         Sprite.TickableAnimation tickableAnimation = instance.createAnimation();

@@ -38,7 +38,7 @@ dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
 
     modImplementation "maven.modrinth:rubidium:${project.sodium_version}"
-	modImplementation "maven.modrinth:textrues-rubidium-options:${project.rso_version}"
+	// modImplementation "maven.modrinth:textrues-rubidium-options:${project.rso_version}"
 
     // Currently using altrisi/CaffeineConfig until it is officially available through CaffeineMC's maven repository
     // Todo: Use https://github.com/TexTrueStudio/ColaMixinConfig when available
