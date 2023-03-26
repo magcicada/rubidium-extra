@@ -19,14 +19,13 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - run: echo "previous_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> $GITHUB_ENV
-      - name: Generate changelog
-        id: changelog
-        uses: jaywcjlove/changelog-generator@main
-        if: env.previous_tag
+      - name: Build Changelog
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+          failOnError: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Read value from Properties-file
         id: read_property
@@ -57,7 +56,7 @@ jobs:
 
           name: Rubidium Extra ${{ steps.read_property.outputs.mod_version }} for Minecraft ${{ steps.read_property.outputs.minecraft_version }}
 
-          changelog: ${{ steps.changelog.outputs.changelog }}
+          changelog: ${{steps.build_changelog.outputs.changelog}}
 
           version-type: release
 
