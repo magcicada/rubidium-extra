@@ -32,9 +32,6 @@ jobs:
           base-ref: ${{ env.previous_tag }}
           fetch: false
 
-      - name: Print changelog
-        run: echo ${{steps.build_changelog.outputs.changelog}}
-
       - name: Read value from Properties-file
         id: read_property
         uses: christian-draeger/read-properties@1.1.1
