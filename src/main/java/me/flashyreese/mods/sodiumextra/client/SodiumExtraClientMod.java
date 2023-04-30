@@ -1,10 +1,13 @@
 package me.flashyreese.mods.sodiumextra.client;
 
+import me.flashyreese.mods.sodiumextra.client.compat.CitadelStarFix;
 import me.flashyreese.mods.sodiumextra.client.gui.HudRenderImpl;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.IExtensionPoint;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.common.Mod;
@@ -48,6 +51,8 @@ public class SodiumExtraClientMod {
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
         getClientTickHandler().onClientInitialize();
-        new HudRenderImpl().register();
+        MinecraftForge.EVENT_BUS.register(new HudRenderImpl());
+
+        if (ModList.get().isLoaded("citadel")) MinecraftForge.EVENT_BUS.register(new CitadelStarFix());
     }
 }
