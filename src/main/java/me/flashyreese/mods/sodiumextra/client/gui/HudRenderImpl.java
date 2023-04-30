@@ -10,17 +10,14 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class HudRenderImpl {
     private final MinecraftClient client = MinecraftClient.getInstance();
 
-    public void register() {
-        MinecraftForge.EVENT_BUS.addListener((event) -> {
-            if (event instanceof RenderGameOverlayEvent.Pre renderGuiEvent) {
-                HudRenderImpl.this.onHudRender(renderGuiEvent.getMatrixStack(), renderGuiEvent.getPartialTicks());
-            }
-        });
+    @SubscribeEvent
+    public void onRenderGameOverlayEvent(RenderGameOverlayEvent.Post event) {
+        this.onHudRender(event.getMatrixStack(), event.getPartialTicks());
     }
 
     public void onHudRender(MatrixStack matrixStack, float tickDelta) {
