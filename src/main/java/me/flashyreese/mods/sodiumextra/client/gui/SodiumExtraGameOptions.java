@@ -45,7 +45,7 @@ public class SodiumExtraGameOptions {
             try (FileReader reader = new FileReader(file)) {
                 config = gson.fromJson(reader, SodiumExtraGameOptions.class);
             } catch (Exception e) {
-                SodiumExtraClientMod.logger().error("Could not parse config, falling back to defaults!", e);
+                SodiumExtraClientMod.LOGGER.error("Could not parse config, falling back to defaults!", e);
                 config = new SodiumExtraGameOptions();
             }
         } else {
