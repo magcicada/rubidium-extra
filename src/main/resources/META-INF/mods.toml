@@ -11,8 +11,8 @@ logoFile= "icon.png"
 updateJSONURL = "https://api.modrinth.com/updates/rubidium-extra/forge_updates.json"
 authors = "dima_dencep, FlashyReese"
 credits = "AMereBagatelle, DragonEggBedrockBreaking, EatMyVenom, HarvelsX, Kichura, Madis0, Paint_Ninja"
-displayURL = "https://www.curseforge.com/minecraft/mc-mods/rubidium-extra"
-description = "Features that shouldn't be in Sodium."
+displayURL = "https://modrinth.com/mod/rubidium-extra"
+description = "Features that shouldn't be in Rubidium."
 
 [[dependencies.sodiumextra]]
 modId = "rubidium"
