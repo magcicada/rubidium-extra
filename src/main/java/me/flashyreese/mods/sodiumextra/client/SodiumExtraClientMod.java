@@ -6,9 +6,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 public class SodiumExtraClientMod {
-
+    public static final Logger LOGGER = LogManager.getLogger("Rubidium Extra");
     private static SodiumExtraGameOptions CONFIG;
-    public static final Logger LOGGER = LogManager.getLogger("Sodium Extra");
 
     public static SodiumExtraGameOptions options() {
         if (CONFIG == null) {
