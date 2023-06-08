@@ -5,8 +5,7 @@ import me.flashyreese.mods.sodiumextra.client.ClientTickHandler;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.flashyreese.mods.sodiumextra.mixin.gui.MinecraftClientAccessor;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,28 +19,28 @@ public class HudRenderImpl {
 
     @SubscribeEvent
     public static void onRenderGameOverlayEvent(final RenderGuiEvent.Post event) {
-        onHudRender(event.getPoseStack(), event.getPartialTick());
+        onHudRender(event.getGuiGraphics(), event.getPartialTick());
     }
 
-    public static void onHudRender(MatrixStack matrixStack, float tickDelta) {
+    public static void onHudRender(DrawContext drawContext, float tickDelta) {
         if (!CLIENT.options.debugEnabled) {
             //Gotta love hardcoding
             if (SodiumExtraClientMod.options().extraSettings.showFps && SodiumExtraClientMod.options().extraSettings.showCoords) {
-                renderFPS(matrixStack);
-                renderCoords(matrixStack);
+                renderFPS(drawContext);
+                renderCoords(drawContext);
             } else if (SodiumExtraClientMod.options().extraSettings.showFps) {
-                renderFPS(matrixStack);
+                renderFPS(drawContext);
             } else if (SodiumExtraClientMod.options().extraSettings.showCoords) {
-                renderCoords(matrixStack);
+                renderCoords(drawContext);
             }
             if (!SodiumExtraClientMod.options().renderSettings.lightUpdates) {
-                renderLightUpdatesWarning(matrixStack);
+                renderLightUpdatesWarning(drawContext);
             }
         }
     }
 
     //Should I make this OOP or just leave as it :> I don't think I will be adding any more than these 2.
-    private static void renderFPS(MatrixStack matrices) {
+    private static void renderFPS(DrawContext drawContext) {
         int currentFPS = MinecraftClientAccessor.getCurrentFPS();
 
         Text text = Text.translatable("sodium-extra.overlay.fps", currentFPS);
@@ -72,10 +71,10 @@ public class HudRenderImpl {
                     throw new IllegalStateException("Unexpected value: " + SodiumExtraClientMod.options().extraSettings.overlayCorner);
         }
 
-        drawString(matrices, text, x, y);
+        drawString(drawContext, text, x, y);
     }
 
-    private static void renderCoords(MatrixStack matrices) {
+    private static void renderCoords(DrawContext drawContext) {
         if (CLIENT.player == null) return;
         if (CLIENT.hasReducedDebugInfo()) return;
         Vec3d pos = CLIENT.player.getPos();
@@ -104,10 +103,10 @@ public class HudRenderImpl {
                     throw new IllegalStateException("Unexpected value: " + SodiumExtraClientMod.options().extraSettings.overlayCorner);
         }
 
-        drawString(matrices, text, x, y);
+        drawString(drawContext, text, x, y);
     }
 
-    private static void renderLightUpdatesWarning(MatrixStack matrices) {
+    private static void renderLightUpdatesWarning(DrawContext drawContext) {
         Text text = Text.translatable("sodium-extra.overlay.light_updates");
 
         int x, y;
@@ -131,18 +130,17 @@ public class HudRenderImpl {
             default ->
                     throw new IllegalStateException("Unexpected value: " + SodiumExtraClientMod.options().extraSettings.overlayCorner);
         }
-
-        drawString(matrices, text, x, y);
+        drawString(drawContext, text, x, y);
     }
 
-    private static void drawString(MatrixStack matrices, Text text, int x, int y) {
+    private static void drawString(DrawContext drawContext, Text text, int x, int y) {
         switch (SodiumExtraClientMod.options().extraSettings.textContrast) {
-            case NONE -> CLIENT.textRenderer.draw(matrices, text, x, y, 0xffffffff);
+            case NONE -> drawContext.drawText(CLIENT.textRenderer, text, x, y, 0xffffffff, false);
             case BACKGROUND -> {
-                DrawableHelper.fill(matrices, x - 1, y - 1, x + CLIENT.textRenderer.getWidth(text) + 1, y + CLIENT.textRenderer.fontHeight, -1873784752);
-                CLIENT.textRenderer.draw(matrices, text, x, y, 0xffffffff);
+                drawContext.fill(x - 1, y - 1, x + CLIENT.textRenderer.getWidth(text) + 1, y + CLIENT.textRenderer.fontHeight, -1873784752);
+                drawContext.drawText(CLIENT.textRenderer, text, x, y, 0xffffffff, false);
             }
-            case SHADOW -> CLIENT.textRenderer.drawWithShadow(matrices, text, x, y, 0xffffffff);
+            case SHADOW -> drawContext.drawText(CLIENT.textRenderer, text, x, y, 0xffffffff, true);
         }
     }
 }
