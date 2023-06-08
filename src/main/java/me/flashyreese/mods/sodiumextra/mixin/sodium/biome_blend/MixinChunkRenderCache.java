@@ -17,7 +17,7 @@ public class MixinChunkRenderCache {
      * @reason Includes linear flat color blender
      */
     @Overwrite
-    protected static ColorBlender createBiomeColorBlender() {
+    private static ColorBlender createBiomeColorBlender() {
         return MinecraftClient.getInstance().options.getBiomeBlendRadius().getValue() <= 0 ? new FlatColorBlender() : SodiumExtraClientMod.options().renderSettings.useLinearFlatColorBlender ? new LinearFlatColorBlender() : new LinearColorBlender();
     }
 }
