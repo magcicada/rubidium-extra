@@ -7,14 +7,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = WorldRenderer.class, priority = 1500)
+@Mixin(WorldRenderer.class)
 public class MixinWorldRenderer {
     @Redirect(
             method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V",
-            require = 0,
             at = @At(
                     value = "INVOKE",
-                    ordinal = 0,
                     target = "Lnet/minecraft/client/world/ClientWorld;method_23787(F)F"
             )
     )

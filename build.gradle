@@ -76,9 +76,8 @@ dependencies {
     // Currently using altrisi/CaffeineConfig until it is officially available through CaffeineMC's maven repository
     // Todo: Use https://github.com/CaffeineMC/mixin-config when available
     include(modImplementation("com.github.TexTrueStudio:ColaMixinConfig:${project.caffeineconfig_version}"))
-    include(modImplementation("de.guntram.mcmod:crowdin-translate:${project.crowdin_translate}"))
 
-    // modRuntimeOnly "curse.maven:lazydfu-460819:3831644"
+	//modRuntimeOnly "curse.maven:lazydfu-460819:3831644"
 }
 
 processResources {
