@@ -15,8 +15,9 @@ public abstract class MixinSpriteAtlasTexture extends AbstractTexture {
 
     @Redirect(method = "upload", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/Sprite;getAnimation()Lnet/minecraft/client/texture/TextureTickListener;"))
     public TextureTickListener sodiumExtra$tickAnimatedSprites(Sprite instance) {
-        if (instance.getAnimation() != null && SodiumExtraClientMod.options().animationSettings.animation && this.shouldAnimate(instance.getId()))
-            return instance.getAnimation();
+        TextureTickListener tickableAnimation = instance.getAnimation();
+        if (tickableAnimation != null && SodiumExtraClientMod.options().animationSettings.animation && this.shouldAnimate(instance.getId()))
+            return tickableAnimation;
         return null;
     }
 

@@ -1,7 +1,25 @@
+buildscript {
+    dependencies {
+        classpath "de.guntram.mcmod:crowdin-translate:${project.crowdin_translate}"
+    }
+    repositories {
+        maven {
+            name = 'CrowdinTranslate source'
+            url = "https://minecraft.guntram.de/maven/"
+        }
+    }
+}
+
 plugins {
-    id 'dev.architectury.loom' version '1.0.+'
+    id 'signing'
+    id 'dev.architectury.loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
 }
+
+// apply plugin: 'de.guntram.mcmod.crowdin-translate'
+// crowdintranslate.crowdinProjectName = 'sodium-extra'
+// crowdintranslate.minecraftProjectName = 'sodium-extra'
+// crowdintranslate.verbose = false
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -11,12 +29,11 @@ version = "${project.mod_version}+mc${project.minecraft_version}-${getVersionMet
 group = project.maven_group
 
 loom {
-	accessWidenerPath = file("src/main/resources/sodium-extra.accesswidener")
+    accessWidenerPath = file("src/main/resources/sodium-extra.accesswidener")
 
     forge {
         convertAccessWideners = true
-        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
-	
+
         mixinConfigs = [
                 "sodium-extra.mixins.json"
         ]
@@ -24,11 +41,24 @@ loom {
 }
 
 repositories {
-    maven { url 'https://jitpack.io' }
-    maven {
+    maven { 
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
     }
+    maven {
+        url "https://maven.flashyreese.me/releases"
+    }
+    maven {
+        url "https://maven.flashyreese.me/snapshots"
+    }
+    maven {
+        url = "https://minecraft.guntram.de/maven/"
+    }
+
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -38,13 +68,17 @@ dependencies {
     forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
 
     modImplementation "maven.modrinth:rubidium:${project.sodium_version}"
-	modImplementation "maven.modrinth:textrues-rubidium-options:${project.rso_version}"
+    modImplementation "maven.modrinth:textrues-rubidium-options:${project.reeses_sodium_options}"
+
+    // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
+    // You may need to force-disable transitiveness on them.
 
     // Currently using altrisi/CaffeineConfig until it is officially available through CaffeineMC's maven repository
-    // Todo: Use https://github.com/TexTrueStudio/ColaMixinConfig when available
+    // Todo: Use https://github.com/CaffeineMC/mixin-config when available
     include(modImplementation("com.github.TexTrueStudio:ColaMixinConfig:${project.caffeineconfig_version}"))
+    include(modImplementation("de.guntram.mcmod:crowdin-translate:${project.crowdin_translate}"))
 
-	//modRuntimeOnly "curse.maven:lazydfu-460819:3831644"
+    // modRuntimeOnly "curse.maven:lazydfu-460819:3831644"
 }
 
 processResources {
@@ -55,22 +89,25 @@ processResources {
     }
 }
 
-// ensure that the encoding is set to UTF-8, no matter what the system default is
-// this fixes some edge cases with special characters not displaying correctly
-// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+build {
+    // dependsOn downloadTranslations
 }
 
-// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-// if it is present.
-// If you remove this task, sources will not be generated.
+tasks.withType(JavaCompile).configureEach {
+    // Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+    it.options.release = 17
+}
+
 java {
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
     withSourcesJar()
 }
 
 jar {
     from "LICENSE.txt"
+
     manifest.attributes([
             "Implementation-Title"  : project.archivesBaseName,
             "Implementation-Version": project.version

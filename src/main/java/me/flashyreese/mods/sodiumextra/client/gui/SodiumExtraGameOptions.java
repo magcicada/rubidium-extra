@@ -34,6 +34,7 @@ public class SodiumExtraGameOptions {
     public final RenderSettings renderSettings = new RenderSettings();
     public final ExtraSettings extraSettings = new ExtraSettings();
     public final NotificationSettings notificationSettings = new NotificationSettings();
+    public final SuperSecretSettings superSecretSettings = new SuperSecretSettings();
     private File file;
     private boolean suggestedRSO;
 
@@ -44,7 +45,7 @@ public class SodiumExtraGameOptions {
             try (FileReader reader = new FileReader(file)) {
                 config = gson.fromJson(reader, SodiumExtraGameOptions.class);
             } catch (Exception e) {
-                SodiumExtraClientMod.logger().error("Could not parse config, falling back to defaults!", e);
+                SodiumExtraClientMod.LOGGER.error("Could not parse config, falling back to defaults!", e);
                 config = new SodiumExtraGameOptions();
             }
         } else {
@@ -277,6 +278,20 @@ public class SodiumExtraGameOptions {
 
         public NotificationSettings() {
             this.hideRSORecommendation = false;
+        }
+    }
+
+    public static class SuperSecretSettings {
+        public boolean fetchSodiumExtraCrowdinTranslations;
+        public String sodiumExtraCrowdinProjectIdentifier;
+        public boolean fetchSodiumCrowdinTranslations;
+        public String sodiumCrowdinProjectIdentifier;
+
+        public SuperSecretSettings() {
+            this.fetchSodiumExtraCrowdinTranslations = false;
+            this.sodiumExtraCrowdinProjectIdentifier = "sodium-extra";
+            this.fetchSodiumCrowdinTranslations = false;
+            this.sodiumCrowdinProjectIdentifier = "sodium-fabric";
         }
     }
 }
