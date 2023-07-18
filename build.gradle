@@ -75,7 +75,7 @@ dependencies {
 
     // Currently using altrisi/CaffeineConfig until it is officially available through CaffeineMC's maven repository
     // Todo: Use https://github.com/CaffeineMC/mixin-config when available
-    include(modImplementation("com.github.TexTrueStudio:ColaMixinConfig:${project.caffeineconfig_version}"))
+    include(modImplementation("com.github.ThinkingStudios:ColaMixinConfig:${project.caffeineconfig_version}"))
 
 	//modRuntimeOnly "curse.maven:lazydfu-460819:3831644"
 }
