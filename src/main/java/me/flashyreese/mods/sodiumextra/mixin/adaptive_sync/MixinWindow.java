@@ -15,7 +15,7 @@ public class MixinWindow {
             if (GLFW.glfwExtensionSupported("GLX_EXT_swap_control_tear") || GLFW.glfwExtensionSupported("WGL_EXT_swap_control_tear")) {
                 GLFW.glfwSwapInterval(-1);
             } else {
-                SodiumExtraClientMod.logger().warn("Adaptive vsync not supported, falling back to vanilla vsync state!");
+                SodiumExtraClientMod.LOGGER.warn("Adaptive vsync not supported, falling back to vanilla vsync state!");
                 SodiumExtraClientMod.options().extraSettings.useAdaptiveSync = false;
                 SodiumExtraClientMod.options().writeChanges();
                 GLFW.glfwSwapInterval(interval);
