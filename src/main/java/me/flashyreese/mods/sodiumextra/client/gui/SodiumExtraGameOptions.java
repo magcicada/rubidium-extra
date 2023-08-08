@@ -207,7 +207,6 @@ public class SodiumExtraGameOptions {
         public boolean multiDimensionFogControl;
         @SerializedName("dimensionFogDistance")
         public Map<Identifier, Integer> dimensionFogDistanceMap;
-        public boolean useLinearFlatColorBlender;
         public boolean lightUpdates;
         public boolean itemFrame;
         public boolean armorStand;
@@ -223,7 +222,6 @@ public class SodiumExtraGameOptions {
             this.fogStart = 100;
             this.multiDimensionFogControl = false;
             this.dimensionFogDistanceMap = new Object2IntArrayMap<>();
-            this.useLinearFlatColorBlender = false;
             this.lightUpdates = true;
             this.itemFrame = true;
             this.armorStand = true;
@@ -252,6 +250,8 @@ public class SodiumExtraGameOptions {
         public boolean tutorialToast;
         public boolean instantSneak;
         public boolean preventShaders;
+        public boolean steadyDebugHud;
+        public int steadyDebugHudRefreshInterval;
 
         public ExtraSettings() {
             this.overlayCorner = OverlayCorner.TOP_LEFT;
@@ -259,7 +259,7 @@ public class SodiumExtraGameOptions {
             this.showFps = false;
             this.showFPSExtended = true;
             this.showCoords = false;
-            this.reduceResolutionOnMac = true;
+            this.reduceResolutionOnMac = false;
             this.useAdaptiveSync = false;
             this.cloudHeight = 192;
             this.toasts = true;
@@ -269,6 +269,8 @@ public class SodiumExtraGameOptions {
             this.tutorialToast = true;
             this.instantSneak = false;
             this.preventShaders = false;
+            this.steadyDebugHud = true;
+            this.steadyDebugHudRefreshInterval = 1;
         }
     }
 

@@ -1,6 +1,7 @@
 package me.flashyreese.mods.sodiumextra.client;
 
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
+import net.caffeinemc.caffeineconfig.CaffeineConfig;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 public class SodiumExtraClientMod {
     public static final Logger LOGGER = LogManager.getLogger("Rubidium Extra");
     private static SodiumExtraGameOptions CONFIG;
+    private static CaffeineConfig MIXIN_CONFIG;
 
     public static SodiumExtraGameOptions options() {
         if (CONFIG == null) {
@@ -15,6 +17,49 @@ public class SodiumExtraClientMod {
         }
 
         return CONFIG;
+    }
+
+    public static CaffeineConfig mixinConfig() {
+        if (MIXIN_CONFIG == null) {
+            MIXIN_CONFIG = CaffeineConfig.builder("Sodium Extra").withSettingsKey("sodium-extra:options")
+                    .addMixinOption("adaptive_sync", true)
+                    .addMixinOption("animation", true)
+                    .addMixinOption("biome_colors", true)
+                    .addMixinOption("cloud", true)
+                    .addMixinOption("compat", true, false)
+                    .addMixinOption("fog", true)
+                    .addMixinOption("fog_falloff", true)
+                    .addMixinOption("gui", true)
+                    .addMixinOption("instant_sneak", true)
+                    .addMixinOption("light_updates", true)
+                    .addMixinOption("optimizations", false)
+                    .addMixinOption("optimizations.beacon_beam_rendering", true)
+                    .addMixinOption("optimizations.draw_helpers", true)
+                    .addMixinOption("particle", true)
+                    .addMixinOption("prevent_shaders", true)
+                    .addMixinOption("reduce_resolution_on_mac", true)
+                    .addMixinOption("render", true)
+                    .addMixinOption("render.block", true)
+                    .addMixinOption("render.block.entity", true)
+                    .addMixinOption("render.entity", true)
+                    .addMixinOption("sky", true)
+                    .addMixinOption("sky_colors", true)
+                    .addMixinOption("sodium", true)
+                    .addMixinOption("sodium.accessibility", true)
+                    .addMixinOption("sodium.fog", true)
+                    .addMixinOption("sodium.resolution", true)
+                    .addMixinOption("sodium.scrollable_page", true)
+                    .addMixinOption("sodium.vsync", true)
+                    .addMixinOption("stars", true)
+                    .addMixinOption("steady_debug_hud", true)
+                    .addMixinOption("sun_moon", true)
+                    .addMixinOption("toasts", true)
+
+                    .withLogger(SodiumExtraClientMod.LOGGER)
+                    .withInfoUrl("https://github.com/FlashyReese/sodium-extra-fabric/wiki/Configuration-File")
+                    .build(FMLPaths.CONFIGDIR.get().resolve("sodium-extra.properties"));
+        }
+        return MIXIN_CONFIG;
     }
 
     private static SodiumExtraGameOptions loadConfig() {
