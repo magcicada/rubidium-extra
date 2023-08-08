@@ -57,7 +57,7 @@ public class SodiumExtraHud {
         }
     }
     @SubscribeEvent
-    public void onHudRender(RenderGuiEvent.Post event) {
+    public static void onHudRender(RenderGuiEvent.Post event) {
         if (!CLIENT.options.debugEnabled) {
             SodiumExtraGameOptions.OverlayCorner overlayCorner = SodiumExtraClientMod.options().extraSettings.overlayCorner;
             // Calculate starting position based on the overlay corner
@@ -71,7 +71,7 @@ public class SodiumExtraHud {
                 } else {
                     x = 2;
                 }
-                this.drawString(event.getGuiGraphics(), text, x, y);
+                drawString(event.getGuiGraphics(), text, x, y);
                 if (overlayCorner == SodiumExtraGameOptions.OverlayCorner.BOTTOM_LEFT || overlayCorner == SodiumExtraGameOptions.OverlayCorner.BOTTOM_RIGHT) {
                     y -= CLIENT.textRenderer.fontHeight + 2;
                 } else {
@@ -81,7 +81,7 @@ public class SodiumExtraHud {
         }
     }
 
-    private void drawString(DrawContext drawContext, Text text, int x, int y) {
+    private static void drawString(DrawContext drawContext, Text text, int x, int y) {
         int textColor = 0xffffffff; // Default text color
 
         if (SodiumExtraClientMod.options().extraSettings.textContrast == SodiumExtraGameOptions.TextContrast.BACKGROUND) {
