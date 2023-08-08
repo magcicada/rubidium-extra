@@ -24,7 +24,7 @@ public abstract class MixinDebugHud {
     @Unique
     private boolean rebuild = true;
 
-    @Inject(method = "update", remap = false, at = @At(value = "HEAD"))
+    @Inject(method = "update", remap = false, at = @At(value = "HEAD"), cancellable = true)
     public void preRender(CallbackInfo ci) {
         if (SodiumExtraClientMod.options().extraSettings.steadyDebugHud) {
             final long currentTime = Util.getMeasuringTimeMs();
@@ -33,6 +33,7 @@ public abstract class MixinDebugHud {
                 this.nextTime = currentTime + (SodiumExtraClientMod.options().extraSettings.steadyDebugHudRefreshInterval * 50L);
             } else {
                 this.rebuild = false;
+                ci.cancel();
             }
         } else {
             this.rebuild = true;
