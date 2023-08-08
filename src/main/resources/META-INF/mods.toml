@@ -4,7 +4,7 @@ license = "LGPLv3"
 issueTrackerURL = "https://github.com/dimadencep/sodium-extra-forge/issues"
 
 [[mods]]
-modId = "sodiumextra"
+modId = "rubidium_extra"
 version = "${version}"
 displayName = "Rubidium Extra"
 logoFile= "icon.png"
@@ -14,21 +14,14 @@ credits = "AMereBagatelle, DragonEggBedrockBreaking, EatMyVenom, HarvelsX, Kichu
 displayURL = "https://modrinth.com/mod/rubidium-extra"
 description = "Features that shouldn't be in Rubidium."
 
-[[dependencies.sodiumextra]]
+[[dependencies.rubidium_extra]]
 modId = "rubidium"
 mandatory = true
 versionRange = "[0.6.4,)"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.sodiumextra]]
-modId = "caffeineconfig"
-mandatory = true
-versionRange = "[1.0,)"
-ordering = "NONE"
-side = "CLIENT"
-
-[[dependencies.sodiumextra]]
+[[dependencies.rubidium_extra]]
 modId = "minecraft" # Gives a friendlier error message when installed on the wrong MC version
 mandatory = true
 versionRange = "[1.20,1.30)" # Allows 1.20 to 1.20.9
