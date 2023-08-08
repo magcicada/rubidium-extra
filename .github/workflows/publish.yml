@@ -7,11 +7,10 @@ on:
       - '**/backport'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  publish:
+    runs-on: self-hosted
     steps:
-
-      - name: Checkout sources
+      - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -42,10 +41,10 @@ jobs:
           path: './gradle.properties'
           properties: 'mod_version minecraft_version'
 
-      - name: Grant execute permission for Gradlew
-        run: chmod +x gradlew
       - name: Upload assets to releases
-        run: ./gradlew build publish
+        run: |
+          chmod +x gradlew
+          ./gradlew build publish
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
@@ -66,7 +65,6 @@ jobs:
           changelog: ${{steps.build_changelog.outputs.changelog}}
 
           version-type: release
-
           loaders: forge
 
           version-resolver: latest
