@@ -44,7 +44,7 @@ dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    forge "net.minecraftforge:forge:${project.loader_version}"
+    forge "net.neoforged:forge:${project.loader_version}"
 
     modImplementation "maven.modrinth:rubidium:${project.sodium_version}"
     modImplementation "maven.modrinth:textrues-rubidium-options:${project.reeses_sodium_options}"

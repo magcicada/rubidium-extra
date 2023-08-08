@@ -65,7 +65,9 @@ jobs:
           changelog: ${{steps.build_changelog.outputs.changelog}}
 
           version-type: release
-          loaders: forge
+          loaders: |
+            forge
+            neoforge
 
           version-resolver: latest
 
