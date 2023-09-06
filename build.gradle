@@ -35,21 +35,18 @@ repositories {
     maven {
         url = "https://repo.constructlegacy.ru/public"
     }
-    maven {
-        url = "https://maven.neoforged.net/releases"
-    }
 }
 
 dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    forge "net.neoforged:forge:${project.loader_version}"
+    forge "net.minecraftforge:forge:${project.loader_version}"
 
-    modImplementation "maven.modrinth:rubidium:${project.sodium_version}"
-    modImplementation "maven.modrinth:textrues-rubidium-options:${project.reeses_sodium_options}"
+    modImplementation "maven.modrinth:embeddium:${project.sodium_version}"
+    // modImplementation "maven.modrinth:textrues-rubidium-options:${project.reeses_sodium_options}"
 
-    include(modImplementation("com.github.dima_dencep.mods:NanoLiveConfig:1.0.0"))
+    implementation(forgeRuntimeLibrary(include("com.github.dima_dencep.mods:NanoLiveConfig:1.1.0")))
 }
 
 processResources {
