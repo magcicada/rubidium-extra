@@ -60,7 +60,7 @@ jobs:
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          name: Embeddium Extra ${{ steps.read_property.outputs.mod_version }} for Minecraft ${{ steps.read_property.outputs.minecraft_version }}
+          name: Rubidium Extra ${{ steps.read_property.outputs.mod_version }} for Minecraft ${{ steps.read_property.outputs.minecraft_version }}
 
           changelog: ${{steps.build_changelog.outputs.changelog}}
 
@@ -72,10 +72,9 @@ jobs:
           version-resolver: latest
 
           dependencies: |
-             embeddium
-#            rubidium
-#            textrues-rubidium-options(recommended)
-#            oculus(recommended)
+            rubidium
+            textrues-rubidium-options(recommended)
+            oculus(recommended)
 
           java: |
             17
