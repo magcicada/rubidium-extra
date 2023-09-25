@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "*"
 license = "LGPLv3"
-issueTrackerURL = "https://github.com/dimadencep/rubidium-extra/issues"
+issueTrackerURL = "https://github.com/dima-dencep/rubidium-extra/issues"
 
 [[mods]]
 modId = "rubidium_extra"
@@ -17,7 +17,7 @@ description = "Features that shouldn't be in Rubidium."
 [[dependencies.rubidium_extra]]
 modId = "rubidium"
 mandatory = true
-versionRange = "[0.6.4,)"
+versionRange = "[0.7.1,)"
 ordering = "NONE"
 side = "CLIENT"
 
