@@ -1,24 +1,9 @@
-buildscript {
-    dependencies {
-        classpath "de.guntram.mcmod:crowdin-translate:1.4+1.19.3" // Hardcode for plugin
-    }
-    repositories {
-        maven {
-            name = 'CrowdinTranslate source'
-            url = "https://minecraft.guntram.de/maven/"
-        }
-    }
-}
-
 plugins {
-    id 'dev.architectury.loom' version '1.0.+'
+    id 'signing'
+    id 'dev.architectury.loom' version '1.0-SNAPSHOT'
     id 'maven-publish'
+    id 'io.github.juuxel.loom-quiltflower' version '1.7.4'
 }
-
-apply plugin: 'de.guntram.mcmod.crowdin-translate'
-crowdintranslate.crowdinProjectName = 'sodium-extra'
-crowdintranslate.minecraftProjectName = 'sodium-extra'
-crowdintranslate.verbose = false
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -29,6 +14,8 @@ group = project.maven_group
 
 loom {
     forge {
+        convertAccessWideners = true
+
         mixinConfigs = [
                 "sodium-extra.mixins.json"
         ]
@@ -39,9 +26,12 @@ repositories {
     maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
     }
     maven {
-        url = "https://minecraft.guntram.de/maven/"
+        url = "https://repo.constructlegacy.ru/public"
     }
 }
 
@@ -49,12 +39,12 @@ dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    forge "net.minecraftforge:forge:${project.loader_version}"
 
     modImplementation "maven.modrinth:rubidium:${project.sodium_version}"
-    modImplementation "maven.modrinth:textrues-rubidium-options:${project.rso_version}"
-	
-    // TODO include(modImplementation("de.guntram.mcmod:crowdin-translate:${project.crowdin_translate}"))
+    modImplementation "maven.modrinth:oculus:${project.oculus_version}"
+
+    // implementation(forgeRuntimeLibrary(include("com.github.dima_dencep.mods:NanoLiveConfig:${project.nanoliveconfig_version}")))
 }
 
 processResources {
@@ -79,10 +69,6 @@ java {
 
 jar {
     from "LICENSE.txt"
-    manifest.attributes([
-            "Implementation-Title"  : project.archivesBaseName,
-            "Implementation-Version": project.version
-    ])
 }
 
 // configure the maven publication

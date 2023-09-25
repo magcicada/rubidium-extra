@@ -7,12 +7,12 @@ body:
     attributes:
       label: Make sure you are not opening a duplicate.
       options:
-        - label: "[I have searched the issue tracker](https://github.com/dimadencep/sodium-extra-forge/issues) and did not find an issue describing my bug."
+        - label: "[I have searched the issue tracker](https://github.com/dima-dencep/rubidium-extra/issues) and did not find an issue describing my bug."
     validations:
       required: true
   - type: markdown
     attributes:
-      value: "Are you using the latest version of the mod? If not, try updating to see if it resolves your issue. You can [find the latest versions here](https://github.com/dimadencep/sodium-extra-forge/releases)."
+      value: "Are you using the latest version of the mod? If not, try updating to see if it resolves your issue. You can [find the latest versions here](https://github.com/dima-dencep/rubidium-extra/releases)."
   - type: input
     id: version-mc
     attributes:

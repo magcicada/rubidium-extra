@@ -14,7 +14,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod("sodiumextra")
+@Mod("rubidium_extra")
 @OnlyIn(Dist.CLIENT)
 public class SodiumExtraClientMod {
 
