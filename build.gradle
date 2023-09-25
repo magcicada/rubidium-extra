@@ -44,7 +44,7 @@ dependencies {
     forge "net.minecraftforge:forge:${project.loader_version}"
 
     modImplementation "maven.modrinth:rubidium:${project.sodium_version}"
-    // modImplementation "maven.modrinth:oculus:${project.oculus_version}"
+    modImplementation "maven.modrinth:oculus:${project.oculus_version}"
 
     implementation(forgeRuntimeLibrary(include("com.github.dima_dencep.mods:NanoLiveConfig:${project.nanoliveconfig_version}")))
 }
