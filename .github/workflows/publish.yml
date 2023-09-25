@@ -67,10 +67,10 @@ jobs:
           version-type: release
           loaders: |
             forge
-            neoforge
 
-          version-resolver: latest
-
+          game-versions: |
+            1.19.2
+          
           dependencies: |
             rubidium
             oculus(recommended)

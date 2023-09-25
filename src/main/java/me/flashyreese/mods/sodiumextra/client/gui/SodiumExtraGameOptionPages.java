@@ -12,11 +12,11 @@ import me.jellysquid.mods.sodium.client.gui.options.control.SliderControl;
 import me.jellysquid.mods.sodium.client.gui.options.control.TickBoxControl;
 import me.jellysquid.mods.sodium.client.gui.options.storage.MinecraftOptionsStorage;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.text.Texts;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.dimension.DimensionOptionsRegistryHolder;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.dimension.DimensionOptions;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -132,7 +132,7 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
 
-        Map<String, List<Identifier>> otherParticles = Registries.PARTICLE_TYPE.getIds().stream()
+        Map<String, List<Identifier>> otherParticles = Registry.PARTICLE_TYPE.getIds().stream()
                 .collect(Collectors.groupingBy(Identifier::getNamespace));
         otherParticles.forEach((namespace, identifiers) -> groups.add(identifiers.stream()
                 .map(identifier -> OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
@@ -227,8 +227,8 @@ public class SodiumExtraGameOptionPages {
                 .build());
 
         if (SodiumExtraClientMod.options().renderSettings.multiDimensionFogControl) {
-            DimensionOptionsRegistryHolder
-                    .streamAll(Stream.empty())
+            DimensionOptions
+                    .streamRegistry(Stream.empty())
                     .filter(dim -> !SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.containsKey(dim.getValue()))
                     .forEach(dim -> SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.put(dim.getValue(), 0));
             groups.add(SodiumExtraClientMod.options().renderSettings.dimensionFogDistanceMap.keySet().stream()
