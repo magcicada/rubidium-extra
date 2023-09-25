@@ -1,25 +1,9 @@
-buildscript {
-    dependencies {
-        classpath "de.guntram.mcmod:crowdin-translate:${project.crowdin_translate}"
-    }
-    repositories {
-        maven {
-            name = 'CrowdinTranslate source'
-            url = "https://minecraft.guntram.de/maven/"
-        }
-    }
-}
-
 plugins {
     id 'signing'
     id 'dev.architectury.loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
+    id 'io.github.juuxel.loom-quiltflower' version '1.8.0'
 }
-
-// apply plugin: 'de.guntram.mcmod.crowdin-translate'
-// crowdintranslate.crowdinProjectName = 'sodium-extra'
-// crowdintranslate.minecraftProjectName = 'sodium-extra'
-// crowdintranslate.verbose = false
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -49,36 +33,20 @@ repositories {
         }
     }
     maven {
-        url "https://maven.flashyreese.me/releases"
+        url = "https://repo.constructlegacy.ru/public"
     }
-    maven {
-        url "https://maven.flashyreese.me/snapshots"
-    }
-    maven {
-        url = "https://minecraft.guntram.de/maven/"
-    }
-
-    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    forge "net.minecraftforge:forge:${project.loader_version}"
 
     modImplementation "maven.modrinth:rubidium:${project.sodium_version}"
-    modImplementation "maven.modrinth:textrues-rubidium-options:${project.reeses_sodium_options}"
+    modImplementation "maven.modrinth:oculus:${project.oculus_version}"
 
-    // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-    // You may need to force-disable transitiveness on them.
-
-    // Currently using altrisi/CaffeineConfig until it is officially available through CaffeineMC's maven repository
-    // Todo: Use https://github.com/CaffeineMC/mixin-config when available
-    include(modImplementation("com.github.TexTrueStudio:ColaMixinConfig:${project.caffeineconfig_version}"))
-    include(modImplementation("de.guntram.mcmod:crowdin-translate:${project.crowdin_translate}"))
-
-    // modRuntimeOnly "curse.maven:lazydfu-460819:3831644"
+    implementation(forgeRuntimeLibrary(include("com.github.dima_dencep.mods:NanoLiveConfig:${project.nanoliveconfig_version}")))
 }
 
 processResources {
@@ -87,10 +55,6 @@ processResources {
     filesMatching("META-INF/mods.toml") {
         expand "version": project.version
     }
-}
-
-build {
-    // dependsOn downloadTranslations
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -107,11 +71,6 @@ java {
 
 jar {
     from "LICENSE.txt"
-
-    manifest.attributes([
-            "Implementation-Title"  : project.archivesBaseName,
-            "Implementation-Version": project.version
-    ])
 }
 
 // configure the maven publication
