@@ -218,6 +218,8 @@
   "sodium-extra.option.block_breaking.tooltip": "If enabled, block breaking particles are processed.",
   "sodium-extra.option.cloud_height": "Cloud Height",
   "sodium-extra.option.cloud_height.tooltip": "Controls the height of clouds that are rendered.",
+  "sodium-extra.option.cloud_distance": "Cloud Distance",
+  "sodium-extra.option.cloud_distance.tooltip": "Controls the distance away from the player that clouds are rendered.",
   "sodium-extra.option.details": "Details",
   "sodium-extra.option.enchanting_table_book": "Enchanting Table Book",
   "sodium-extra.option.enchanting_table_book.tooltip": "If enabled, enchanting table books are rendered.",
@@ -298,9 +300,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(max. %s / avg. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Light updates disabled",
-  "sodium-extra.suggestRSO.header": "Suggestion: Install TexTrue's Rubidium Options",
-  "sodium-extra.suggestRSO.message": "It is highly recommended you install TexTrue's Rubidium Options alongside Rubidium Extra. Due to the growing amount of features, it no longer fits properly on Rubidium's video options.",
+  "sodium-extra.suggestRSO.header": "Suggestion: Install Reese's Sodium Options",
+  "sodium-extra.suggestRSO.message": "It is highly recommended you install Reese's Sodium Options alongside Sodium Extra. Due to the growing amount of features, it no longer fits properly on Sodium's video options.",
   "sodium-extra.units.ticks": "%s tick(s)",
-  "modmenu.summaryTranslation.sodium-extra": "Features that shouldn't be in Rubidium.",
-  "modmenu.descriptionTranslation.sodium-extra": "Rubidium Extra aims to bring most of OptiFine's eye-candy options to Rubidium; in addition to providing some features such as visual bug fixes and other performance options that are not yet available on Rubidium."
+  "modmenu.summaryTranslation.sodium-extra": "Features that shouldn't be in Sodium.",
+  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra aims to bring most of OptiFine's eye-candy options to Sodium; in addition to providing some features such as visual bug fixes and other performance options that are not yet available on Sodium."
 }

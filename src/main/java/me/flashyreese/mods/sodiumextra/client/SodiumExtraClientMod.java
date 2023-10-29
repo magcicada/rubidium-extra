@@ -48,6 +48,7 @@ public class SodiumExtraClientMod {
                     .addMixinOption("sodium", true)
                     .addMixinOption("sodium.accessibility", true)
                     .addMixinOption("sodium.fog", true)
+                    .addMixinOption("sodium.cloud", true)
                     .addMixinOption("sodium.resolution", true)
                     .addMixinOption("sodium.scrollable_page", true)
                     .addMixinOption("sodium.vsync", true)
