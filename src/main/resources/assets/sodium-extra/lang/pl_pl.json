@@ -298,9 +298,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(maks. %s / śr. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Aktualizacje oświetlenia wyłączone",
-  "sodium-extra.suggestRSO.header": "Sugestia: Zainstaluj TexTrue's Rubidium Options",
-  "sodium-extra.suggestRSO.message": "Wysoce rekomendowane jest zainstalowanie moda TexTrue's Rubidium Options wraz z Rubidium Extra. Przez ciągle zwiększającą się liczbę funkcji, opcje nie mieszczą się na ekranie ustawień Rubidium.",
+  "sodium-extra.suggestRSO.header": "Sugestia: Zainstaluj Reese's Sodium Options",
+  "sodium-extra.suggestRSO.message": "Wysoce rekomendowane jest zainstalowanie moda Reese's Sodium Options wraz z Sodium Extra. Przez ciągle zwiększającą się liczbę funkcji, opcje nie mieszczą się na ekranie ustawień Sodium.",
   "sodium-extra.units.ticks": "%s tick(ów)",
-  "modmenu.summaryTranslation.sodium-extra": "Funkcje, których nie powinno być w Rubidium.",
-  "modmenu.descriptionTranslation.sodium-extra": "Rubidium Extra ma na celu przeniesienie większości atrakcyjnych opcji OptiFine do Rubidium, oprócz niektórych funkcji, takich jak wizualne poprawki błędów i inne opcje wydajności, które nie są jeszcze dostępne w Rubidium."
+  "modmenu.summaryTranslation.sodium-extra": "Funkcje, których nie powinno być w Sodium.",
+  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra ma na celu przeniesienie większości atrakcyjnych opcji OptiFine do Sodium, oprócz niektórych funkcji, takich jak wizualne poprawki błędów i inne opcje wydajności, które nie są jeszcze dostępne w Sodium."
 }

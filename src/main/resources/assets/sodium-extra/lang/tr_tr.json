@@ -290,6 +290,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(mak. %s / ort. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Işık güncellemeleri devre dışı",
-  "sodium-extra.suggestRSO.header": "Öneri: TexTrue's Rubidium Options modunu indirin",
-  "sodium-extra.suggestRSO.message": "Rubidium Extra'nın yanı sıra TexTrue's Rubidium Options modunu kurmanız şiddetle tavsiye edilir. Artan sayıda özellik nedeniyle, artık Rubidium'un video seçeneklerine tam olarak uymuyor."
+  "sodium-extra.suggestRSO.header": "Öneri: Reese's Sodium Options modunu indirin",
+  "sodium-extra.suggestRSO.message": "Sodium Extra'nın yanı sıra Reese's Sodium Options modunu kurmanız şiddetle tavsiye edilir. Artan sayıda özellik nedeniyle, artık Sodium'un video seçeneklerine tam olarak uymuyor."
 }
