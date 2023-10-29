@@ -1,7 +1,7 @@
 package me.flashyreese.mods.sodiumextra.client;
 
 import me.flashyreese.mods.sodiumextra.SodiumExtraMod;
-import me.flashyreese.mods.sodiumextra.common.util.EvictingQueue;
+import com.google.common.collect.EvictingQueue;
 import me.flashyreese.mods.sodiumextra.mixin.gui.MinecraftClientAccessor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT, modid = SodiumExtraMod.MOD_ID)
 public class ClientTickHandler {
     private static int averageFps, lowestFps, highestFps;
-    private static final Queue<Integer> fpsQueue = new EvictingQueue<>(100);
+    private static final Queue<Integer> fpsQueue = EvictingQueue.create(200);
 
     @SubscribeEvent
     public static void onTick(final TickEvent.ClientTickEvent event) {
