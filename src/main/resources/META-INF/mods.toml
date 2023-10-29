@@ -4,7 +4,7 @@ license = "LGPLv3"
 issueTrackerURL = "https://github.com/dima-dencep/rubidium-extra/issues"
 
 [[mods]]
-modId = "rubidium_extra"
+modId = "sodiumextra"
 version = "${version}"
 displayName = "Rubidium Extra"
 logoFile= "icon.png"
@@ -14,14 +14,14 @@ credits = "AMereBagatelle, DragonEggBedrockBreaking, EatMyVenom, HarvelsX, Kichu
 displayURL = "https://curseforge.com/minecraft/mc-mods/rubidium-extra"
 description = "Features that shouldn't be in Rubidium."
 
-[[dependencies.rubidium_extra]]
+[[dependencies.sodiumextra]]
 modId = "rubidium"
 mandatory = true
 versionRange = "[0.2.13,)"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.rubidium_extra]]
+[[dependencies.sodiumextra]]
 modId = "minecraft" # Gives a friendlier error message when installed on the wrong MC version
 mandatory = true
 versionRange = "[1.16,)" # Allows 1.16
