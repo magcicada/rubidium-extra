@@ -13,6 +13,7 @@ authors = "dima_dencep, FlashyReese"
 credits = "AMereBagatelle, DragonEggBedrockBreaking, EatMyVenom, HarvelsX, Kichura, Madis0, Paint_Ninja"
 displayURL = "https://curseforge.com/minecraft/mc-mods/rubidium-extra"
 description = "Features that shouldn't be in Rubidium/Embeddium."
+provides = ["sodium-extra"]
 
 [[dependencies.rubidium_extra]]
 modId = "rubidium"
