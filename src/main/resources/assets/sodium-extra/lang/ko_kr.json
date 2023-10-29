@@ -298,9 +298,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(최대 %s / 평균 %s / 최소 %s)",
   "sodium-extra.overlay.light_updates": "조명 업데이트 비활성화됨",
-  "sodium-extra.suggestRSO.header": "Reese's Sodium Options 모드를 설치하는 것을 권장합니다.",
-  "sodium-extra.suggestRSO.message": "Sodium Extra의 기능의 수가 증가함에 따라 Sodium의 비디오 설정에서 설정이 모두 표시되지 않을 수 있으므로, Sodium Extra와 Reese's Sodium Options 모드를 함께 사용하는 것을 권장합니다.",
+  "sodium-extra.suggestRSO.header": "Reese's Rubidium/Embeddium Options 모드를 설치하는 것을 권장합니다.",
+  "sodium-extra.suggestRSO.message": "Rubidium/Embeddium Extra의 기능의 수가 증가함에 따라 Rubidium/Embeddium의 비디오 설정에서 설정이 모두 표시되지 않을 수 있으므로, Rubidium/Embeddium Extra와 Reese's Rubidium/Embeddium Options 모드를 함께 사용하는 것을 권장합니다.",
   "sodium-extra.units.ticks": "%s 틱",
-  "modmenu.summaryTranslation.sodium-extra": "Sodium에 있지 않을 기능들.",
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra는 OptiFine의 눈에 띄는 옵션 대부분을 Sodium으로 가져오는 것을 목표로 합니다. Sodium에서 아직 사용할 수 없는 시각적 버그 수정 및 기타 성능 옵션과 같은 일부 기능을 제공합니다."
+  "modmenu.summaryTranslation.sodium-extra": "Rubidium/Embeddium에 있지 않을 기능들.",
+  "modmenu.descriptionTranslation.sodium-extra": "Rubidium/Embeddium Extra는 OptiFine의 눈에 띄는 옵션 대부분을 Rubidium/Embeddium으로 가져오는 것을 목표로 합니다. Rubidium/Embeddium에서 아직 사용할 수 없는 시각적 버그 수정 및 기타 성능 옵션과 같은 일부 기능을 제공합니다."
 }

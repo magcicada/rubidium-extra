@@ -298,9 +298,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(max. %s / prům. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Aktualizace světel zakázány",
-  "sodium-extra.suggestRSO.header": "Návrh: Nainstalujte Reese's Sodium Options",
-  "sodium-extra.suggestRSO.message": "Je velmi doporučeno nainstalovat Reese's Sodium Options společně se Sodium Extra. Kvůli rostoucímu množství funkcí, již nezapadají do možností Sodium.",
+  "sodium-extra.suggestRSO.header": "Návrh: Nainstalujte Reese's Rubidium/Embeddium Options",
+  "sodium-extra.suggestRSO.message": "Je velmi doporučeno nainstalovat Reese's Rubidium/Embeddium Options společně se Rubidium/Embeddium Extra. Kvůli rostoucímu množství funkcí, již nezapadají do možností Rubidium/Embeddium.",
   "sodium-extra.units.ticks": "%s tik(ů)",
   "modmenu.summaryTranslation.sodium-extra": "Funkce, které by neměly být v Sodiu.",
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra si klade za cíl přenést většinu vnímatelných možností z OptiFine do Sodia; navíc poskytuje další funkce, jako jsou vizuální opravy chyb a jiné možnosti zvýšení výkonu, které zatím nejsou dostupné v Sodiu."
+  "modmenu.descriptionTranslation.sodium-extra": "Rubidium/Embeddium Extra si klade za cíl přenést většinu vnímatelných možností z OptiFine do Sodia; navíc poskytuje další funkce, jako jsou vizuální opravy chyb a jiné možnosti zvýšení výkonu, které zatím nejsou dostupné v Sodiu."
 }

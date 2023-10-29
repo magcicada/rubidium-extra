@@ -6,13 +6,13 @@ issueTrackerURL = "https://github.com/dima-dencep/rubidium-extra/issues"
 [[mods]]
 modId = "rubidium_extra"
 version = "${version}"
-displayName = "Rubidium Extra"
+displayName = "Rubidium/Embeddium Extra"
 logoFile= "icon.png"
 updateJSONURL = "https://api.modrinth.com/updates/rubidium-extra/forge_updates.json"
 authors = "dima_dencep, FlashyReese"
 credits = "AMereBagatelle, DragonEggBedrockBreaking, EatMyVenom, HarvelsX, Kichura, Madis0, Paint_Ninja"
 displayURL = "https://curseforge.com/minecraft/mc-mods/rubidium-extra"
-description = "Features that shouldn't be in Rubidium."
+description = "Features that shouldn't be in Rubidium/Embeddium."
 
 [[dependencies.rubidium_extra]]
 modId = "rubidium"

@@ -290,6 +290,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(สูง %s / กลาง %s / ต่ำ %s)",
   "sodium-extra.overlay.light_updates": "ปิดการอัพเดตของแสงแล้ว",
-  "sodium-extra.suggestRSO.header": "ข้อแนะนำ: ให้ติดตั้งม็อด Reese's Sodium Options",
-  "sodium-extra.suggestRSO.message": "แนะนำเป็นอย่างยิ่งว่าให้คุณติดตั้งม็อด Reese's Sodium Options คู่กับม็อด Sodium Extra เนื่องด้วยฟีเจอร์ที่มีมากยิ่งขึ้น จึงไม่อาจที่จะเข้ากันได้พอดีเป๊ะกับตัวเลือกแบบ Sodium แล้ว"
+  "sodium-extra.suggestRSO.header": "ข้อแนะนำ: ให้ติดตั้งม็อด Reese's Rubidium/Embeddium Options",
+  "sodium-extra.suggestRSO.message": "แนะนำเป็นอย่างยิ่งว่าให้คุณติดตั้งม็อด Reese's Rubidium/Embeddium Options คู่กับม็อด Rubidium/Embeddium Extra เนื่องด้วยฟีเจอร์ที่มีมากยิ่งขึ้น จึงไม่อาจที่จะเข้ากันได้พอดีเป๊ะกับตัวเลือกแบบ Rubidium/Embeddium แล้ว"
 }

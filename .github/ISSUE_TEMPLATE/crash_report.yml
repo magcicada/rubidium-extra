@@ -23,14 +23,14 @@ body:
   - type: input
     id: version-rubidium-extra
     attributes:
-      label: Rubidium Extra version.
+      label: Rubidium/Embeddium Extra version.
       placeholder: ex. 0.4.18
     validations:
       required: true
   - type: input
     id: version-rubidium
     attributes:
-      label: Rubidium version.
+      label: Rubidium/Embeddium version.
       placeholder: ex. 0.6.4
     validations:
       required: true

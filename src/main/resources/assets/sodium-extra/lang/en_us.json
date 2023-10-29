@@ -300,9 +300,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(max. %s / avg. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Light updates disabled",
-  "sodium-extra.suggestRSO.header": "Suggestion: Install Reese's Sodium Options",
-  "sodium-extra.suggestRSO.message": "It is highly recommended you install Reese's Sodium Options alongside Sodium Extra. Due to the growing amount of features, it no longer fits properly on Sodium's video options.",
+  "sodium-extra.suggestRSO.header": "Suggestion: Install Reese's Rubidium/Embeddium Options",
+  "sodium-extra.suggestRSO.message": "It is highly recommended you install Reese's Rubidium/Embeddium Options alongside Rubidium/Embeddium Extra. Due to the growing amount of features, it no longer fits properly on Rubidium/Embeddium's video options.",
   "sodium-extra.units.ticks": "%s tick(s)",
-  "modmenu.summaryTranslation.sodium-extra": "Features that shouldn't be in Sodium.",
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra aims to bring most of OptiFine's eye-candy options to Sodium; in addition to providing some features such as visual bug fixes and other performance options that are not yet available on Sodium."
+  "modmenu.summaryTranslation.sodium-extra": "Features that shouldn't be in Rubidium/Embeddium.",
+  "modmenu.descriptionTranslation.sodium-extra": "Rubidium/Embeddium Extra aims to bring most of OptiFine's eye-candy options to Rubidium/Embeddium; in addition to providing some features such as visual bug fixes and other performance options that are not yet available on Rubidium/Embeddium."
 }

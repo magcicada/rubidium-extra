@@ -298,9 +298,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "（最高 %s / 平均 %s / 最低 %s）",
   "sodium-extra.overlay.light_updates": "照明更新已停用",
-  "sodium-extra.suggestRSO.header": "建議：安裝 Reese's Sodium Options 模組",
-  "sodium-extra.suggestRSO.message": "由於功能選項的增加，Sodium 預設的顯示設定已無法相容，強烈建議您下載 Reese's Sodium Options 和 Sodium Extra 這兩個模組。",
+  "sodium-extra.suggestRSO.header": "建議：安裝 Reese's Rubidium/Embeddium Options 模組",
+  "sodium-extra.suggestRSO.message": "由於功能選項的增加，Rubidium/Embeddium 預設的顯示設定已無法相容，強烈建議您下載 Reese's Rubidium/Embeddium Options 和 Rubidium/Embeddium Extra 這兩個模組。",
   "sodium-extra.units.ticks": "%s 刻",
-  "modmenu.summaryTranslation.sodium-extra": "不應該出現在 Sodium 的功能。",
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra 的目標是將 OptiFine 大部分的華麗視覺效果選項帶到 Sodium；此外還提供一些功能，如視覺錯誤修復和其他在 Sodium 上尚未可用的效能選項。"
+  "modmenu.summaryTranslation.sodium-extra": "不應該出現在 Rubidium/Embeddium 的功能。",
+  "modmenu.descriptionTranslation.sodium-extra": "Rubidium/Embeddium Extra 的目標是將 OptiFine 大部分的華麗視覺效果選項帶到 Rubidium/Embeddium；此外還提供一些功能，如視覺錯誤修復和其他在 Rubidium/Embeddium 上尚未可用的效能選項。"
 }

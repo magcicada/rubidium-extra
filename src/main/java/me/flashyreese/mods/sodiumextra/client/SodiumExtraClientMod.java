@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 public class SodiumExtraClientMod {
-    public static final Logger LOGGER = LogManager.getLogger("Rubidium Extra");
+    public static final Logger LOGGER = LogManager.getLogger("Rubidium/Embeddium Extra");
     private static SodiumExtraGameOptions CONFIG;
     private static CaffeineConfig MIXIN_CONFIG;
 
