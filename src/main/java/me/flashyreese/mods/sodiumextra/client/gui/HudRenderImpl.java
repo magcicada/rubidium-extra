@@ -22,6 +22,9 @@ public class HudRenderImpl {
 
     @SubscribeEvent
     public static void onRenderGameOverlayEvent(final RenderGameOverlayEvent.Post event) {
+        if (event.getType() != RenderGameOverlayEvent.ElementType.ALL)
+            return;
+
         onHudRender(event.getMatrixStack(), event.getPartialTicks());
     }
 
