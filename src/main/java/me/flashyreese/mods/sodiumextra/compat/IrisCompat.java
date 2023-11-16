@@ -1,41 +1,20 @@
 package me.flashyreese.mods.sodiumextra.compat;
 
+import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
+import net.coderbot.iris.vertices.IrisVertexFormats;
+import net.irisshaders.iris.api.v0.IrisApi;
 import net.minecraft.client.render.VertexFormat;
-
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
+import net.minecraftforge.fml.loading.LoadingModList;
 
 public class IrisCompat {
-    private static boolean irisPresent;
-    private static MethodHandle handleRenderingShadowPass;
-    private static Object apiInstance;
-    private static VertexFormat terrainFormat;
-
-    static {
-        try {
-            Class<?> api = Class.forName("net.irisshaders.iris.api.v0.IrisApi");
-            apiInstance = api.cast(api.getDeclaredMethod("getInstance").invoke(null));
-            handleRenderingShadowPass = MethodHandles.lookup().findVirtual(api, "isRenderingShadowPass", MethodType.methodType(boolean.class));
-
-            Class<?> irisVertexFormatsClass = Class.forName("net.coderbot.iris.vertices.IrisVertexFormats");
-            Field terrainField = irisVertexFormatsClass.getDeclaredField("TERRAIN");
-            terrainFormat = (VertexFormat) terrainField.get(null);
-
-            irisPresent = true;
-        } catch (ClassNotFoundException | NoSuchMethodException | NoSuchFieldException | IllegalAccessException | InvocationTargetException e) {
-            irisPresent = false;
-        }
-    }
+    private static final boolean irisPresent = LoadingModList.get().getModFileById("oculus") != null;
 
     public static boolean isRenderingShadowPass() {
         if (irisPresent) {
             try {
-                return (boolean) handleRenderingShadowPass.invoke(apiInstance);
+                return IrisApi.getInstance().isRenderingShadowPass();
             } catch (Throwable throwable) {
-                throwable.printStackTrace();
+                SodiumExtraClientMod.LOGGER.error(throwable);
             }
         }
 
@@ -43,7 +22,15 @@ public class IrisCompat {
     }
 
     public static VertexFormat getTerrainFormat() {
-        return terrainFormat;
+        if (irisPresent) {
+            try {
+                return IrisVertexFormats.TERRAIN;
+            } catch (Throwable throwable) {
+                SodiumExtraClientMod.LOGGER.error(throwable);
+            }
+        }
+
+        return null;
     }
 
     public static boolean isIrisPresent() {
