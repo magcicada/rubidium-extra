@@ -191,6 +191,7 @@ public class SodiumExtraGameOptions {
     }
 
     public static class RenderSettings {
+        public FogType fogType;
         public int fogDistance;
         public int fogStart;
         public boolean multiDimensionFogControl;
@@ -207,6 +208,7 @@ public class SodiumExtraGameOptions {
         public boolean playerNameTag;
 
         public RenderSettings() {
+            this.fogType = FogType.DEFAULT;
             this.fogDistance = 0;
             this.fogStart = 100;
             this.multiDimensionFogControl = false;
@@ -220,6 +222,22 @@ public class SodiumExtraGameOptions {
             this.enchantingTableBook = true;
             this.itemFrameNameTag = true;
             this.playerNameTag = true;
+        }
+
+        public enum FogType implements TextProvider {
+            DEFAULT("sodium-extra.option.fog_type.default"),
+            MOD_COMPAT("sodium-extra.option.fog_type.mod_compat");
+
+            private final Text text;
+
+            FogType(String text) {
+                this.text = Text.translatable(text);
+            }
+
+            @Override
+            public Text getLocalizedName() {
+                return this.text;
+            }
         }
     }
 

@@ -11,6 +11,7 @@
     "cloud.MixinDimensionEffectsOverworld",
     "compat.MixinSodiumOptionsGUI",
     "fog.MixinBackgroundRenderer",
+    "fog.ForgeHooksClientMixin",
     "fog_falloff.MixinBackgroundRenderer",
     "gui.MinecraftClientAccessor",
     "instant_sneak.MixinCamera",

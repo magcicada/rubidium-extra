@@ -228,6 +228,13 @@ public class SodiumExtraGameOptionPages {
         List<OptionGroup> groups = new ArrayList<>();
 
         groups.add(OptionGroup.createBuilder()
+                .add(OptionImpl.createBuilder(SodiumExtraGameOptions.RenderSettings.FogType.class, sodiumExtraOpts)
+                        .setName(Text.translatable("sodium-extra.option.fog_type"))
+                        .setTooltip(Text.translatable("sodium-extra.option.fog_type.tooltip"))
+                        .setControl(option -> new CyclingControl<>(option, SodiumExtraGameOptions.RenderSettings.FogType.class))
+                        .setBinding((opts, value) -> opts.renderSettings.fogType = value, opts -> opts.renderSettings.fogType)
+                        .build()
+                )
                 .add(OptionImpl.createBuilder(boolean.class, sodiumExtraOpts)
                         .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.fog").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.multi_dimension_fog"))
