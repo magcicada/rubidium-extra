@@ -229,6 +229,7 @@ public class SodiumExtraGameOptionPages {
 
         groups.add(OptionGroup.createBuilder()
                 .add(OptionImpl.createBuilder(SodiumExtraGameOptions.RenderSettings.FogType.class, sodiumExtraOpts)
+                        .setEnabled(SodiumExtraClientMod.mixinConfig().getOptions().get("mixin.fog").isEnabled())
                         .setName(Text.translatable("sodium-extra.option.fog_type"))
                         .setTooltip(Text.translatable("sodium-extra.option.fog_type.tooltip"))
                         .setControl(option -> new CyclingControl<>(option, SodiumExtraGameOptions.RenderSettings.FogType.class))
