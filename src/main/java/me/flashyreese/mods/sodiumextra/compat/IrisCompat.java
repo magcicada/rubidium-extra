@@ -4,7 +4,7 @@ import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import net.coderbot.iris.vertices.IrisVertexFormats;
 import net.irisshaders.iris.api.v0.IrisApi;
 import net.minecraft.client.render.VertexFormat;
-import net.minecraftforge.fml.loading.LoadingModList;
+import net.neoforged.fml.loading.LoadingModList;
 
 public class IrisCompat {
     private static final boolean irisPresent = LoadingModList.get().getModFileById("oculus") != null;

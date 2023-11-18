@@ -13,14 +13,6 @@ group = project.maven_group
 
 loom {
     accessWidenerPath = file("src/main/resources/sodium-extra.accesswidener")
-
-    forge {
-        convertAccessWideners = true
-
-        mixinConfigs = [
-                "sodium-extra.mixins.json"
-        ]
-    }
 }
 
 repositories {
@@ -34,22 +26,25 @@ repositories {
     maven {
         url = "https://repo.constructlegacy.ru/public"
     }
+    maven {
+        url = "https://maven.neoforged.net/releases"
+    }
 }
 
 dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    forge "net.minecraftforge:forge:${project.loader_version}"
+    neoForge "net.neoforged:neoforge:${project.loader_version}"
 
     modImplementation "maven.modrinth:embeddium:${project.sodium_version}"
-    modImplementation "maven.modrinth:oculus:${project.oculus_version}"
+    modCompileOnly "maven.modrinth:oculus:${project.oculus_version}"
 
     implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"))
-    implementation(include("io.github.llamalad7:mixinextras-forge:${project.mixinextras_version}"))
+    implementation(include("io.github.llamalad7:mixinextras-neoforge:${project.mixinextras_version}"))
 
     implementation(forgeRuntimeLibrary(include("com.github.dima_dencep.mods:NanoLiveConfig:${project.nanoliveconfig_version}") {
-        exclude(group: "dev.su5ed.sinytra.fabric-api")
+        exclude(group: "dev.su5ed.sinytra")
     }))
 }
 
@@ -71,6 +66,10 @@ java {
     // if it is present.
     // If you remove this line, sources will not be generated.
     withSourcesJar()
+}
+
+remapJar {
+    atAccessWideners.add(loom.accessWidenerPath.get().asFile.name)
 }
 
 jar {

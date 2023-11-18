@@ -1,9 +1,9 @@
 package me.flashyreese.mods.sodiumextra;
 
-import net.minecraftforge.fml.IExtensionPoint;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.network.NetworkConstants;
+import net.neoforged.fml.IExtensionPoint;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.network.NetworkConstants;
 
 @Mod(SodiumExtraMod.MOD_ID)
 public final class SodiumExtraMod {

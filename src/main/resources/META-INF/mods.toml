@@ -15,6 +15,9 @@ displayURL = "https://curseforge.com/minecraft/mc-mods/rubidium-extra"
 description = "Features that shouldn't be in Rubidium/Embeddium."
 provides = ["sodium-extra"]
 
+[[mixins]]
+config = "sodium-extra.mixins.json"
+
 [[dependencies.rubidium_extra]]
 modId = "rubidium"
 mandatory = true

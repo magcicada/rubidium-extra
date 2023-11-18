@@ -1,18 +1,21 @@
 package me.flashyreese.mods.sodiumextra.mixin.steady_debug_hud;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.hud.DebugHud;
 import net.minecraft.util.Util;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(targets = "net.minecraftforge.client.gui.overlay.ForgeGui$ForgeDebugScreenOverlay")
+@Mixin(DebugHud.class)
 public abstract class MixinDebugHud {
 
     @Unique
@@ -24,8 +27,11 @@ public abstract class MixinDebugHud {
     @Unique
     private boolean rebuild = true;
 
-    @Inject(method = "update", remap = false, at = @At(value = "HEAD"), cancellable = true)
-    public void preRender(CallbackInfo ci) {
+    @Shadow
+    protected abstract void drawText(DrawContext context, List<String> text, boolean left);
+
+    @Inject(method = "render", at = @At(value = "HEAD"))
+    public void preRender(DrawContext context, CallbackInfo ci) {
         if (SodiumExtraClientMod.options().extraSettings.steadyDebugHud) {
             final long currentTime = Util.getMeasuringTimeMs();
             if (currentTime > this.nextTime) {
@@ -33,40 +39,27 @@ public abstract class MixinDebugHud {
                 this.nextTime = currentTime + (SodiumExtraClientMod.options().extraSettings.steadyDebugHudRefreshInterval * 50L);
             } else {
                 this.rebuild = false;
-                ci.cancel();
             }
         } else {
             this.rebuild = true;
         }
     }
 
-    @Inject(method = "getLeft", remap = false, at = @At(value = "HEAD"), cancellable = true)
-    public void sodiumExtra$getLeftText0(CallbackInfoReturnable<List<String>> cir) {
-        if (!this.rebuild) {
-            cir.setReturnValue(this.leftTextCache);
-        }
-    }
-
-    @Inject(method = "getLeft", remap = false, at = @At(value = "RETURN"))
-    public void sodiumExtra$getLeftText1(CallbackInfoReturnable<List<String>> cir) {
+    @Redirect(method = "drawGameInformation", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/DebugHud;drawText(Lnet/minecraft/client/gui/DrawContext;Ljava/util/List;Z)V"))
+    public void sodiumExtra$redirectDrawLeftText(DebugHud instance, DrawContext context, List<String> text, boolean left) {
         if (this.rebuild) {
             this.leftTextCache.clear();
-            this.leftTextCache.addAll(cir.getReturnValue());
+            this.leftTextCache.addAll(text);
         }
+        this.drawText(context, this.leftTextCache, left);
     }
 
-    @Inject(method = "getRight", remap = false, at = @At(value = "HEAD"), cancellable = true)
-    public void sodiumExtra$getRightText0(CallbackInfoReturnable<List<String>> cir) {
-        if (!this.rebuild) {
-            cir.setReturnValue(this.rightTextCache);
-        }
-    }
-
-    @Inject(method = "getRight", remap = false, at = @At(value = "RETURN"))
-    public void sodiumExtra$getRightText1(CallbackInfoReturnable<List<String>> cir) {
+    @Redirect(method = "drawSystemInformation", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/DebugHud;drawText(Lnet/minecraft/client/gui/DrawContext;Ljava/util/List;Z)V"))
+    public void sodiumExtra$redirectDrawRightText(DebugHud instance, DrawContext context, List<String> text, boolean left) {
         if (this.rebuild) {
             this.rightTextCache.clear();
-            this.rightTextCache.addAll(cir.getReturnValue());
+            this.rightTextCache.addAll(text);
         }
+        this.drawText(context, this.rightTextCache, left);
     }
 }

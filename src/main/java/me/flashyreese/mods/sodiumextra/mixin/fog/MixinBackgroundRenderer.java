@@ -30,7 +30,7 @@ public abstract class MixinBackgroundRenderer {
             method = "applyFog",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraftforge/client/ForgeHooksClient;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V",
+                    target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V",
                     shift = At.Shift.BY
             )
     )
@@ -61,7 +61,7 @@ public abstract class MixinBackgroundRenderer {
             method = "applyFog",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraftforge/client/ForgeHooksClient;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V"
+                    target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V"
             ),
             index = 5
     )
@@ -77,7 +77,7 @@ public abstract class MixinBackgroundRenderer {
             method = "applyFog",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraftforge/client/ForgeHooksClient;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V"
+                    target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V"
             ),
             index = 6
     )
