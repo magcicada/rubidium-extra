@@ -21,7 +21,7 @@ public class SodiumExtraClientMod {
 
     public static CaffeineConfig mixinConfig() {
         if (MIXIN_CONFIG == null) {
-            MIXIN_CONFIG = CaffeineConfig.builder("Sodium Extra").withSettingsKey("sodium-extra:options")
+            MIXIN_CONFIG = CaffeineConfig.builder("Sodium Extra").withSettingsKey("rubidium_extra", "sodium-extra:options")
                     .addMixinOption("adaptive_sync", true)
                     .addMixinOption("animation", true)
                     .addMixinOption("biome_colors", true)
