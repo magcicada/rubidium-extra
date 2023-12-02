@@ -4,16 +4,17 @@ license = "LGPLv3"
 issueTrackerURL = "https://github.com/dima-dencep/rubidium-extra/issues"
 
 [[mods]]
+displayTest = "IGNORE_SERVER_VERSION"
 modId = "rubidium_extra"
 version = "${version}"
 displayName = "Rubidium/Embeddium Extra"
-logoFile= "icon.png"
+logoFile = "icon.png"
 updateJSONURL = "https://api.modrinth.com/updates/rubidium-extra/forge_updates.json"
 authors = "dima_dencep, FlashyReese"
 credits = "AMereBagatelle, DragonEggBedrockBreaking, EatMyVenom, HarvelsX, Kichura, Madis0, Paint_Ninja"
 displayURL = "https://curseforge.com/minecraft/mc-mods/rubidium-extra"
 description = "Features that shouldn't be in Rubidium/Embeddium."
-provides = ["sodium-extra"]
+provides = ["sodium-extra", "sodium_extra"]
 
 [[mixins]]
 config = "sodium-extra.mixins.json"
