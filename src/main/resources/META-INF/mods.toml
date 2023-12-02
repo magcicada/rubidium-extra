@@ -20,6 +20,13 @@ provides = ["sodium-extra", "sodium_extra"]
 config = "sodium-extra.mixins.json"
 
 [[dependencies.rubidium_extra]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[20.2.84-beta,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.rubidium_extra]]
 modId = "rubidium"
 mandatory = true
 versionRange = "[0.7.1,)"

@@ -57,6 +57,7 @@ public class SodiumExtraClientMod {
                     .addMixinOption("sun_moon", true)
                     .addMixinOption("toasts", true)
 
+                    .ignoreErrors(true)
                     .withLogger(SodiumExtraClientMod.LOGGER)
                     .withInfoUrl("https://github.com/FlashyReese/sodium-extra-fabric/wiki/Configuration-File")
                     .build(FMLPaths.CONFIGDIR.get().resolve("sodium-extra.properties"));
