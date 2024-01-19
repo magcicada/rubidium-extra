@@ -290,6 +290,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(mak. %s / ort. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Işık güncellemeleri devre dışı",
-  "sodium-extra.suggestRSO.header": "Öneri: Reese's Rubidium/Embeddium Options modunu indirin",
-  "sodium-extra.suggestRSO.message": "Rubidium/Embeddium Extra'nın yanı sıra Reese's Rubidium/Embeddium Options modunu kurmanız şiddetle tavsiye edilir. Artan sayıda özellik nedeniyle, artık Rubidium/Embeddium'un video seçeneklerine tam olarak uymuyor."
+  "sodium-extra.suggestRSO.header": "Öneri: Reese's Embeddium Options modunu indirin",
+  "sodium-extra.suggestRSO.message": "Embeddium Extra'nın yanı sıra Reese's Embeddium Options modunu kurmanız şiddetle tavsiye edilir. Artan sayıda özellik nedeniyle, artık Embeddium'un video seçeneklerine tam olarak uymuyor."
 }

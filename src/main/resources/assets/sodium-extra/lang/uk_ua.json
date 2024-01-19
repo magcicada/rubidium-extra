@@ -298,9 +298,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(макс.: %s / серед.: %s / мін.: %s)",
   "sodium-extra.overlay.light_updates": "Оновлення світла вимкнено",
-  "sodium-extra.suggestRSO.header": "Порада: встановіть «Reese's Rubidium/Embeddium Options»",
-  "sodium-extra.suggestRSO.message": "Рекомендовано використовувати «Reese's Rubidium/Embeddium Options» разом із «Rubidium/Embeddium Extra». Через, кількість функцій, що росте, елементи «Rubidium/Embeddium Extra» не вміщаються належним чином у звичайному вікні налаштувань графіки «Rubidium/Embeddium».",
+  "sodium-extra.suggestRSO.header": "Порада: встановіть «Reese's Embeddium Options»",
+  "sodium-extra.suggestRSO.message": "Рекомендовано використовувати «Reese's Embeddium Options» разом із «Embeddium Extra». Через, кількість функцій, що росте, елементи «Embeddium Extra» не вміщаються належним чином у звичайному вікні налаштувань графіки «Embeddium».",
   "sodium-extra.units.ticks": "Тактів: %s",
-  "modmenu.summaryTranslation.sodium-extra": "Функції, що виходять за рамки Rubidium/Embeddium.",
-  "modmenu.descriptionTranslation.sodium-extra": "Rubidium/Embeddium Extra прагне заповнити брак налаштувань персоналізації графіки з OptiFine, доповнюючи їх виправленнями графічних помилок та іншими налаштуваннями продуктивності, яких поки немає в Rubidium/Embeddium."
+  "modmenu.summaryTranslation.sodium-extra": "Функції, що виходять за рамки Embeddium.",
+  "modmenu.descriptionTranslation.sodium-extra": "Embeddium Extra прагне заповнити брак налаштувань персоналізації графіки з OptiFine, доповнюючи їх виправленнями графічних помилок та іншими налаштуваннями продуктивності, яких поки немає в Embeddium."
 }

@@ -298,9 +298,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(最大. %s / 平均. %s / 最小. %s)",
   "sodium-extra.overlay.light_updates": "光照更新已禁用",
-  "sodium-extra.suggestRSO.header": "建议: 安装Reese's Rubidium/Embeddium Options",
-  "sodium-extra.suggestRSO.message": "强烈建议您在安装Rubidium/Embeddium Extra的同时安装Reese's Rubidium/Embeddium Options。由于越来越多的功能，它不再适合Rubidium/Embeddium的视频设置。",
+  "sodium-extra.suggestRSO.header": "建议: 安装Reese's Embeddium Options",
+  "sodium-extra.suggestRSO.message": "强烈建议您在安装Embeddium Extra的同时安装Reese's Embeddium Options。由于越来越多的功能，它不再适合Embeddium的视频设置。",
   "sodium-extra.units.ticks": "%s 刻",
-  "modmenu.summaryTranslation.sodium-extra": "不应该在Rubidium/Embeddium中的功能。",
-  "modmenu.descriptionTranslation.sodium-extra": "Rubidium/Embeddium Extra 旨在将大部分 OptiFine 中赏心悦目的选项带到 Rubidium/Embeddium；此外，还提供一些功能，比如在 Rubidium/Embeddium 中还没有提供的一些视觉错误修复和其他性能选项。"
+  "modmenu.summaryTranslation.sodium-extra": "不应该在Embeddium中的功能。",
+  "modmenu.descriptionTranslation.sodium-extra": "Embeddium Extra 旨在将大部分 OptiFine 中赏心悦目的选项带到 Embeddium；此外，还提供一些功能，比如在 Embeddium 中还没有提供的一些视觉错误修复和其他性能选项。"
 }

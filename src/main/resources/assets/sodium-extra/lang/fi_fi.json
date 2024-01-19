@@ -290,6 +290,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(max. %s / avg. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Valotason päivitykset pois päältä",
-  "sodium-extra.suggestRSO.header": "Suositus: lataa modi \"Reese's Rubidium/Embeddium Options\"",
-  "sodium-extra.suggestRSO.message": "On erittäin suositeltavaa asentaa modi \"Reese's Rubidium/Embeddium Options\" tämän modin (Rubidium/Embeddium Extra) lisäksi. Koska ominaisuuksia tulee lisää, ne eivät enää muuten mahdu kunnolla videoasetuksiin."
+  "sodium-extra.suggestRSO.header": "Suositus: lataa modi \"Reese's Embeddium Options\"",
+  "sodium-extra.suggestRSO.message": "On erittäin suositeltavaa asentaa modi \"Reese's Embeddium Options\" tämän modin (Embeddium Extra) lisäksi. Koska ominaisuuksia tulee lisää, ne eivät enää muuten mahdu kunnolla videoasetuksiin."
 }

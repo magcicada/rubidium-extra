@@ -290,6 +290,6 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(max. %s / med. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Light updates disabled",
-  "sodium-extra.suggestRSO.header": "Suggestion: Install Reese's Rubidium/Embeddium Options",
-  "sodium-extra.suggestRSO.message": "It is highly recommended you install Reese's Rubidium/Embeddium Options alongside Rubidium/Embeddium Extra. Due to the growing amount of features, it no longer fits properly on Rubidium/Embeddium's video options."
+  "sodium-extra.suggestRSO.header": "Suggestion: Install Reese's Embeddium Options",
+  "sodium-extra.suggestRSO.message": "It is highly recommended you install Reese's Embeddium Options alongside Embeddium Extra. Due to the growing amount of features, it no longer fits properly on Embeddium's video options."
 }

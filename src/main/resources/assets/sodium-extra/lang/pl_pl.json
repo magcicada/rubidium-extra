@@ -298,9 +298,9 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(maks. %s / śr. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "Aktualizacje oświetlenia wyłączone",
-  "sodium-extra.suggestRSO.header": "Sugestia: Zainstaluj Reese's Rubidium/Embeddium Options",
-  "sodium-extra.suggestRSO.message": "Wysoce rekomendowane jest zainstalowanie moda Reese's Rubidium/Embeddium Options wraz z Rubidium/Embeddium Extra. Przez ciągle zwiększającą się liczbę funkcji, opcje nie mieszczą się na ekranie ustawień Rubidium/Embeddium.",
+  "sodium-extra.suggestRSO.header": "Sugestia: Zainstaluj Reese's Embeddium Options",
+  "sodium-extra.suggestRSO.message": "Wysoce rekomendowane jest zainstalowanie moda Reese's Embeddium Options wraz z Embeddium Extra. Przez ciągle zwiększającą się liczbę funkcji, opcje nie mieszczą się na ekranie ustawień Embeddium.",
   "sodium-extra.units.ticks": "%s tick(ów)",
-  "modmenu.summaryTranslation.sodium-extra": "Funkcje, których nie powinno być w Rubidium/Embeddium.",
-  "modmenu.descriptionTranslation.sodium-extra": "Rubidium/Embeddium Extra ma na celu przeniesienie większości atrakcyjnych opcji OptiFine do Rubidium/Embeddium, oprócz niektórych funkcji, takich jak wizualne poprawki błędów i inne opcje wydajności, które nie są jeszcze dostępne w Rubidium/Embeddium."
+  "modmenu.summaryTranslation.sodium-extra": "Funkcje, których nie powinno być w Embeddium.",
+  "modmenu.descriptionTranslation.sodium-extra": "Embeddium Extra ma na celu przeniesienie większości atrakcyjnych opcji OptiFine do Embeddium, oprócz niektórych funkcji, takich jak wizualne poprawki błędów i inne opcje wydajności, które nie są jeszcze dostępne w Embeddium."
 }
