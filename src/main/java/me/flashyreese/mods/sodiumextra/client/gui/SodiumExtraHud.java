@@ -1,7 +1,7 @@
 package me.flashyreese.mods.sodiumextra.client.gui;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import me.flashyreese.mods.sodiumextra.SodiumExtraMod;
+import me.flashyreese.mods.sodiumextra.EmbeddiumExtraMod;
 import me.flashyreese.mods.sodiumextra.client.ClientTickHandler;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.flashyreese.mods.sodiumextra.mixin.gui.MinecraftClientAccessor;
@@ -17,7 +17,7 @@ import net.neoforged.fml.common.Mod;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT, modid = SodiumExtraMod.MOD_ID)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT, modid = EmbeddiumExtraMod.MOD_ID)
 public class SodiumExtraHud {
 
     private static final List<Text> TEXT_LIST = new ObjectArrayList<>();

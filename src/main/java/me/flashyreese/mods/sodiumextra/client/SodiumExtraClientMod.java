@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 public class SodiumExtraClientMod {
-    public static final Logger LOGGER = LogManager.getLogger("Rubidium/Embeddium Extra");
+    public static final Logger LOGGER = LogManager.getLogger("Embeddium Extra");
     private static SodiumExtraGameOptions CONFIG;
     private static CaffeineConfig MIXIN_CONFIG;
 
@@ -21,7 +21,7 @@ public class SodiumExtraClientMod {
 
     public static CaffeineConfig mixinConfig() {
         if (MIXIN_CONFIG == null) {
-            MIXIN_CONFIG = CaffeineConfig.builder("Sodium Extra").withSettingsKey("rubidium_extra", "sodium-extra:options")
+            MIXIN_CONFIG = CaffeineConfig.builder("Sodium Extra").withSettingsKey("embeddium_extra", "sodium-extra:options")
                     .addMixinOption("adaptive_sync", true)
                     .addMixinOption("animation", true)
                     .addMixinOption("biome_colors", true)
@@ -57,7 +57,6 @@ public class SodiumExtraClientMod {
                     .addMixinOption("sun_moon", true)
                     .addMixinOption("toasts", true)
 
-                    .ignoreErrors(true)
                     .withLogger(SodiumExtraClientMod.LOGGER)
                     .withInfoUrl("https://github.com/FlashyReese/sodium-extra-fabric/wiki/Configuration-File")
                     .build(FMLPaths.CONFIGDIR.get().resolve("sodium-extra.properties"));
