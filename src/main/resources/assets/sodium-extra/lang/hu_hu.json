@@ -1,6 +1,6 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "A Sodium Extra célja, hogy az OptiFine szemet gyönyörködtető opcióinak nagy részét a Sodiumra vigye; emellett néhány olyan funkciót is biztosít, mint a vizuális hibajavítások és más teljesítményopciók, amelyek még nem állnak rendelkezésre a Sodiumon.",
-  "modmenu.summaryTranslation.sodium-extra": "Jellemzők, amelyeknek nem kellene a Sodiumban lenniük.",
+  "modmenu.descriptionTranslation.sodium-extra": "A Embeddium Extra célja, hogy az OptiFine szemet gyönyörködtető opcióinak nagy részét a Embeddiumra vigye; emellett néhány olyan funkciót is biztosít, mint a vizuális hibajavítások és más teljesítményopciók, amelyek még nem állnak rendelkezésre a Embeddiumon.",
+  "modmenu.summaryTranslation.sodium-extra": "Jellemzők, amelyeknek nem kellene a Embeddiumban lenniük.",
   "options.dimensions.minecraft.overworld": "Felvilág",
   "options.dimensions.minecraft.the_end": "Vég",
   "options.dimensions.minecraft.the_nether": "Alvilág",
@@ -314,7 +314,7 @@
   "sodium-extra.overlay.fps": "%s FPS",
   "sodium-extra.overlay.fps_extended": "(max. %s / átl. %s / min. %s)",
   "sodium-extra.overlay.light_updates": "A Világítás Frissülése ki van kapcsolva.",
-  "sodium-extra.suggestRSO.header": "Ajánlás: Telepítsd a Reese's Sodium Options modot",
-  "sodium-extra.suggestRSO.message": "Nagyon ajánlott a Reese's Sodium Options mod használata a Sodium Extra mellett. Ez azért van, mert a mod folyamatosan bővülő funkciói már nem férnek el rendesen el a Sodium videobeálításain.",
+  "sodium-extra.suggestRSO.header": "Ajánlás: Telepítsd a Reese's Embeddium Options modot",
+  "sodium-extra.suggestRSO.message": "Nagyon ajánlott a Reese's Embeddium Options mod használata a Embeddium Extra mellett. Ez azért van, mert a mod folyamatosan bővülő funkciói már nem férnek el rendesen el a Embeddium videobeálításain.",
   "sodium-extra.units.ticks": "%s tick"
 }
