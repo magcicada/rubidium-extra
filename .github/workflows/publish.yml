@@ -60,13 +60,14 @@ jobs:
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          name: "[NeoForge ${{ steps.read_property.outputs.minecraft_version }}] v${{ steps.read_property.outputs.mod_version }}"
+          name: "[(Neo)Forge ${{ steps.read_property.outputs.minecraft_version }}] v${{ steps.read_property.outputs.mod_version }}"
 
           changelog: ${{steps.build_changelog.outputs.changelog}}
 
           version-type: release
 
           loaders: |
+            forge
             neoforge
 
           game-versions: |

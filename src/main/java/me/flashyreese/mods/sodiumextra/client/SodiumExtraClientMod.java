@@ -2,7 +2,7 @@ package me.flashyreese.mods.sodiumextra.client;
 
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
 import net.caffeinemc.caffeineconfig.CaffeineConfig;
-import net.neoforged.fml.loading.FMLPaths;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -21,7 +21,7 @@ public class SodiumExtraClientMod {
 
     public static CaffeineConfig mixinConfig() {
         if (MIXIN_CONFIG == null) {
-            MIXIN_CONFIG = CaffeineConfig.builder("Sodium Extra").withSettingsKey("embeddium_extra", "sodium-extra:options")
+            MIXIN_CONFIG = CaffeineConfig.builder("Sodium Extra").withSettingsKey("sodium-extra:options")
                     .addMixinOption("adaptive_sync", true)
                     .addMixinOption("animation", true)
                     .addMixinOption("biome_colors", true)
