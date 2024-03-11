@@ -1,5 +1,7 @@
 package me.flashyreese.mods.sodiumextra.mixin.sodium.vsync;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptionPages;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
 import me.jellysquid.mods.sodium.client.gui.SodiumGameOptionPages;
@@ -14,7 +16,6 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = SodiumGameOptionPages.class, remap = false)
 public class MixinSodiumGameOptionsPages {
@@ -22,12 +23,12 @@ public class MixinSodiumGameOptionsPages {
     @Final
     private static MinecraftOptionsStorage vanillaOpts;
 
-    @Redirect(method = "general", at = @At(value = "INVOKE", target = "Lme/jellysquid/mods/sodium/client/gui/options/OptionGroup$Builder;add(Lme/jellysquid/mods/sodium/client/gui/options/Option;)Lme/jellysquid/mods/sodium/client/gui/options/OptionGroup$Builder;", ordinal = 5), remap = false)
-    private static OptionGroup.Builder redirectVsyncToggle(OptionGroup.Builder instance, Option<?> option) {
+    @WrapOperation(method = "general", at = @At(value = "INVOKE", target = "Lme/jellysquid/mods/sodium/client/gui/options/OptionGroup$Builder;add(Lme/jellysquid/mods/sodium/client/gui/options/Option;)Lme/jellysquid/mods/sodium/client/gui/options/OptionGroup$Builder;", ordinal = 5), remap = false)
+    private static OptionGroup.Builder redirectVsyncToggle(OptionGroup.Builder instance, Option<?> option, Operation<OptionGroup.Builder> original) {
         if (!option.getTooltip().getString().equals(Text.translatable("sodium.options.v_sync.tooltip").getString())) {
-            return instance.add(option);
+            return original.call(instance, option);
         }
-        return instance.add(OptionImpl.createBuilder(SodiumExtraGameOptions.VerticalSyncOption.class, SodiumExtraGameOptionPages.sodiumExtraOpts)
+        return original.call(instance, OptionImpl.createBuilder(SodiumExtraGameOptions.VerticalSyncOption.class, SodiumExtraGameOptionPages.sodiumExtraOpts)
                 .setName(Text.translatable("options.vsync"))
                 .setTooltip(Text.literal(Text.translatable("sodium.options.v_sync.tooltip").getString() + "\n- " + Text.translatable("sodium-extra.option.use_adaptive_sync.name").getString() + ": " + Text.translatable("sodium-extra.option.use_adaptive_sync.tooltip").getString()))
                 .setControl((opt) -> new CyclingControl<>(opt, SodiumExtraGameOptions.VerticalSyncOption.class,
