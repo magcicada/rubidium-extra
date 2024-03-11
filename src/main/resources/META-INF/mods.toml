@@ -22,7 +22,7 @@ config = "sodium-extra.mixins.json"
 [[dependencies.embeddium_extra]]
 modId = "neoforge"
 type = "required"
-versionRange = "[20.4.114-beta,)"
+versionRange = "[20.4.198,)"
 ordering = "NONE"
 side = "BOTH"
 

@@ -2,13 +2,15 @@ package me.flashyreese.mods.sodiumextra.mixin.reduce_resolution_on_mac;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.WindowEventHandler;
+import net.minecraft.client.WindowSettings;
+import net.minecraft.client.util.MonitorTracker;
 import net.minecraft.client.util.Window;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
@@ -28,13 +30,11 @@ public class MixinWindow {
     @Shadow
     private int framebufferHeight;
 
-    @Redirect(at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwWindowHint(II)V", ordinal = 0), method = "<init>", remap = false)
-    private void onDefaultWindowHints(int hint, int value) {
+    @Inject(at = @At(value = "INVOKE", target = "Lorg/lwjgl/glfw/GLFW;glfwDefaultWindowHints()V", shift = At.Shift.AFTER), method = "<init>", remap = false)
+    private void onDefaultWindowHints(WindowEventHandler eventHandler, MonitorTracker monitorTracker, WindowSettings settings, String videoMode, String title, CallbackInfo ci) {
         if (MinecraftClient.IS_SYSTEM_MAC && SodiumExtraClientMod.options().extraSettings.reduceResolutionOnMac) {
             GLFW.glfwWindowHint(GLFW.GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW.GLFW_FALSE);
         }
-
-        GLFW.glfwWindowHint(hint, value);
     }
 
     @Inject(at = @At(value = "RETURN"), method = "updateFramebufferSize")

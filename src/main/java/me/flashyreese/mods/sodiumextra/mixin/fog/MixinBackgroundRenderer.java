@@ -15,8 +15,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(BackgroundRenderer.class)
 public abstract class MixinBackgroundRenderer {
@@ -57,36 +58,18 @@ public abstract class MixinBackgroundRenderer {
         }
     }
 
-    @ModifyArg(
+    @ModifyArgs(
             method = "applyFog",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V"
-            ),
-            index = 5
+            )
     )
-    private static float applyFogModCompatStart(float fogStart, @Share("rbSetFog") LocalBooleanRef setFog, @Share("rbFogStart") LocalFloatRef fogStartRef) {
+    private static void applyFogModCompat(Args args, @Share("rbSetFog") LocalBooleanRef setFog, @Share("rbFogStart") LocalFloatRef fogStartRef, @Share("rbFogEnd") LocalFloatRef fogEndRef) {
         if (SodiumExtraClientMod.options().renderSettings.fogType == SodiumExtraGameOptions.RenderSettings.FogType.MOD_COMPAT && setFog.get()) {
-            return fogStartRef.get();
+            args.set(5, fogStartRef.get());
+            args.set(6, fogEndRef.get());
         }
-
-        return fogStart;
-    }
-
-    @ModifyArg(
-            method = "applyFog",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V"
-            ),
-            index = 6
-    )
-    private static float applyFogModCompatEnd(float fogEnd, @Share("rbSetFog") LocalBooleanRef setFog, @Share("rbFogEnd") LocalFloatRef fogEndRef) {
-        if (SodiumExtraClientMod.options().renderSettings.fogType == SodiumExtraGameOptions.RenderSettings.FogType.MOD_COMPAT && setFog.get()) {
-            return fogEndRef.get();
-        }
-
-        return fogEnd;
     }
 
     @Inject(method = "applyFog", at = @At(value = "TAIL"))

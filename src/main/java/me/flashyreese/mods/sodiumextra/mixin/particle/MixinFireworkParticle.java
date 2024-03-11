@@ -1,5 +1,6 @@
 package me.flashyreese.mods.sodiumextra.mixin.particle;
 
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import net.minecraft.client.particle.FireworksSparkParticle;
 import net.minecraft.client.particle.Particle;
@@ -8,7 +9,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FireworksSparkParticle.FireworkParticle.class)
@@ -23,10 +23,8 @@ public class MixinFireworkParticle {
         }
     }
 
-    @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/Particle;setColor(FFF)V"))
-    public void tick(Particle instance, float red, float green, float blue) {
-        if (instance != null) {
-            instance.setColor(red, green, blue);
-        }
+    @WrapWithCondition(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/Particle;setColor(FFF)V"))
+    public boolean tick(Particle instance, float red, float green, float blue) {
+        return instance != null;
     }
 }
