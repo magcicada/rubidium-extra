@@ -1,5 +1,7 @@
 package me.flashyreese.mods.sodiumextra.mixin.animation;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import net.minecraft.client.texture.AbstractTexture;
 import net.minecraft.client.texture.Sprite;
@@ -8,7 +10,6 @@ import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 import java.util.Map;
@@ -19,9 +20,9 @@ public abstract class MixinSpriteAtlasTexture extends AbstractTexture {
     @Unique
     private final Map<Supplier<Boolean>, List<Identifier>> animatedSprites = constructAnimatedSprites();
 
-    @Redirect(method = "upload", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/Sprite;createAnimation()Lnet/minecraft/client/texture/Sprite$TickableAnimation;"))
-    public Sprite.TickableAnimation sodiumExtra$tickAnimatedSprites(Sprite instance) {
-        Sprite.TickableAnimation tickableAnimation = instance.createAnimation();
+    @WrapOperation(method = "upload", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/Sprite;createAnimation()Lnet/minecraft/client/texture/Sprite$TickableAnimation;"))
+    public Sprite.TickableAnimation sodiumExtra$tickAnimatedSprites(Sprite instance, Operation<Sprite.TickableAnimation> original) {
+        Sprite.TickableAnimation tickableAnimation = original.call(instance);
         if (tickableAnimation != null && SodiumExtraClientMod.options().animationSettings.animation && this.shouldAnimate(instance.getContents().getId()))
             return tickableAnimation;
         return null;
