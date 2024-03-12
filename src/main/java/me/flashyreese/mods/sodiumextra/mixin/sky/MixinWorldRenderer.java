@@ -1,6 +1,7 @@
 package me.flashyreese.mods.sodiumextra.mixin.sky;
 
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import net.minecraft.client.gl.ShaderProgram;
 import net.minecraft.client.gl.VertexBuffer;
@@ -14,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WorldRenderer.class)
 public class MixinWorldRenderer {
-    @WrapWithCondition(
+    @WrapOperation(
             method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lorg/joml/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V",
             at = @At(
                     value = "INVOKE",
@@ -22,8 +23,10 @@ public class MixinWorldRenderer {
                     ordinal = 0
             )
     )
-    public boolean redirectSetSkyShader(VertexBuffer instance, Matrix4f viewMatrix, Matrix4f projectionMatrix, ShaderProgram program) {
-        return SodiumExtraClientMod.options().detailSettings.sky;
+    public void redirectSetSkyShader(VertexBuffer instance, Matrix4f viewMatrix, Matrix4f projectionMatrix, ShaderProgram program, Operation<Void> original) {
+        if (SodiumExtraClientMod.options().detailSettings.sky) {
+            original.call(instance, viewMatrix, projectionMatrix, program);
+        }
     }
 
     @Inject(method = "renderEndSky", at = @At(value = "HEAD"), cancellable = true)
