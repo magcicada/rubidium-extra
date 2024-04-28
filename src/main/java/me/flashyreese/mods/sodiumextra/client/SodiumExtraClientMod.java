@@ -38,6 +38,7 @@ public class SodiumExtraClientMod {
                     .addMixinOption("optimizations.fast_weather", false)
                     .addMixinOption("particle", true)
                     .addMixinOption("prevent_shaders", true)
+                    .addMixinOption("profiler", true)
                     .addMixinOption("reduce_resolution_on_mac", true)
                     .addMixinOption("render", true)
                     .addMixinOption("render.block", true)
@@ -69,11 +70,5 @@ public class SodiumExtraClientMod {
     }
 
     public SodiumExtraClientMod() {
-        /* if (SodiumExtraClientMod.options().superSecretSettings.fetchSodiumExtraCrowdinTranslations) {
-            CrowdinTranslate.downloadTranslations(SodiumExtraClientMod.options().superSecretSettings.sodiumExtraCrowdinProjectIdentifier, "sodium-extra");
-        }
-        if (SodiumExtraClientMod.options().superSecretSettings.fetchSodiumCrowdinTranslations) {
-            CrowdinTranslate.downloadTranslations(SodiumExtraClientMod.options().superSecretSettings.sodiumCrowdinProjectIdentifier, "sodium");
-        }*/
     }
 }
