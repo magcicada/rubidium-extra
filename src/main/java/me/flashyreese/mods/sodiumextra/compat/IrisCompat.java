@@ -1,7 +1,7 @@
 package me.flashyreese.mods.sodiumextra.compat;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
-import net.coderbot.iris.vertices.IrisVertexFormats;
+import net.irisshaders.iris.vertices.IrisVertexFormats;
 import net.irisshaders.iris.api.v0.IrisApi;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraftforge.fml.loading.LoadingModList;
