@@ -3,10 +3,10 @@ package me.flashyreese.mods.sodiumextra.mixin.optimizations.beacon_beam_renderin
 import it.unimi.dsi.fastutil.longs.Long2ReferenceMap;
 import me.flashyreese.mods.sodiumextra.compat.IrisCompat;
 import me.flashyreese.mods.sodiumextra.compat.ModelVertexToTerrainSerializer;
-import me.jellysquid.mods.sodium.client.render.vertex.serializers.VertexSerializerRegistryImpl;
-import net.caffeinemc.mods.sodium.api.vertex.format.VertexFormatDescription;
-import net.caffeinemc.mods.sodium.api.vertex.format.VertexFormatRegistry;
-import net.caffeinemc.mods.sodium.api.vertex.serializer.VertexSerializer;
+import org.embeddedt.embeddium.impl.render.vertex.serializers.VertexSerializerRegistryImpl;
+import org.embeddedt.embeddium.api.vertex.format.VertexFormatDescription;
+import org.embeddedt.embeddium.api.vertex.format.VertexFormatRegistry;
+import org.embeddedt.embeddium.api.vertex.serializer.VertexSerializer;
 import net.minecraft.client.render.VertexFormats;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,18 +1,20 @@
 package me.flashyreese.mods.sodiumextra.client.gui.scrollable_page;
 
-import me.jellysquid.mods.sodium.client.gui.options.Option;
-import me.jellysquid.mods.sodium.client.gui.options.OptionGroup;
-import me.jellysquid.mods.sodium.client.gui.options.OptionImpact;
-import me.jellysquid.mods.sodium.client.gui.options.OptionPage;
-import me.jellysquid.mods.sodium.client.gui.options.control.Control;
-import me.jellysquid.mods.sodium.client.gui.options.control.ControlElement;
-import me.jellysquid.mods.sodium.client.util.Dim2i;
+
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Language;
+import org.embeddedt.embeddium.api.math.Dim2i;
+import org.embeddedt.embeddium.api.options.control.Control;
+import org.embeddedt.embeddium.api.options.control.ControlElement;
+import org.embeddedt.embeddium.api.options.structure.Option;
+import org.embeddedt.embeddium.api.options.structure.OptionControlElement;
+import org.embeddedt.embeddium.api.options.structure.OptionGroup;
+import org.embeddedt.embeddium.api.options.structure.OptionImpact;
+import org.embeddedt.embeddium.api.options.structure.OptionPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +67,7 @@ public class OptionPageScrollFrame extends AbstractFrame {
             // Add each option's control element
             for (Option<?> option : group.getOptions()) {
                 Control<?> control = option.getControl();
-                ControlElement<?> element = control.createElement(new Dim2i(this.dim.x(), this.dim.y() + y - (this.canScroll ? this.scrollBar.getOffset() : 0), this.dim.width() - (this.canScroll ? 11 : 0), 18));
+                OptionControlElement<?> element = control.createElement(new Dim2i(this.dim.x(), this.dim.y() + y - (this.canScroll ? this.scrollBar.getOffset() : 0), this.dim.width() - (this.canScroll ? 11 : 0), 18));
                 this.children.add(element);
 
                 // Move down to the next option

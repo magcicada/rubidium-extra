@@ -3,30 +3,30 @@ package me.flashyreese.mods.sodiumextra.client.gui;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.flashyreese.mods.sodiumextra.client.gui.options.control.SliderControlExtended;
 import me.flashyreese.mods.sodiumextra.common.util.ControlValueFormatterExtended;
-import me.jellysquid.mods.sodium.client.gui.SodiumGameOptionPages;
-import me.jellysquid.mods.sodium.client.gui.options.Option;
-import me.jellysquid.mods.sodium.client.gui.options.OptionGroup;
-import me.jellysquid.mods.sodium.client.gui.options.OptionImpact;
-import me.jellysquid.mods.sodium.client.gui.options.OptionImpl;
-import me.jellysquid.mods.sodium.client.gui.options.control.ControlValueFormatter;
-import me.jellysquid.mods.sodium.client.gui.options.control.CyclingControl;
-import me.jellysquid.mods.sodium.client.gui.options.control.SliderControl;
-import me.jellysquid.mods.sodium.client.gui.options.storage.OptionStorage;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.util.VideoMode;
 import net.minecraft.client.util.Window;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.embeddedt.embeddium.api.options.control.ControlValueFormatter;
+import org.embeddedt.embeddium.api.options.control.CyclingControl;
+import org.embeddedt.embeddium.api.options.control.SliderControl;
+import org.embeddedt.embeddium.api.options.structure.Option;
+import org.embeddedt.embeddium.api.options.structure.OptionGroup;
+import org.embeddedt.embeddium.api.options.structure.OptionImpact;
+import org.embeddedt.embeddium.api.options.structure.OptionImpl;
+import org.embeddedt.embeddium.api.options.structure.OptionStorage;
+import org.embeddedt.embeddium.impl.gui.EmbeddiumGameOptionPages;
 
 import java.util.Optional;
 
 public class EmbeddiumExtendedOptions {
-    private static final OptionStorage<GameOptions> vanillaOpts = SodiumGameOptionPages.getVanillaOpts();
+    private static final OptionStorage<GameOptions> vanillaOpts = EmbeddiumGameOptionPages.getVanillaOpts();
 
     public static final Option<?> ADAPTIVE_VSYNC = OptionImpl.createBuilder(SodiumExtraGameOptions.VerticalSyncOption.class, SodiumExtraGameOptionPages.sodiumExtraOpts)
             .setName(Text.translatable("options.vsync"))
-            .setId(new Identifier(SodiumExtraClientMod.MOD_ID, "vsync"))
+            .setId(Identifier.of(SodiumExtraClientMod.MOD_ID, "vsync"))
             .setTooltip(Text.literal(Text.translatable("sodium.options.v_sync.tooltip").getString() + "\n- " + Text.translatable("sodium-extra.option.use_adaptive_sync.name").getString() + ": " + Text.translatable("sodium-extra.option.use_adaptive_sync.tooltip").getString()))
             .setControl((opt) -> new CyclingControl<>(opt, SodiumExtraGameOptions.VerticalSyncOption.class,
                     SodiumExtraGameOptions.VerticalSyncOption.getAvailableOptions()))

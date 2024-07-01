@@ -1,7 +1,7 @@
 package me.flashyreese.mods.sodiumextra.compat;
 
-import net.caffeinemc.mods.sodium.api.vertex.format.common.ModelVertex;
-import net.caffeinemc.mods.sodium.api.vertex.serializer.VertexSerializer;
+import org.embeddedt.embeddium.api.vertex.format.common.ModelVertex;
+import org.embeddedt.embeddium.api.vertex.serializer.VertexSerializer;
 import org.lwjgl.system.MemoryUtil;
 
 public class ModelVertexToTerrainSerializer implements VertexSerializer {

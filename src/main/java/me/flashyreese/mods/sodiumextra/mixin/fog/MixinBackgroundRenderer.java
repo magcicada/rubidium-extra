@@ -31,7 +31,7 @@ public abstract class MixinBackgroundRenderer {
             method = "applyFog",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V",
+                    target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/block/enums/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V",
                     shift = At.Shift.BY
             )
     )
@@ -62,7 +62,7 @@ public abstract class MixinBackgroundRenderer {
             method = "applyFog",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/client/render/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V"
+                    target = "Lnet/neoforged/neoforge/client/ClientHooks;onFogRender(Lnet/minecraft/client/render/BackgroundRenderer$FogType;Lnet/minecraft/block/enums/CameraSubmersionType;Lnet/minecraft/client/render/Camera;FFFFLnet/minecraft/client/render/FogShape;)V"
             )
     )
     private static void applyFogModCompat(Args args, @Share("rbSetFog") LocalBooleanRef setFog, @Share("rbFogStart") LocalFloatRef fogStartRef, @Share("rbFogEnd") LocalFloatRef fogEndRef) {

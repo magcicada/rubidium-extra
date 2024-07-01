@@ -1,9 +1,9 @@
 package me.flashyreese.mods.sodiumextra.mixin.optimizations.beacon_beam_rendering;
 
 import me.flashyreese.mods.sodiumextra.compat.IrisCompat;
-import net.caffeinemc.mods.sodium.api.math.MatrixHelper;
-import net.caffeinemc.mods.sodium.api.vertex.buffer.VertexBufferWriter;
-import net.caffeinemc.mods.sodium.api.vertex.format.common.ModelVertex;
+import org.embeddedt.embeddium.api.math.MatrixHelper;
+import org.embeddedt.embeddium.api.vertex.buffer.VertexBufferWriter;
+import org.embeddedt.embeddium.api.vertex.format.common.ModelVertex;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;

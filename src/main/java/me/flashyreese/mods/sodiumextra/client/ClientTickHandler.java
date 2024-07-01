@@ -12,8 +12,8 @@ import java.util.stream.IntStream;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT, modid = SodiumExtraClientMod.MOD_ID)
 public class ClientTickHandler {
-    private final Queue<Integer> fpsQueue = EvictingQueue.create(200);
-    private int averageFps, lowestFps, highestFps;
+    private static final Queue<Integer> fpsQueue = EvictingQueue.create(200);
+    private static int averageFps, lowestFps, highestFps;
 
     @SubscribeEvent
     public static void onTick(final ClientTickEvent.Post event) {

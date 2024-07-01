@@ -1,7 +1,7 @@
 package me.flashyreese.mods.sodiumextra.client.gui.scrollable_page;
 
-import me.jellysquid.mods.sodium.client.gui.widgets.AbstractWidget;
-import me.jellysquid.mods.sodium.client.util.Dim2i;
+import org.embeddedt.embeddium.api.math.Dim2i;
+import org.embeddedt.embeddium.impl.gui.widgets.AbstractWidget;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.math.MathHelper;
 

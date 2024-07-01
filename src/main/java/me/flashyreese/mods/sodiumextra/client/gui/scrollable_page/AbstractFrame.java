@@ -1,9 +1,9 @@
 package me.flashyreese.mods.sodiumextra.client.gui.scrollable_page;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import me.jellysquid.mods.sodium.client.gui.options.control.ControlElement;
-import me.jellysquid.mods.sodium.client.gui.widgets.AbstractWidget;
-import me.jellysquid.mods.sodium.client.util.Dim2i;
+import org.embeddedt.embeddium.api.math.Dim2i;
+import org.embeddedt.embeddium.api.options.control.ControlElement;
+import org.embeddedt.embeddium.impl.gui.widgets.AbstractWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.navigation.GuiNavigation;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public abstract class AbstractFrame extends AbstractWidget implements ParentElement {
     protected final Dim2i dim;
-    protected final List<AbstractWidget> children = new ArrayList<>();
+    protected final List<Element> children = new ArrayList<>();
     protected final List<Drawable> drawable = new ArrayList<>();
     protected final List<ControlElement<?>> controlElements = new ArrayList<>();
     private Element focused;

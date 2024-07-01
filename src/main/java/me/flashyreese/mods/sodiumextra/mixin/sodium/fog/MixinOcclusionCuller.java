@@ -1,9 +1,9 @@
 package me.flashyreese.mods.sodiumextra.mixin.sodium.fog;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
-import me.jellysquid.mods.sodium.client.render.chunk.RenderSection;
-import me.jellysquid.mods.sodium.client.render.chunk.occlusion.OcclusionCuller;
-import me.jellysquid.mods.sodium.client.render.viewport.CameraTransform;
+import org.embeddedt.embeddium.impl.render.chunk.RenderSection;
+import org.embeddedt.embeddium.impl.render.chunk.occlusion.OcclusionCuller;
+import org.embeddedt.embeddium.impl.render.viewport.CameraTransform;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

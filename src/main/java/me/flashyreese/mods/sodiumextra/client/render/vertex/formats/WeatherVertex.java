@@ -1,11 +1,11 @@
 package me.flashyreese.mods.sodiumextra.client.render.vertex.formats;
 
-import net.caffeinemc.mods.sodium.api.vertex.attributes.common.ColorAttribute;
-import net.caffeinemc.mods.sodium.api.vertex.attributes.common.LightAttribute;
-import net.caffeinemc.mods.sodium.api.vertex.attributes.common.PositionAttribute;
-import net.caffeinemc.mods.sodium.api.vertex.attributes.common.TextureAttribute;
-import net.caffeinemc.mods.sodium.api.vertex.format.VertexFormatDescription;
-import net.caffeinemc.mods.sodium.api.vertex.format.VertexFormatRegistry;
+import org.embeddedt.embeddium.api.vertex.attributes.common.ColorAttribute;
+import org.embeddedt.embeddium.api.vertex.attributes.common.LightAttribute;
+import org.embeddedt.embeddium.api.vertex.attributes.common.PositionAttribute;
+import org.embeddedt.embeddium.api.vertex.attributes.common.TextureAttribute;
+import org.embeddedt.embeddium.api.vertex.format.VertexFormatDescription;
+import org.embeddedt.embeddium.api.vertex.format.VertexFormatRegistry;
 import net.minecraft.client.render.VertexFormats;
 import org.lwjgl.system.MemoryUtil;
 

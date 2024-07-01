@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import it.unimi.dsi.fastutil.objects.Object2BooleanArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
-import me.jellysquid.mods.sodium.client.gui.options.TextProvider;
+import org.embeddedt.embeddium.impl.gui.options.TextProvider;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;

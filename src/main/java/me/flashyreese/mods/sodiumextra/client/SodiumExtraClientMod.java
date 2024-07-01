@@ -13,8 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.embeddedt.embeddium.api.OptionGUIConstructionEvent;
 import org.embeddedt.embeddium.api.OptionGroupConstructionEvent;
 import org.embeddedt.embeddium.api.OptionPageConstructionEvent;
-import org.embeddedt.embeddium.client.gui.options.OptionIdentifier;
-import org.embeddedt.embeddium.client.gui.options.StandardOptions;
+import org.embeddedt.embeddium.api.options.OptionIdentifier;
+import org.embeddedt.embeddium.api.options.structure.StandardOptions;
 
 @Mod(value = SodiumExtraClientMod.MOD_ID, dist = Dist.CLIENT)
 public class SodiumExtraClientMod {

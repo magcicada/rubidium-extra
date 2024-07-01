@@ -1,6 +1,6 @@
 package me.flashyreese.mods.sodiumextra.common.util;
 
-import net.caffeinemc.mods.sodium.api.util.ColorU8;
+import org.embeddedt.embeddium.api.util.ColorU8;
 
 public class ColorRGBA implements ColorU8 {
     public ColorRGBA() {
