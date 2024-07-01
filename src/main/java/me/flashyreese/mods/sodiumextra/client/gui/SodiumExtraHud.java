@@ -1,7 +1,6 @@
 package me.flashyreese.mods.sodiumextra.client.gui;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import me.flashyreese.mods.sodiumextra.EmbeddiumExtraMod;
 import me.flashyreese.mods.sodiumextra.client.ClientTickHandler;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.flashyreese.mods.sodiumextra.mixin.gui.MinecraftClientAccessor;
@@ -10,14 +9,14 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
-import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT, modid = EmbeddiumExtraMod.MOD_ID)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT, modid = SodiumExtraClientMod.MOD_ID)
 public class SodiumExtraHud {
 
     private static final List<Text> TEXT_LIST = new ObjectArrayList<>();
@@ -25,11 +24,7 @@ public class SodiumExtraHud {
     private static final MinecraftClient CLIENT = MinecraftClient.getInstance();
 
     @SubscribeEvent
-    public static void onStartTick(TickEvent.ClientTickEvent client) {
-        if (client.phase == TickEvent.Phase.END) {
-            return;
-        }
-
+    public static void onStartTick(ClientTickEvent.Post event) {
         // Clear the textList to start fresh (this might not be ideal but hey it's still better than whatever the fuck debug hud is doing)
         TEXT_LIST.clear();
         if (SodiumExtraClientMod.options().extraSettings.showFps) {

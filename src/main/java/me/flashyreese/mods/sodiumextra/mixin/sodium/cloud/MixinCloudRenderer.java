@@ -1,15 +1,17 @@
 package me.flashyreese.mods.sodiumextra.mixin.sodium.cloud;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.jellysquid.mods.sodium.client.render.immediate.CloudRenderer;
+import net.minecraft.client.option.GameOptions;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(CloudRenderer.class)
 public class MixinCloudRenderer {
-    @ModifyVariable(method = "render", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/option/GameOptions;getClampedViewDistance()I"), index = 21, name = "renderDistance")
-    public int modifyCloudRenderDistance(int original) {
-        return original * SodiumExtraClientMod.options().extraSettings.cloudDistance / 100;
+    @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;getClampedViewDistance()I"))
+    public int modifyCloudRenderDistance(GameOptions instance, Operation<Integer> original) {
+        return original.call(instance) * SodiumExtraClientMod.options().extraSettings.cloudDistance / 100;
     }
 }

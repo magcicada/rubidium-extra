@@ -1,12 +1,23 @@
 package me.flashyreese.mods.sodiumextra.client;
 
+import me.flashyreese.mods.sodiumextra.client.gui.EmbeddiumExtendedOptions;
+import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptionPages;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
 import net.caffeinemc.caffeineconfig.CaffeineConfig;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLPaths;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.embeddedt.embeddium.api.OptionGUIConstructionEvent;
+import org.embeddedt.embeddium.api.OptionGroupConstructionEvent;
+import org.embeddedt.embeddium.api.OptionPageConstructionEvent;
+import org.embeddedt.embeddium.client.gui.options.OptionIdentifier;
+import org.embeddedt.embeddium.client.gui.options.StandardOptions;
 
+@Mod(value = SodiumExtraClientMod.MOD_ID, dist = Dist.CLIENT)
 public class SodiumExtraClientMod {
+    public static final String MOD_ID = "embeddium_extra";
     public static final Logger LOGGER = LogManager.getLogger("Embeddium Extra");
     private static SodiumExtraGameOptions CONFIG;
     private static CaffeineConfig MIXIN_CONFIG;
@@ -70,11 +81,38 @@ public class SodiumExtraClientMod {
     }
 
     public SodiumExtraClientMod() {
-        /* if (SodiumExtraClientMod.options().superSecretSettings.fetchSodiumExtraCrowdinTranslations) {
-            CrowdinTranslate.downloadTranslations(SodiumExtraClientMod.options().superSecretSettings.sodiumExtraCrowdinProjectIdentifier, "sodium-extra");
-        }
-        if (SodiumExtraClientMod.options().superSecretSettings.fetchSodiumCrowdinTranslations) {
-            CrowdinTranslate.downloadTranslations(SodiumExtraClientMod.options().superSecretSettings.sodiumCrowdinProjectIdentifier, "sodium");
-        }*/
+        OptionGUIConstructionEvent.BUS.addListener(event -> {
+            event.addPage(SodiumExtraGameOptionPages.animation());
+            event.addPage(SodiumExtraGameOptionPages.particle());
+            event.addPage(SodiumExtraGameOptionPages.detail());
+            event.addPage(SodiumExtraGameOptionPages.render());
+            event.addPage(SodiumExtraGameOptionPages.extra());
+        });
+
+        OptionPageConstructionEvent.BUS.addListener(event -> {
+            if (event.getId().matches(StandardOptions.Pages.QUALITY)) {
+                event.addGroup(EmbeddiumExtendedOptions.EFFECTS_GROUP);
+
+            } else if (event.getId().matches(StandardOptions.Pages.GENERAL)) {
+                event.addGroup(EmbeddiumExtendedOptions.RESOLUTION_GROUP);
+            }
+        });
+
+        OptionGroupConstructionEvent.BUS.addListener(event -> {
+            if (!event.getId().matches(StandardOptions.Group.WINDOW)) {
+                return;
+            }
+
+            event.getOptions().replaceAll(option -> {
+                if (option.getId() == null || !option.getId().matches(StandardOptions.Option.VSYNC)) {
+                    return option;
+                }
+                return EmbeddiumExtendedOptions.ADAPTIVE_VSYNC;
+            });
+        });
+    }
+
+    public static OptionIdentifier<Void> optionIdentifier(String path) {
+        return OptionIdentifier.create(MOD_ID, path);
     }
 }

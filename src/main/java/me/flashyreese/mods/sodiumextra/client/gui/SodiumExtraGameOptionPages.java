@@ -100,7 +100,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .build());
-        return new OptionPage(Text.translatable("sodium-extra.option.animations"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraClientMod.optionIdentifier("animations"), Text.translatable("sodium-extra.option.animations"), ImmutableList.copyOf(groups));
     }
 
     public static OptionPage particle() {
@@ -163,7 +163,7 @@ public class SodiumExtraGameOptionPages {
                 ).build()
         ));
 
-        return new OptionPage(parseVanillaString("options.particles"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraClientMod.optionIdentifier("particles"), parseVanillaString("options.particles"), ImmutableList.copyOf(groups));
     }
 
     public static OptionPage detail() {
@@ -221,7 +221,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .build());
-        return new OptionPage(Text.translatable("sodium-extra.option.details"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraClientMod.optionIdentifier("details"), Text.translatable("sodium-extra.option.details"), ImmutableList.copyOf(groups));
     }
 
     public static OptionPage render() {
@@ -377,7 +377,7 @@ public class SodiumExtraGameOptionPages {
                         .build()
                 )
                 .build());
-        return new OptionPage(Text.translatable("sodium-extra.option.render"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraClientMod.optionIdentifier("render"), Text.translatable("sodium-extra.option.render"), ImmutableList.copyOf(groups));
     }
 
     public static OptionPage extra() {
@@ -534,7 +534,7 @@ public class SodiumExtraGameOptionPages {
                 )
                 .build());
 
-        return new OptionPage(Text.translatable("sodium-extra.option.extras"), ImmutableList.copyOf(groups));
+        return new OptionPage(SodiumExtraClientMod.optionIdentifier("extras"), Text.translatable("sodium-extra.option.extras"), ImmutableList.copyOf(groups));
     }
 
     private static Text translatableName(Identifier identifier, String category) {

@@ -1,27 +1,22 @@
 package me.flashyreese.mods.sodiumextra.client;
 
-import me.flashyreese.mods.sodiumextra.EmbeddiumExtraMod;
 import com.google.common.collect.EvictingQueue;
 import me.flashyreese.mods.sodiumextra.mixin.gui.MinecraftClientAccessor;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 
 import java.util.Queue;
 import java.util.stream.IntStream;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT, modid = EmbeddiumExtraMod.MOD_ID)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT, modid = SodiumExtraClientMod.MOD_ID)
 public class ClientTickHandler {
     private static int averageFps, lowestFps, highestFps;
     private static final Queue<Integer> fpsQueue = EvictingQueue.create(200);
 
     @SubscribeEvent
-    public static void onTick(final TickEvent.ClientTickEvent event) {
-        // The ClientTickEvent is fired twice per tick, once at the start and once at the end.
-        if (event.phase == TickEvent.Phase.END)
-            return;
-
+    public static void onTick(final ClientTickEvent.Post event) {
         final int currentFPS = MinecraftClientAccessor.getCurrentFPS();
         fpsQueue.add(currentFPS);
 
