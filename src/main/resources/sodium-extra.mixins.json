@@ -48,5 +48,9 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+    "sodium.embeddium.OptionGroupMixin",
+    "sodium.embeddium.OptionImplMixin"
+  ]
 }
