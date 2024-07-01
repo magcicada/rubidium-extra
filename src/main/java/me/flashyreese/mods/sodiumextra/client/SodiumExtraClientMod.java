@@ -3,6 +3,7 @@ package me.flashyreese.mods.sodiumextra.client;
 import me.flashyreese.mods.sodiumextra.client.gui.EmbeddiumExtendedOptions;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptionPages;
 import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraGameOptions;
+import me.flashyreese.mods.sodiumextra.client.gui.SodiumExtraHud;
 import net.caffeinemc.caffeineconfig.CaffeineConfig;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
@@ -43,8 +44,8 @@ public class SodiumExtraClientMod {
                     .addMixinOption("gui", true)
                     .addMixinOption("instant_sneak", true)
                     .addMixinOption("light_updates", true)
-                    .addMixinOption("optimizations", true)
-                    .addMixinOption("optimizations.beacon_beam_rendering", true)
+                    .addMixinOption("optimizations", false)
+                    .addMixinOption("optimizations.beacon_beam_rendering", false)
                     .addMixinOption("optimizations.draw_helpers", false)
                     .addMixinOption("optimizations.fast_weather", false)
                     .addMixinOption("particle", true)

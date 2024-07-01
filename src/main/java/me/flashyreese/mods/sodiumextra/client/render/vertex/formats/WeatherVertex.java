@@ -7,7 +7,6 @@ import net.caffeinemc.mods.sodium.api.vertex.attributes.common.TextureAttribute;
 import net.caffeinemc.mods.sodium.api.vertex.format.VertexFormatDescription;
 import net.caffeinemc.mods.sodium.api.vertex.format.VertexFormatRegistry;
 import net.minecraft.client.render.VertexFormats;
-import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 
 public final class WeatherVertex {
@@ -18,14 +17,14 @@ public final class WeatherVertex {
     private static final int OFFSET_COLOR = 20;
     private static final int OFFSET_LIGHT = 24;
 
-    public static void put(long ptr, float x, float y, float z, int color, float u, float v, int light) {
+    public static void put(long ptr, float x, float y, float z, float u, float v, int color, int light) {
         PositionAttribute.put(ptr + OFFSET_POSITION, x, y, z);
         TextureAttribute.put(ptr + OFFSET_TEXTURE, u, v);
         ColorAttribute.set(ptr + OFFSET_COLOR, color);
         LightAttribute.set(ptr + OFFSET_LIGHT, light);
     }
 
-    public static void put(long ptr, float x, float y, float z, int color, float u, float v, int lightU, int lightV) {
+    public static void put(long ptr, float x, float y, float z, float u, float v, int color, int lightU, int lightV) {
         PositionAttribute.put(ptr + OFFSET_POSITION, x, y, z);
         TextureAttribute.put(ptr + OFFSET_TEXTURE, u, v);
         ColorAttribute.set(ptr + OFFSET_COLOR, color);

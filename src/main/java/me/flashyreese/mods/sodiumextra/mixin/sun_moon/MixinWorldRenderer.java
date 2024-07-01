@@ -48,11 +48,11 @@ public class MixinWorldRenderer {
     )
     private void postWorldRendererReload(CallbackInfo ci) {
         if (SodiumExtraClientMod.options().detailSettings.sunMoon) {
-            MOON_PHASES = new Identifier("textures/environment/moon_phases.png");
-            SUN = new Identifier("textures/environment/sun.png");
+            MOON_PHASES = Identifier.of("textures/environment/moon_phases.png");
+            SUN = Identifier.of("textures/environment/sun.png");
         } else {
-            MOON_PHASES = new Identifier("sodium-extra", "textures/transparent.png");
-            SUN = new Identifier("sodium-extra", "textures/transparent.png");
+            MOON_PHASES = Identifier.of("sodium-extra", "textures/transparent.png");
+            SUN = Identifier.of("sodium-extra", "textures/transparent.png");
         }
     }
 }

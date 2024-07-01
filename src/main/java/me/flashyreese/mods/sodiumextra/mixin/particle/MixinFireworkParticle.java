@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(FireworksSparkParticle.FireworkParticle.class)
 public class MixinFireworkParticle {
     @Unique
-    private final Identifier fireworkIdentifier = new Identifier("minecraft", "firework");
+    private final Identifier fireworkIdentifier = Identifier.of("minecraft", "firework");
 
     @Inject(method = "addExplosionParticle", at = @At(value = "HEAD"), cancellable = true)
     public void addExplosionParticle(double x, double y, double z, double velocityX, double velocityY, double velocityZ, IntList colors, IntList targetColors, boolean trail, boolean flicker, CallbackInfo ci) {

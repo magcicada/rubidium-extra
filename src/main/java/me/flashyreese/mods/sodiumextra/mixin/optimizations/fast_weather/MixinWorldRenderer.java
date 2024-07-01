@@ -49,119 +49,123 @@ public class MixinWorldRenderer {
     @Final
     private float[] NORMAL_LINE_DZ;
 
+
     @Inject(method = "renderWeather", at = @At(value = "HEAD"), cancellable = true)
     public void sodiumExtra$renderWeather(LightmapTextureManager manager, float tickDelta, double cameraX, double cameraY, double cameraZ, CallbackInfo ci) {
         assert this.client.world != null;
-        float f = this.client.world.getRainGradient(tickDelta);
-        if (!(f <= 0.0F)) {
+        float rainGradient = this.client.world.getRainGradient(tickDelta);
+        if (rainGradient > 0.0F) {
             manager.enable();
             World world = this.client.world;
-            int abX = MathHelper.floor(cameraX);
-            int abY = MathHelper.floor(cameraY);
-            int abZ = MathHelper.floor(cameraZ);
+            int cameraPosX = MathHelper.floor(cameraX);
+            int cameraPosY = MathHelper.floor(cameraY);
+            int cameraPosZ = MathHelper.floor(cameraZ);
             Tessellator tessellator = Tessellator.getInstance();
-            BufferBuilder bufferBuilder = tessellator.getBuffer();
+            BufferBuilder bufferBuilder = null;
             RenderSystem.disableCull();
             RenderSystem.enableBlend();
             RenderSystem.enableDepthTest();
-            int l = 5;
-            if (MinecraftClient.isFancyGraphicsOrBetter()) {
-                l = 10;
-            }
+            int range = MinecraftClient.isFancyGraphicsOrBetter() ? 10 : 5;
 
             RenderSystem.depthMask(MinecraftClient.isFabulousGraphicsOrBetter());
-            int m = -1;
-            float g = (float) this.ticks + tickDelta;
+            int precipitationType = -1;
+            float time = (float) this.ticks + tickDelta;
             RenderSystem.setShader(GameRenderer::getParticleProgram);
             BlockPos.Mutable mutable = new BlockPos.Mutable();
 
-            for (int z = abZ - l; z <= abZ + l; ++z) {
-                for (int x = abX - l; x <= abX + l; ++x) {
-                    int p = (z - abZ + 16) * 32 + x - abX + 16;
-                    double d = (double) this.NORMAL_LINE_DX[p] * 0.5;
-                    double e = (double) this.NORMAL_LINE_DZ[p] * 0.5;
+            for (int z = cameraPosZ - range; z <= cameraPosZ + range; ++z) {
+                for (int x = cameraPosX - range; x <= cameraPosX + range; ++x) {
+                    int positionIndex = (z - cameraPosZ + 16) * 32 + x - cameraPosX + 16;
+                    double offsetX = (double) this.NORMAL_LINE_DX[positionIndex] * 0.5;
+                    double offsetZ = (double) this.NORMAL_LINE_DZ[positionIndex] * 0.5;
                     mutable.set(x, cameraY, z);
+
                     long biomePacked = Utils.packPosition(x, z);
                     Biome biome = this.biomeLong2ReferenceMap.computeIfAbsent(biomePacked, key -> world.getBiome(mutable).value());
                     if (biome.hasPrecipitation()) {
-                        int q = world.getTopY(Heightmap.Type.MOTION_BLOCKING, x, z);
-                        int r = abY - l;
-                        int s = abY + l;
-                        if (r < q) {
-                            r = q;
+                        int topY = world.getTopY(Heightmap.Type.MOTION_BLOCKING, x, z);
+                        int minY = cameraPosY - range;
+                        int maxY = cameraPosY + range;
+                        if (minY < topY) {
+                            minY = topY;
                         }
 
-                        if (s < q) {
-                            s = q;
+                        if (maxY < topY) {
+                            maxY = topY;
                         }
 
-                        int t = Math.max(q, abY);
+                        int adjustedTopY = Math.max(topY, cameraPosY);
 
-                        if (r != s) {
+                        if (minY != maxY) {
                             Random random = Random.create((long) x * x * 3121 + x * 45238971L ^ (long) z * z * 418711 + z * 13761L);
-                            mutable.set(x, r, z);
+                            mutable.set(x, minY, z);
                             Biome.Precipitation precipitation = biome.getPrecipitation(mutable);
                             if (precipitation == Biome.Precipitation.RAIN) {
-                                if (m != 0) {
-                                    if (m >= 0) {
-                                        tessellator.draw();
+                                if (precipitationType != 0) {
+                                    if (precipitationType >= 0) {
+                                        BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
                                     }
 
-                                    m = 0;
+                                    precipitationType = 0;
                                     RenderSystem.setShaderTexture(0, RAIN);
-                                    bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR_LIGHT);
+                                    bufferBuilder = tessellator.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR_LIGHT);
                                 }
 
-                                int u = this.ticks + x * x * 3121 + x * 45238971 + z * z * 418711 + z * 13761 & 31;
-                                float rainOffset = -((float) u + tickDelta) / 32.0F * (3.0F + random.nextFloat());
-                                double v = (double) x + 0.5 - cameraX;
-                                double w = (double) z + 0.5 - cameraZ;
-                                float distance = (float) Math.sqrt(v * v + w * w) / (float) l;
-                                float y = ((1.0F - distance * distance) * 0.5F + 0.5F) * f;
-                                mutable.set(x, t, z);
+                                int ticksModulus = this.ticks & 131071;
+                                int randomOffset = x * x * 3121 + x * 45238971 + z * z * 418711 + z * 13761 & 0xFF;
+                                float dropLength = 3.0F + random.nextFloat();
+                                float dropTimeOffset = -((float) (ticksModulus + randomOffset) + tickDelta) / 32.0F * dropLength;
+                                float dropTextureOffset = dropTimeOffset % 32.0F;
+
+                                double relativeX = (double) x + 0.5 - cameraX;
+                                double relativeZ = (double) z + 0.5 - cameraZ;
+                                float distance = (float) Math.sqrt(relativeX * relativeX + relativeZ * relativeZ) / (float) range;
+                                float alpha = ((1.0F - distance * distance) * 0.5F + 0.5F) * rainGradient;
+                                mutable.set(x, adjustedTopY, z);
+                                int color = ColorABGR.pack(1.0F, 1.0F, 1.0F, alpha);
                                 int light = getLightmapCoordinates(world, mutable);
 
                                 VertexBufferWriter writer = VertexBufferWriter.of(bufferBuilder);
-
-                                int color = ColorABGR.pack(1.0F, 1.0F, 1.0F, y);
-
-                                writeVertices(cameraX, cameraY, cameraZ, z, x, d, e, r, s, rainOffset, light, writer, color);
+                                write(writer, cameraX, cameraY, cameraZ, x, z, offsetX, offsetZ, minY, maxY, 0, dropTextureOffset, color, light);
                             } else if (precipitation == Biome.Precipitation.SNOW) {
-                                if (m != 1) {
-                                    if (m >= 0) {
-                                        tessellator.draw();
+                                if (precipitationType != 1) {
+                                    if (precipitationType >= 0) {
+                                        BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
                                     }
 
-                                    m = 1;
+                                    precipitationType = 1;
                                     RenderSystem.setShaderTexture(0, SNOW);
-                                    bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR_LIGHT);
+                                    bufferBuilder = tessellator.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR_LIGHT);
                                 }
 
-                                float snowOffset = (float) (random.nextDouble() + (double) g * 0.01 * (double) ((float) random.nextGaussian()));
-                                double ac = (double) x + 0.5 - cameraX;
-                                double ad = (double) z + 0.5 - cameraZ;
-                                float y = (float) Math.sqrt(ac * ac + ad * ad) / (float) l;
-                                float ae = ((1.0F - y * y) * 0.3F + 0.5F) * f;
-                                mutable.set(x, t, z);
-                                int af = getLightmapCoordinates(world, mutable);
-                                int ag = af >> 16 & 65535;
-                                int ah = af & 65535;
-                                int ai = (ag * 3 + 240) / 4;
-                                int aj = (ah * 3 + 240) / 4;
+                                float snowFallSpeed = -((float) (this.ticks & 511) + tickDelta) / 512.0F;
+                                float snowTextureOffsetX = (float) (random.nextDouble() + (double) time * 0.01 * (double) ((float) random.nextGaussian()));
+                                float snowTextureOffsetY = (float) (random.nextDouble() + (double) (time * (float) random.nextGaussian()) * 0.001);
 
+                                double relativeX = (double) x + 0.5 - cameraX;
+                                double relativeZ = (double) z + 0.5 - cameraZ;
+                                float distance = (float) Math.sqrt(relativeX * relativeX + relativeZ * relativeZ) / (float) range;
+                                float alpha = ((1.0F - distance * distance) * 0.3F + 0.5F) * rainGradient;
+
+                                mutable.set(x, adjustedTopY, z);
+                                int light = getLightmapCoordinates(world, mutable);
+                                int blockLight = light >> 16 & (LightmapTextureManager.MAX_BLOCK_LIGHT_COORDINATE | 65295);
+                                int skyLight = light & (LightmapTextureManager.MAX_BLOCK_LIGHT_COORDINATE | 65295);
+                                int adjustedBlockLight = (blockLight * 3 + LightmapTextureManager.MAX_BLOCK_LIGHT_COORDINATE) / 4;
+                                int adjustedSkyLight = (skyLight * 3 + LightmapTextureManager.MAX_BLOCK_LIGHT_COORDINATE) / 4;
 
                                 VertexBufferWriter writer = VertexBufferWriter.of(bufferBuilder);
-                                int color = ColorABGR.pack(1.0F, 1.0F, 1.0F, ae);
-                                int light = Utils.packLight(aj, ai);
-                                writeVertices(cameraX, cameraY, cameraZ, z, x, d, e, r, s, snowOffset, light, writer, color);
+                                int color = ColorABGR.pack(1.0F, 1.0F, 1.0F, alpha);
+                                int packedLight = Utils.packLight(adjustedSkyLight, adjustedBlockLight);
+                                write(writer, cameraX, cameraY, cameraZ, x, z, offsetX, offsetZ, minY, maxY, snowTextureOffsetX, snowFallSpeed + snowTextureOffsetY, color, packedLight);
                             }
                         }
                     }
                 }
             }
 
-            if (m >= 0) {
-                tessellator.draw();
+            if (precipitationType >= 0) {
+                BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
             }
 
             RenderSystem.enableCull();
@@ -177,21 +181,41 @@ public class MixinWorldRenderer {
     }
 
     @Unique
-    private void writeVertices(double cameraX, double cameraY, double cameraZ, int n, int o, double d, double e, int r, int s, float h, int light, VertexBufferWriter writer, int color) {
+    private void write(VertexBufferWriter writer, double cameraX, double cameraY, double cameraZ, int x, int z, double offsetX, double offsetZ, int minY, int maxY, float textureOffsetX, float textureOffsetY, int color, int light) {
         try (MemoryStack stack = MemoryStack.stackPush()) {
             long buffer = stack.nmalloc(4 * WeatherVertex.STRIDE);
             long ptr = buffer;
 
-            WeatherVertex.put(ptr, (float) (o - cameraX - d + 0.5), (float) (s - cameraY), (float) (n - cameraZ - e + 0.5), color, 0.0F, (float) r * 0.25F + h, light);
+            WeatherVertex.put(ptr,
+                    (float) ((double) x - cameraX - offsetX + 0.5), (float) ((double) maxY - cameraY), (float) ((double) z - cameraZ - offsetZ + 0.5),
+                    0.0F + textureOffsetX, (float) minY * 0.25F + textureOffsetY,
+                    color,
+                    light
+            );
             ptr += WeatherVertex.STRIDE;
 
-            WeatherVertex.put(ptr, (float) (o - cameraX + d + 0.5), (float) (s - cameraY), (float) (n - cameraZ + e + 0.5), color, 1.0F, (float) r * 0.25F + h, light);
+            WeatherVertex.put(ptr,
+                    (float) ((double) x - cameraX + offsetX + 0.5), (float) ((double) maxY - cameraY), (float) ((double) z - cameraZ + offsetZ + 0.5),
+                    1.0F + textureOffsetX, (float) minY * 0.25F + textureOffsetY,
+                    color,
+                    light
+            );
             ptr += WeatherVertex.STRIDE;
 
-            WeatherVertex.put(ptr, (float) (o - cameraX + d + 0.5), (float) (r - cameraY), (float) (n - cameraZ + e + 0.5), color, 1.0F, (float) s * 0.25F + h, light);
+            WeatherVertex.put(ptr,
+                    (float) ((double) x - cameraX + offsetX + 0.5), (float) ((double) minY - cameraY), (float) ((double) z - cameraZ + offsetZ + 0.5),
+                    1.0F + textureOffsetX, (float) maxY * 0.25F + textureOffsetY,
+                    color,
+                    light
+            );
             ptr += WeatherVertex.STRIDE;
 
-            WeatherVertex.put(ptr, (float) (o - cameraX - d + 0.5), (float) (r - cameraY), (float) (n - cameraZ - e + 0.5), color, 0.0F, (float) s * 0.25F + h, light);
+            WeatherVertex.put(ptr,
+                    (float) ((double) x - cameraX - offsetX + 0.5), (float) ((double) minY - cameraY), (float) ((double) z - cameraZ - offsetZ + 0.5),
+                    0.0F + textureOffsetX, (float) maxY * 0.25F + textureOffsetY,
+                    color,
+                    light
+            );
             ptr += WeatherVertex.STRIDE;
 
             writer.push(stack, buffer, 4, WeatherVertex.FORMAT);

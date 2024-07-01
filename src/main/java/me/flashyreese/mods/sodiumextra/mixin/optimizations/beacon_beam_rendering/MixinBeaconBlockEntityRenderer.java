@@ -2,7 +2,6 @@ package me.flashyreese.mods.sodiumextra.mixin.optimizations.beacon_beam_renderin
 
 import me.flashyreese.mods.sodiumextra.compat.IrisCompat;
 import net.caffeinemc.mods.sodium.api.math.MatrixHelper;
-import net.caffeinemc.mods.sodium.api.util.ColorABGR;
 import net.caffeinemc.mods.sodium.api.vertex.buffer.VertexBufferWriter;
 import net.caffeinemc.mods.sodium.api.vertex.format.common.ModelVertex;
 import net.minecraft.block.entity.BeaconBlockEntity;
@@ -12,6 +11,7 @@ import net.minecraft.client.render.block.entity.BeaconBlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import org.joml.Matrix3f;
@@ -30,8 +30,8 @@ public abstract class MixinBeaconBlockEntityRenderer {
      * @author FlashyReese
      * @reason Use optimized vertex writer, also avoids unnecessary allocations
      */
-    @Inject(method = "renderBeam(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/util/Identifier;FFJII[FFF)V", at = @At(value = "HEAD"), cancellable = true)
-    private static void optimizeRenderBeam(MatrixStack matrices, VertexConsumerProvider vertexConsumerProvider, Identifier textureId, float tickDelta, float heightScale, long worldTime, int yOffset, int maxY, float[] color, float innerRadius, float outerRadius, CallbackInfo ci) {
+    @Inject(method = "renderBeam(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/util/Identifier;FFJIIIFF)V", at = @At(value = "HEAD"), cancellable = true)
+    private static void optimizeRenderBeam(MatrixStack matrices, VertexConsumerProvider vertexConsumerProvider, Identifier textureId, float tickDelta, float heightScale, long worldTime, int yOffset, int maxY, int color, float innerRadius, float outerRadius, CallbackInfo ci) {
         ci.cancel();
         if (IrisCompat.isIrisPresent()) {
             if (IrisCompat.isRenderingShadowPass()) {
@@ -45,9 +45,6 @@ public abstract class MixinBeaconBlockEntityRenderer {
         float time = (float) Math.floorMod(worldTime, 40) + tickDelta;
         float negativeTime = maxY < 0 ? time : -time;
         float fractionalPart = MathHelper.fractionalPart(negativeTime * 0.2F - (float) MathHelper.floor(negativeTime * 0.1F));
-        float red = color[0];
-        float green = color[1];
-        float blue = color[2];
         matrices.push();
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(time * 2.25F - 45.0F));
         float innerX1;
@@ -57,13 +54,10 @@ public abstract class MixinBeaconBlockEntityRenderer {
         float innerV2 = -1.0F + fractionalPart;
         float innerV1 = (float) maxY * heightScale * (0.5F / innerRadius) + innerV2;
 
-        int colorNoneTranslucent = ColorABGR.pack(red, green, blue, 1.0F);
-        int colorTranslucent = ColorABGR.pack(red, green, blue, 0.125F);
-
         try (MemoryStack stack = MemoryStack.stackPush()) {
             long buffer = stack.nmalloc(2 * 16 * ModelVertex.STRIDE);
             long ptr = buffer;
-            ptr = writeBeamLayerVertices(ptr, matrices, colorNoneTranslucent, yOffset, height, 0.0F, innerRadius, innerRadius, 0.0F, innerX3, 0.0F, 0.0F, innerZ4, innerV1, innerV2);
+            ptr = writeBeamLayerVertices(ptr, matrices, color, yOffset, height, 0.0F, innerRadius, innerRadius, 0.0F, innerX3, 0.0F, 0.0F, innerZ4, innerV1, innerV2);
             VertexBufferWriter.of(vertexConsumerProvider.getBuffer(RenderLayer.getBeaconBeam(textureId, false))).push(stack, buffer, 16, ModelVertex.FORMAT);
 
             matrices.pop();
@@ -75,7 +69,7 @@ public abstract class MixinBeaconBlockEntityRenderer {
             innerV1 = (float) maxY * heightScale + innerV2;
 
             buffer = ptr;
-            ptr = writeBeamLayerVertices(ptr, matrices, colorTranslucent, yOffset, height, innerX1, outerZ1, outerRadius, innerZ2, innerX3, outerRadius, outerRadius, outerRadius, innerV1, innerV2);
+            ptr = writeBeamLayerVertices(ptr, matrices, ColorHelper.Argb.withAlpha(32, color), yOffset, height, innerX1, outerZ1, outerRadius, innerZ2, innerX3, outerRadius, outerRadius, outerRadius, innerV1, innerV2);
             VertexBufferWriter.of(vertexConsumerProvider.getBuffer(RenderLayer.getBeaconBeam(textureId, true))).push(stack, buffer, 16, ModelVertex.FORMAT);
         }
         matrices.pop();

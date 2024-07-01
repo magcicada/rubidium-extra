@@ -8,13 +8,13 @@ import org.joml.Matrix4f;
 import org.lwjgl.system.MemoryUtil;
 
 public class TextureColorVertex {
-    public static final VertexFormatDescription FORMAT = VertexFormatRegistry.instance().get(VertexFormats.POSITION_COLOR_TEXTURE);
+    public static final VertexFormatDescription FORMAT = VertexFormatRegistry.instance().get(VertexFormats.POSITION_TEXTURE_COLOR);
 
     public static final int STRIDE = 24;
 
     private static final int OFFSET_POSITION = 0;
-    private static final int OFFSET_COLOR = 12;
-    private static final int OFFSET_TEXTURE = 16;
+    private static final int OFFSET_TEXTURE = 12;
+    private static final int OFFSET_COLOR = 20;
 
     public static void write(long ptr, Matrix4f matrix, float x, float y, float z, int color, float u, float v) {
         float xt = MatrixHelper.transformPositionX(matrix, x, y, z);
@@ -29,9 +29,10 @@ public class TextureColorVertex {
         MemoryUtil.memPutFloat(ptr + OFFSET_POSITION + 4, y);
         MemoryUtil.memPutFloat(ptr + OFFSET_POSITION + 8, z);
 
-        MemoryUtil.memPutInt(ptr + OFFSET_COLOR, color);
 
         MemoryUtil.memPutFloat(ptr + OFFSET_TEXTURE, u);
         MemoryUtil.memPutFloat(ptr + OFFSET_TEXTURE + 4, v);
+
+        MemoryUtil.memPutInt(ptr + OFFSET_COLOR, color);
     }
 }

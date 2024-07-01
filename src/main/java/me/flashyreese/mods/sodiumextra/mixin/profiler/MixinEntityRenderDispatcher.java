@@ -16,10 +16,10 @@ import java.util.WeakHashMap;
 
 @Mixin(EntityRenderDispatcher.class)
 public abstract class MixinEntityRenderDispatcher {
+    private static final WeakHashMap<Class<?>, String> names = new WeakHashMap<>();
+
     @Shadow
     public abstract <T extends Entity> EntityRenderer<? super T> getRenderer(T entity);
-
-    private static final WeakHashMap<Class<?>, String> names = new WeakHashMap<>();
 
     @Inject(at = @At("HEAD"), method = "render")
     private <E extends Entity> void onRender(E entity, double x, double y, double z, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {

@@ -119,8 +119,7 @@ public abstract class MixinDrawContext {
         RenderSystem.setShaderTexture(0, texture);
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         Matrix4f matrix4f = this.matrices.peek().getPositionMatrix();
-        BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
-        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
+        BufferBuilder bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
         VertexBufferWriter writer = VertexBufferWriter.of(bufferBuilder);
         try (MemoryStack stack = MemoryStack.stackPush()) {
             final long buffer = stack.nmalloc(4 * TextureVertex.STRIDE);
@@ -151,11 +150,10 @@ public abstract class MixinDrawContext {
     @Inject(method = "drawTexturedQuad(Lnet/minecraft/util/Identifier;IIIIIFFFFFFFF)V", at = @At(value = "HEAD"), cancellable = true)
     public void drawTexturedQuad(Identifier texture, int x1, int x2, int y1, int y2, int z, float u1, float u2, float v1, float v2, float red, float green, float blue, float alpha, CallbackInfo ci) {
         RenderSystem.setShaderTexture(0, texture);
-        RenderSystem.setShader(GameRenderer::getPositionColorTexProgram);
+        RenderSystem.setShader(GameRenderer::getPositionTexColorProgram);
         RenderSystem.enableBlend();
         Matrix4f matrix4f = this.matrices.peek().getPositionMatrix();
-        BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
-        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE);
+        BufferBuilder bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
         VertexBufferWriter writer = VertexBufferWriter.of(bufferBuilder);
         int color = ColorABGR.pack(red, green, blue, alpha);
         try (MemoryStack stack = MemoryStack.stackPush()) {

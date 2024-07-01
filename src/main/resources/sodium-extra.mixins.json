@@ -20,9 +20,9 @@
     "optimizations.beacon_beam_rendering.WorldRendererAccessor",
     "optimizations.draw_helpers.MixinDrawContext",
     "optimizations.fast_weather.MixinWorldRenderer",
+    "particle.MixinFireworkParticle",
     "particle.MixinParticleManager",
     "particle.MixinWorldRenderer",
-    "particle.MixinFireworkParticle",
     "prevent_shaders.MixinGameRenderer",
     "profiler.MixinBlockEntityRenderDispatcher",
     "profiler.MixinEntityRenderDispatcher",
@@ -40,10 +40,10 @@
     "stars.MixinWorldRenderer",
     "steady_debug_hud.MixinDebugHud",
     "sun_moon.MixinWorldRenderer",
-    "toasts.MixinToastManager",
     "toasts.MixinAdvancementToast",
     "toasts.MixinRecipeToast",
     "toasts.MixinSystemToast",
+    "toasts.MixinToastManager",
     "toasts.MixinTutorialToast"
   ],
   "injectors": {
