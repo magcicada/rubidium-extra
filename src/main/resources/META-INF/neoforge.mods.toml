@@ -22,7 +22,7 @@ config = "sodium-extra.mixins.json"
 [[dependencies.embeddium_extra]]
 modId = "neoforge"
 type = "required"
-versionRange = "[20.4.198,)"
+versionRange = "[20.6.119,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -36,6 +36,6 @@ side = "CLIENT"
 [[dependencies.embeddium_extra]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.20.4,)"
+versionRange = "[1.20.6,)"
 ordering = "NONE"
 side = "CLIENT"

@@ -29,7 +29,7 @@ abstract class MixinLivingEntityRenderer<T extends LivingEntity, M extends Entit
         if (entity instanceof ArmorStandEntity && !SodiumExtraClientMod.options().renderSettings.armorStand) {
             ci.cancel();
             if (this.hasLabel(entity)) {
-                this.renderLabelIfPresent(entity, entity.getDisplayName(), matrixStack, vertexConsumerProvider, i);
+                this.renderLabelIfPresent(entity, entity.getDisplayName(), matrixStack, vertexConsumerProvider, i, g);
             }
         }
     }

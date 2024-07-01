@@ -38,6 +38,7 @@ public class SodiumExtraClientMod {
                     .addMixinOption("optimizations.fast_weather", false)
                     .addMixinOption("particle", true)
                     .addMixinOption("prevent_shaders", true)
+                    .addMixinOption("profiler", true)
                     .addMixinOption("reduce_resolution_on_mac", true)
                     .addMixinOption("render", true)
                     .addMixinOption("render.block", true)

@@ -58,7 +58,7 @@ public class SodiumExtraHud {
     }
     @SubscribeEvent
     public static void onHudRender(RenderGuiEvent.Post event) {
-        if (!CLIENT.getDebugHud().shouldShowDebugHud()) {
+        if (!CLIENT.getDebugHud().shouldShowDebugHud() && !CLIENT.options.hudHidden) {
             SodiumExtraGameOptions.OverlayCorner overlayCorner = SodiumExtraClientMod.options().extraSettings.overlayCorner;
             // Calculate starting position based on the overlay corner
             int x;
