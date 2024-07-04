@@ -36,7 +36,6 @@
     "sky.MixinWorldRenderer",
     "sky_colors.MixinBiome",
     "sodium.cloud.MixinCloudRenderer",
-    "sodium.fog.MixinOcclusionCuller",
     "stars.MixinWorldRenderer",
     "steady_debug_hud.MixinDebugHud",
     "sun_moon.MixinWorldRenderer",
@@ -48,9 +47,5 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "mixins": [
-    "sodium.embeddium.OptionGroupMixin",
-    "sodium.embeddium.OptionImplMixin"
-  ]
+  }
 }
