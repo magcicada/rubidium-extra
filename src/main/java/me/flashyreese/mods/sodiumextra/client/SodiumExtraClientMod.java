@@ -58,7 +58,7 @@ public class SodiumExtraClientMod {
                     .addMixinOption("render.entity", true)
                     .addMixinOption("sky", true)
                     .addMixinOption("sky_colors", true)
-                    //.addMixinOption("sodium", true, true, true)
+                    //.addMixinOption("sodium", true)
                     //.addMixinOption("sodium.accessibility", true) in embeddium
                     //.addMixinOption("sodium.fog", true) via api
                     //.addMixinOption("sodium.cloud", true) via api
