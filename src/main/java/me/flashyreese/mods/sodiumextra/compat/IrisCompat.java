@@ -1,13 +1,14 @@
 package me.flashyreese.mods.sodiumextra.compat;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
-import net.coderbot.iris.vertices.IrisVertexFormats;
+import net.irisshaders.iris.vertices.IrisVertexFormats;
 import net.irisshaders.iris.api.v0.IrisApi;
 import net.minecraft.client.render.VertexFormat;
 import net.neoforged.fml.loading.LoadingModList;
 
 public class IrisCompat {
-    private static final boolean irisPresent = LoadingModList.get().getModFileById("oculus") != null;
+    private static final boolean irisPresent = LoadingModList.get().getModFileById("oculus") != null ||
+            LoadingModList.get().getModFileById("iris") != null;
 
     public static boolean isRenderingShadowPass() {
         if (irisPresent) {

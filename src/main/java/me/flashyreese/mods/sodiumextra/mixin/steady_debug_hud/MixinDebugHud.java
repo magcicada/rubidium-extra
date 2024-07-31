@@ -42,21 +42,21 @@ public abstract class MixinDebugHud {
         }
     }
 
-    @WrapOperation(method = "drawGameInformation", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/DebugHud;drawText(Lnet/minecraft/client/gui/DrawContext;Ljava/util/List;Z)V"))
-    public void sodiumExtra$redirectDrawLeftText(DebugHud instance, DrawContext context, List<String> text, boolean left, Operation<Void> original) {
+    @WrapOperation(method = "drawLeftText", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/DebugHud;collectGameInformationText()Ljava/util/List;"))
+    public List<String> sodiumExtra$redirectDrawLeftText(DebugHud instance, Operation<List<String>> original) {
         if (this.rebuild) {
             this.leftTextCache.clear();
-            this.leftTextCache.addAll(text);
+            this.leftTextCache.addAll(original.call(instance));
         }
-        original.call(instance, context, this.leftTextCache, left);
+        return this.leftTextCache;
     }
 
-    @WrapOperation(method = "drawSystemInformation", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/DebugHud;drawText(Lnet/minecraft/client/gui/DrawContext;Ljava/util/List;Z)V"))
-    public void sodiumExtra$redirectDrawRightText(DebugHud instance, DrawContext context, List<String> text, boolean left, Operation<Void> original) {
+    @WrapOperation(method = "drawRightText", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/DebugHud;collectSystemInformationText()Ljava/util/List;"))
+    public List<String> sodiumExtra$redirectDrawRightText(DebugHud instance, Operation<List<String>> original) {
         if (this.rebuild) {
             this.rightTextCache.clear();
-            this.rightTextCache.addAll(text);
+            this.rightTextCache.addAll(original.call(instance));
         }
-        original.call(instance, context, this.rightTextCache, left);
+        return this.rightTextCache;
     }
 }
